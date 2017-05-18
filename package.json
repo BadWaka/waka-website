@@ -19,6 +19,8 @@
   "homepage": "https://github.com/BadWaka/waka-website#readme",
   "dependencies": {
     "koa": "^2.2.0",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
     "tracer": "^0.8.9"
   }
 }
