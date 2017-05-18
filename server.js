@@ -18,9 +18,17 @@ app.use(async function (ctx, next) {
 })
 
 app.use(ctx => {
+    console.debug('headers', ctx.request.headers);
     ctx.body = 'Hello World!';
 });
 
 /************************ start server ************************/
+
 app.listen(3000);
 console.info('listenning 3000...');
+
+/************************ error handler ************************/
+
+app.on('error', err =>
+    console.error('server error', err)
+);
