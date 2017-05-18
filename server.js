@@ -2,8 +2,9 @@
 
 const Koa = require('koa'); // koa
 const console = require('tracer').colorConsole(); // 增强console
-const koaRouter = require('koa-router')(); // koa-router   设置路由
-const koaStatic = require('koa-static'); // koa-static 设置静态资源
+const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
+const renderRouter = require('./routers/render'); // 渲染路由
+const apiRouter = require('./routers/api'); // 接口路由
 
 /************************ initial ************************/
 
@@ -23,20 +24,15 @@ app.use(async function (ctx, next) {
 // 设置静态目录
 app.use(koaStatic('static'));
 
-// router 路由
-app.use(koaRouter.routes());
-app.use(koaRouter.allowedMethods());
-
-/************************ router ************************/
-
-koaRouter.get('/index', function (ctx) {
-    console.debug('index', ctx);
-});
+// 路由
+app.use(renderRouter.routes()); // 渲染路由
+app.use(renderRouter.allowedMethods());
+app.use(apiRouter.routes()); // 接口路由
+app.use(apiRouter.allowedMethods());
 
 /************************ start server ************************/
 
 app.listen(8000);
-``
 console.info('listenning 8000...');
 
 /************************ error handler ************************/
