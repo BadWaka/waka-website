@@ -25,15 +25,15 @@ app.use(async function (ctx, next) {
 app.use(koaStatic('static'));
 
 // 路由
-app.use(renderRouter.routes()); // 渲染路由
+app.use(renderRouter.routes()); // 渲染路由，用来渲染页面
 app.use(renderRouter.allowedMethods());
-app.use(apiRouter.routes()); // 接口路由
+app.use(apiRouter.routes()); // 接口路由，用来做逻辑处理
 app.use(apiRouter.allowedMethods());
 
 /************************ start server ************************/
 
-app.listen(8000);
-console.info('listenning 8000...');
+app.listen(80);
+console.info('listenning 80...');
 
 /************************ error handler ************************/
 
