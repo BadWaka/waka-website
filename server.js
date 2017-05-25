@@ -24,10 +24,12 @@ app.use(async function (ctx, next) {
 // 设置静态目录
 app.use(koaStatic('static'));
 
-// 路由
-app.use(renderRouter.routes()); // 渲染路由，用来渲染页面
+// 渲染路由，用来渲染页面
+app.use(renderRouter.routes());
 app.use(renderRouter.allowedMethods());
-app.use(apiRouter.routes()); // 接口路由，用来做逻辑处理
+
+// 接口路由，用来做逻辑处理
+app.use(apiRouter.routes());
 app.use(apiRouter.allowedMethods());
 
 /************************ start server ************************/
