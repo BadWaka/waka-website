@@ -3,6 +3,8 @@
 const Koa = require('koa'); // koa
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
+const koaViews = require('koa-views');  // koa-views koa渲染模板
+
 const renderRouter = require('./routers/render'); // 渲染路由
 const apiRouter = require('./routers/api'); // 接口路由
 
@@ -23,6 +25,15 @@ app.use(async function (ctx, next) {
 
 // 设置静态目录
 app.use(koaStatic('static'));
+
+// 设置渲染模板和模板引擎
+app.use(koaViews(__dirname + '/views', {
+    extension: 'ejs'
+}));
+
+/**
+ * 路由
+ */
 
 // 渲染路由，用来渲染页面
 app.use(renderRouter.routes());
