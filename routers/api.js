@@ -18,19 +18,30 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     const html = await requestPromise(bingHost);
 
     // 使用 cheerio 转换
-    const $ = cheerio.load(html);
+    let $ = cheerio.load(html);
 
     // 过滤壁纸字段
     const masks = $('.mark');
-    for (let i = 0; i < masks.length; i++) {
-        const wallPaperUrl = bingHost + masks.eq(i).attr('href');
+    masks.each((index, item) => {
+        item = $(item);
+        const wallPaperUrl = bingHost + item.attr('href');
         wallPaperDetailUrlList.push(wallPaperUrl);
-    }
+    });
 
     console.log('wallPaperList', wallPaperDetailUrlList);
 
     // 并发请求详情页并且取数据
-    
+    wallPaperDetailUrlList.forEach(async (item, index) => {
+        const detailHtml = await requestPromise(item);
+        // console.info('detailHtml', detailHtml);
+        let $ = cheerio.load(detailHtml);
+        const mask = $('.mark');
+        mask.each((index, item) => {
+            // item = $(item);
+            console.info('mask imageUrl', item);
+        });
+
+    });
 
 });
 
