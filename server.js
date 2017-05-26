@@ -20,7 +20,7 @@ app.use(async function (ctx, next) {
     await next();
     const ms = new Date() - startTime;
     ctx.set('X-Response-Time', `${ms}ms`); // 把请求开始到响应完成的时间存到ctx里
-    console.info(`x-response-time ${ms}ms`);
+    // console.info(`x-response-time ${ms}ms`);
 });
 
 // 设置静态目录
@@ -45,8 +45,8 @@ app.use(apiRouter.allowedMethods());
 
 /************************ start server ************************/
 
-app.listen(80);
-console.info('listenning 80...');
+app.listen(3000);
+console.info('listenning 3000...');
 
 /************************ error handler ************************/
 
