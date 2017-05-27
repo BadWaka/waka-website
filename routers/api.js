@@ -52,12 +52,18 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
         console.log('高清图片地址 highDefinitionImgUrl', highDefinitionImgUrl);
     }
 
+    // promise 数组，为了使用 Promise.all() 用来判断所有请求是否都完成
+    const promiseArr = [];
+
     // 并发
     wallPaperDetailUrlList.forEach((item, index) => {
-        fetchHighDefinitionImg(item, wallPaperHighDefinitionImgUrlList);
+        const promise = fetchHighDefinitionImg(item, wallPaperHighDefinitionImgUrlList);
+        promiseArr.push(promise);
     });
 
-    console.log('高清图片地址数组 wallPaperHighDefinitionImgUrlList', wallPaperHighDefinitionImgUrlList);
+    Promise.all(promiseArr).then(() => {
+        console.log('高清图片地址数组 wallPaperHighDefinitionImgUrlList', wallPaperHighDefinitionImgUrlList);
+    });
 
 });
 
