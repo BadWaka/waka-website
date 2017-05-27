@@ -3,9 +3,12 @@
  */
 const koaRouter = require('koa-router')(); // koa-router   设置路由
 const console = require('tracer').colorConsole(); // 增强console
-const requestPromise = require('request-promise');  // request请求库的Promise版本
+const requestPromise = require('request-promise'); // request请求库的Promise版本
 const cheerio = require('cheerio');
 
+/**
+ * 必应壁纸爬虫
+ */
 koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
     console.debug('/api/bingWallPaper', ctx);
@@ -31,14 +34,14 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     console.log('wallPaperList', wallPaperDetailUrlList);
 
     // 并发请求详情页并且取数据
-    wallPaperDetailUrlList.forEach(async (item, index) => {
+    wallPaperDetailUrlList.forEach(async(item, index) => {
         const detailHtml = await requestPromise(item);
         // console.info('detailHtml', detailHtml);
         let $ = cheerio.load(detailHtml);
         const mask = $('.mark');
         mask.each((index, item) => {
             // item = $(item);
-            console.info('mask imageUrl', item);    // 卡在了无法取得background-image上
+            console.info('mask imageUrl', item); // 卡在了无法取得background-image上
         });
 
     });
