@@ -39,22 +39,23 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
     /**
      * 获得高清图片地址
-     * @param {*} wallPaperDetailUrlList 
+     * @param {*} wallPaperDetailUrl 壁纸详情路径
+     * @param {*} wallPaperHighDefinitionImgUrlList 高清图片地址数组
      */
-    const fetchHighDefinitionImg = async function (wallPaperDetailUrlList) {
-        // 并发请求详情页并且取数据
-        // 注：这里需要注意一个问题，使用 chrome 打开的网页 dom 结构和 cheerio 爬下来的有区别，以 cheerio 的为准
-        wallPaperDetailUrlList.forEach(async(item, index) => {
-            const detailHtml = await requestPromise(item);
-            let $ = cheerio.load(detailHtml);
-            const target = $('.target');
-            const highDefinitionImgUrl = target.attr('data-progressive');
-            wallPaperHighDefinitionImgUrlList.push(highDefinitionImgUrl);
-            console.log('高清图片地址 highDefinitionImgUrl', highDefinitionImgUrl);
-        });
+    const fetchHighDefinitionImg = async function (wallPaperDetailUrl, wallPaperHighDefinitionImgUrlList) {
+        // 这里需要注意一个问题，使用 chrome 打开的网页 dom 结构和 cheerio 爬下来的有区别，可能是因为 user-agent 不一样, 以 cheerio 的为准
+        const detailHtml = await requestPromise(wallPaperDetailUrl);
+        let $ = cheerio.load(detailHtml);
+        const target = $('.target');
+        const highDefinitionImgUrl = target.attr('data-progressive');
+        wallPaperHighDefinitionImgUrlList.push(highDefinitionImgUrl);
+        console.log('高清图片地址 highDefinitionImgUrl', highDefinitionImgUrl);
     }
 
-    fetchHighDefinitionImg(wallPaperDetailUrlList);
+    // 并发
+    wallPaperDetailUrlList.forEach((item, index) => {
+        fetchHighDefinitionImg(item, wallPaperHighDefinitionImgUrlList);
+    });
 
     console.log('高清图片地址数组 wallPaperHighDefinitionImgUrlList', wallPaperHighDefinitionImgUrlList);
 
