@@ -38,7 +38,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
         const mask = $('.mark');
         mask.each((index, item) => {
             // item = $(item);
-            console.info('mask imageUrl', item);
+            console.info('mask imageUrl', item);    // 卡在了无法取得background-image上
         });
 
     });
