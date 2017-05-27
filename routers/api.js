@@ -27,7 +27,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     const masks = $('.mark');
     masks.each((index, item) => {
         item = $(item);
-        const wallPaperUrl = bingHost + item.attr('href');
+        const wallPaperUrl = bingHost + item.attr('href');  // 拿到壁纸详情页的地址
         wallPaperDetailUrlList.push(wallPaperUrl);
     });
 
