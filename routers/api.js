@@ -16,6 +16,9 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     // 高清图片地址数组
     const wallPaperHighDefinitionImgUrlList = [];
 
+    /**
+     * 拉数据
+     */
     const fetchData = async() => {
 
         // 请求微软必应壁纸首页，拿到 html
@@ -64,6 +67,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
     };
 
+    // 拉完数据
     await fetchData();
     ctx.body = {
         errno: 0,
