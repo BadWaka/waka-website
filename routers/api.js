@@ -16,11 +16,8 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     // 高清图片地址数组
     const wallPaperHighDefinitionImgUrlList = [];
 
-    console.debug('req.query', ctx.query);
-    const pn = ctx.query.pn;
-    const rn = ctx.query.rn;
-    console.debug('pn', pn);
-    console.debug('rn', rn);
+    const p = ctx.query.p || '';
+    console.debug('要查询的页码 p', p);
 
     /**
      * 拉数据
@@ -29,6 +26,11 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
         // 请求微软必应壁纸首页，拿到 html
         const bingHost = 'https://bing.ioliu.cn';
+        let url = bingHost;
+        if (p) {
+            url += '/?p=' + p;
+        }
+        console.debug('url', url);
         const html = await requestPromise(bingHost);
 
         // 使用 cheerio 转换
