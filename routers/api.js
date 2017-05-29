@@ -16,6 +16,12 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     // 高清图片地址数组
     const wallPaperHighDefinitionImgUrlList = [];
 
+    console.debug('req.query', ctx.query);
+    const pn = ctx.query.pn;
+    const rn = ctx.query.rn;
+    console.debug('pn', pn);
+    console.debug('rn', rn);
+
     /**
      * 拉数据
      */
