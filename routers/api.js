@@ -59,7 +59,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
             const target = $('.target');
             const highDefinitionImgUrl = target.attr('data-progressive');
             wallPaperHighDefinitionImgUrlList.push(highDefinitionImgUrl);
-        }
+        };
 
         // promise 数组，为了使用 Promise.all() 用来判断所有请求是否都完成
         const promiseArr = [];
