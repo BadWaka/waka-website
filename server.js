@@ -27,9 +27,7 @@ app.use(async function (ctx, next) {
 app.use(koaStatic('static'));
 
 // 设置渲染模板和模板引擎
-app.use(koaViews(__dirname + '/views', {
-    extension: 'ejs'
-}));
+// app.use(koaViews(__dirname + '/views'));
 
 /**
  * 路由
