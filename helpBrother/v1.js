@@ -40,14 +40,14 @@ fileUtil.readFile('./spell.txt')
         const dataArr = dataStr.split('\n');    // 以回车分割
         // console.debug('以回车分割的数组 dataArr', dataArr);
 
-        const dataStrNoSpaceEnter = dataStr.replace(/\s+/g, '');    // 去除所有空格和回车
-        // console.debug('没有空格和回车的字符串 dataStrNoSpaceEnter', dataStrNoSpaceEnter);
+        const dataStrNoSpaceEnterNumber = dataStr.replace(/\s+|\d/g, '');    // 去除所有空格和回车
+        // console.debug('没有空格和回车的字符串 dataStrNoSpaceEnterNumber', dataStrNoSpaceEnter);
 
         /**
          * 进行v1特征分析，返回特征分析结果
          */
         const startTime = new Date().getTime();
-        const v1Result = v1(dataStrNoSpaceEnter);
+        const v1Result = v1(dataStrNoSpaceEnterNumber);
         const endTime = new Date().getTime();
         console.debug('v1花费时间', (endTime - startTime) / 1000);
 
