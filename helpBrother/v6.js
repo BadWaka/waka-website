@@ -18,13 +18,20 @@ fileUtil.readFile('./spell.txt')
         let dataStr3 = dataStr2.split('');
         for (let i = 0; i < dataStr3.length; i++) {
             if (dataStr3[i] === ' ') {
-                dataStr3[i - 1] = '-1';
+                dataStr3[i - 1] = -1;
             } else {
-                dataStr3[i] = '1';
+                dataStr3[i] = 1;
             }
         }
-        console.debug('dataStr3', dataStr3.join(''));
-        dataStr3 = dataStr3.join('').replace(/\s+/g, '');
+        dataStr3 = dataStr3.filter(function (item) {
+            if (item !== ' ') {
+                return item;
+            }
+        });
+        console.debug('dataStr3', dataStr3);
+
+        // dataStr3 = dataStr3.join('').replace(/\s+/g, '');
+        // dataStr3 = dataStr3.split('').join(',');
 
         fileUtil.writeFile(dataStr3, './v6.csv');
 
