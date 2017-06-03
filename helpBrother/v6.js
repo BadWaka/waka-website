@@ -11,16 +11,21 @@ fileUtil.readFile('./spell.txt')
         const dataStr = data.toString();
         // console.debug('原始数据 dataStr', dataStr);
 
-        let dataArr = dataStr.replace(/\n/g, ' ');    // 去除所有空格和回车和数字
-        dataArr = dataArr.split(' ');
-        console.debug('用空格分词 dataArr', dataArr);
+        let dataStr2 = dataStr.replace(/\n/g, ' ');    // 去除所有空格和回车和数字
+        dataStr2 = dataStr2.replace(/\d/g, ''); // 去除所有数字
+        console.debug('dataStr2', dataStr2);
 
-        const indexArr = [];
-        for (let i = 0; i < dataArr.length; i++) {
-            indexArr.push(i);
+        let dataStr3 = dataStr2.split('');
+        for (let i = 0; i < dataStr3.length; i++) {
+            if (dataStr3[i] === ' ') {
+                dataStr3[i - 1] = '-1';
+            } else {
+                dataStr3[i] = '1';
+            }
         }
-        console.debug('indexArr', indexArr);
+        console.debug('dataStr3', dataStr3.join(''));
+        dataStr3 = dataStr3.join('').replace(/\s+/g, '');
 
-        fileUtil.writeFile(indexArr, './v6.csv');
+        fileUtil.writeFile(dataStr3, './v6.csv');
 
     });
