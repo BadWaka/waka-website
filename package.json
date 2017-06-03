@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "我的网站",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BadWaka/waka-website.git"
@@ -26,6 +24,7 @@
     "koa-views": "^6.0.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
+    "swig": "^1.4.2",
     "tracer": "^0.8.9"
   }
 }
