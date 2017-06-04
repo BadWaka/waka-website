@@ -1,4 +1,4 @@
-const fileUtil = require('../utils/fileUtil');
+const fileUtil = require('../../utils/fileUtil');
 const console = require('tracer').colorConsole(); // 增强console
 
 /**

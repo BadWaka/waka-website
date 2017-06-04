@@ -1,12 +1,5 @@
-/**
- * Created by BadWaka on 2017/6/3.
- */
-
-const fileUtil = require('../utils/fileUtil');
+const fileUtil = require('../../utils/fileUtil');
 const console = require('tracer').colorConsole(); // 增强console
-
-const alphabetArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];    // 字母表
-const alphabetStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';   // 字母表
 
 fileUtil.readFile('./spell.txt')
     .then(function (data) {
@@ -19,11 +12,10 @@ fileUtil.readFile('./spell.txt')
 
         const indexArr = [];
         for (let i = 0; i < dataStrNoSpaceEnterNumber.length; i++) {
-            const index = alphabetStr.indexOf(dataStrNoSpaceEnterNumber[i]) + 1;
-            indexArr.push(index);
+            indexArr.unshift(i);
         }
         console.debug('indexArr', indexArr);
 
-        fileUtil.writeFile(indexArr, './v4.csv');
+        fileUtil.writeFile(indexArr, './v3.csv');
 
     });
