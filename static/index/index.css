@@ -1,8 +1,48 @@
 html, body {
   height: 100%; }
 
-.background {
-  width: 100%;
-  height: 100%;
-  background: no-repeat center red;
-  background-size: cover; }
+.header {
+  height: 58px;
+  border-bottom: 1px solid #ccc; }
+  .header .title {
+    font-size: 24px;
+    line-height: 58px;
+    margin-left: 24px; }
+
+.main {
+  margin: 0 auto;
+  width: 960px; }
+  .main .article {
+    padding: 16px 0;
+    width: 640px;
+    border-bottom: 1px solid #ccc; }
+    .main .article .row1 {
+      margin-bottom: 16px;
+      height: 32px;
+      font-size: 14px; }
+      .main .article .row1 .avatar-wrapper {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: center no-repeat;
+        background-size: cover; }
+      .main .article .row1 .author {
+        margin-left: 8px;
+        position: relative;
+        top: -12px; }
+      .main .article .row1 .time {
+        margin-left: 8px;
+        position: relative;
+        top: -12px;
+        color: #ccc; }
+    .main .article .title {
+      margin-bottom: 16px;
+      font-size: 18px;
+      font-weight: bold; }
+    .main .article .content {
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.5; }
+    .main .article .row4 {
+      font-size: 14px; }
