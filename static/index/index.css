@@ -52,7 +52,7 @@ html, body {
       line-height: 14px; }
       .main .article .row4 .tag {
         transition: 0.5s;
-        padding: 0 4px;
+        padding: 2px 4px;
         color: #2196f3;
         border: 1px solid #2196f3;
         border-radius: 4px;
