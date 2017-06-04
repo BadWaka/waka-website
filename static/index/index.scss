@@ -23,7 +23,7 @@ html, body {
   .article {
     padding: 16px 0;
     width: 640px;
-    border-bottom: 1px solid $grey400;
+    border-bottom: 1px solid $grey300;
 
     .row1 {
       margin-bottom: 16px;
@@ -35,6 +35,8 @@ html, body {
         width: 32px;
         height: 32px;
         border-radius: 50%;
+        border: 1px solid $grey300;
+        box-sizing: border-box;
         background: center no-repeat;
         background-size: cover;
       }
@@ -47,7 +49,7 @@ html, body {
         margin-left: 8px;
         position: relative;
         top: -12px;
-        color: $grey400;
+        color: $grey500;
       }
     }
 
@@ -77,6 +79,32 @@ html, body {
         &:hover {
           background-color: $blue50;
         }
+      }
+
+      .read-count, .comment-count, .like-count, .donate-count {
+        margin-left: 8px;
+        color: $grey500;
+        vertical-align: top; // 居中对齐
+
+        i {
+          margin-right: 4px;
+        }
+      }
+
+      .read-count {
+
+      }
+
+      .comment-count {
+
+      }
+
+      .like-count {
+
+      }
+
+      .donate-count {
+
       }
     }
   }

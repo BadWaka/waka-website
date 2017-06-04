@@ -16,7 +16,7 @@ html, body {
   .main .article {
     padding: 16px 0;
     width: 640px;
-    border-bottom: 1px solid #bdbdbd; }
+    border-bottom: 1px solid #e0e0e0; }
     .main .article .row1 {
       margin-bottom: 16px;
       height: 32px;
@@ -26,6 +26,8 @@ html, body {
         width: 32px;
         height: 32px;
         border-radius: 50%;
+        border: 1px solid #e0e0e0;
+        box-sizing: border-box;
         background: center no-repeat;
         background-size: cover; }
       .main .article .row1 .author {
@@ -36,7 +38,7 @@ html, body {
         margin-left: 8px;
         position: relative;
         top: -12px;
-        color: #bdbdbd; }
+        color: #9e9e9e; }
     .main .article .title {
       margin-bottom: 16px;
       font-size: 18px;
@@ -57,3 +59,9 @@ html, body {
         cursor: pointer; }
         .main .article .row4 .tag:hover {
           background-color: #e3f2fd; }
+      .main .article .row4 .read-count, .main .article .row4 .comment-count, .main .article .row4 .like-count, .main .article .row4 .donate-count {
+        margin-left: 8px;
+        color: #9e9e9e;
+        vertical-align: top; }
+        .main .article .row4 .read-count i, .main .article .row4 .comment-count i, .main .article .row4 .like-count i, .main .article .row4 .donate-count i {
+          margin-right: 4px; }
