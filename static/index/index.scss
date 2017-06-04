@@ -1,10 +1,13 @@
+@import "../common/color.scss";
+
 html, body {
   height: 100%;
 }
 
 .header {
   height: 58px;
-  border-bottom: 1px solid #ccc;
+  color: #fff;
+  background: $blue500;
 
   .title {
     font-size: 24px;
@@ -20,7 +23,7 @@ html, body {
   .article {
     padding: 16px 0;
     width: 640px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $grey400;
 
     .row1 {
       margin-bottom: 16px;
@@ -44,7 +47,7 @@ html, body {
         margin-left: 8px;
         position: relative;
         top: -12px;
-        color: #ccc;
+        color: $grey400;
       }
     }
 
@@ -62,6 +65,19 @@ html, body {
 
     .row4 {
       font-size: 14px;
+      line-height: 14px;
+
+      .tag {
+        transition: 0.5s;
+        padding: 0 4px;
+        color: $blue500;
+        border: 1px solid $blue500;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: $blue50;
+        }
+      }
     }
   }
 }
