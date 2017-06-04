@@ -3,6 +3,7 @@
 const Koa = require('koa'); // koa
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
+const koaMount = require('koa-mount');  // koa-mount 将中间件挂载到特定url下
 
 const renderRouter = require('./routers/render'); // 渲染路由
 const apiRouter = require('./routers/api'); // 接口路由
@@ -22,11 +23,8 @@ app.use(async function (ctx, next) {
     console.info(`响应时间 x-response-time ${ms}ms`);
 });
 
-// 设置静态目录
-app.use(koaStatic('static'));
-
-// 设置渲染模板和模板引擎
-// app.use(koaViews(__dirname + '/views'));
+// 设置静态目录，使用 koa-mount 将静态资源目录挂载到 /static 路径下
+app.use(koaMount('/static', koaStatic('static')));
 
 /**
  * 路由

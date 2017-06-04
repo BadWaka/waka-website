@@ -1,3 +1,7 @@
+/**
+ * 文件工具
+ */
+
 const fs = require('fs');
 const console = require('tracer').colorConsole(); // 增强console
 
