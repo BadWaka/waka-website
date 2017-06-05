@@ -12,6 +12,10 @@ const apiRouter = require('./routers/api'); // 接口路由
 
 const app = new Koa();
 
+/************************ cconnect mysql ************************/
+
+
+
 /************************ middleware ************************/
 
 // x-response-time 记录请求时间
