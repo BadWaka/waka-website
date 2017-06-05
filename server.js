@@ -12,7 +12,7 @@ const apiRouter = require('./routers/api'); // 接口路由
 
 const app = new Koa();
 
-/************************ cconnect mysql ************************/
+/************************ connect mysql ************************/
 
 
 
@@ -45,7 +45,7 @@ app.use(apiRouter.allowedMethods());
 /************************ start server ************************/
 
 app.listen(3000);
-console.info('listenning 3000...');
+console.debug('listenning 3000...');
 
 /************************ error handler ************************/
 
