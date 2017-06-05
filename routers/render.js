@@ -8,7 +8,6 @@ const swig = require('swig');
 /**
  * 初始化变量
  */
-
 const viewsPath = process.cwd() + '/views/';
 
 /**
