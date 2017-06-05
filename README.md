@@ -16,6 +16,7 @@
 - request-promise 网络请求默认变为promise，方便async/await使用
 - swig swig模板引擎
 - tracer console.log加强
+- ws websocket实现库
 
 ### 开发依赖
 
