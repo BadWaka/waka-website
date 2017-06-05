@@ -1,9 +1,3 @@
-/**
- * 渲染路由
- */
-const koaRouter = require('koa-router')(); // koa-router   设置路由
-const console = require('tracer').colorConsole(); // 增强console
-const swig = require('swig');   // swig模板引擎
 const nunjucks = require('nunjucks');   // nunjucks模板引擎
 
 function createEnv(path, opts) {
@@ -36,27 +30,7 @@ const env = createEnv('views', {
     }
 });
 
-/**
- * 初始化变量
- */
-const viewsPath = process.cwd() + '/views/';
-
-/**
- * 主页
- */
-koaRouter.get('/', async function (ctx) {
-    const template = swig.compileFile(viewsPath + 'index.html');
-    const renderedHtml = template({
-        user: 'waka'
-    });
-    ctx.body = renderedHtml;
+const s = env.render('hello.html', {
+    name: '<script>alert("小米")</script>'
 });
-
-/**
- * 博客页
- */
-koaRouter.get('/blog', function (ctx) {
-    console.debug('blog', ctx);
-});
-
-module.exports = koaRouter;
+console.log('s', s);
