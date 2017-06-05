@@ -9,3 +9,59 @@
       font-size: 24px;
       line-height: 58px;
       margin-left: 24px; }
+
+.main {
+  margin: 0 auto;
+  width: 960px;
+  height: 800px;
+  border: 1px solid #9e9e9e;
+  box-sizing: border-box; }
+  .main .title {
+    padding-top: 56px;
+    margin-bottom: 36px;
+    font-size: 36px;
+    font-weight: bold; }
+  .main .layout1 {
+    position: relative; }
+    .main .layout1 .avatar-wrapper {
+      width: 48px;
+      height: 48px;
+      background: center no-repeat;
+      background-size: cover;
+      border-radius: 50%;
+      border: 1px solid #9e9e9e;
+      box-sizing: border-box;
+      cursor: pointer; }
+    .main .layout1 .right {
+      position: absolute;
+      top: 0;
+      left: 64px; }
+      .main .layout1 .right .row1 {
+        margin-top: 4px; }
+        .main .layout1 .right .row1 .tag {
+          font-size: 12px;
+          padding: 2px 4px;
+          color: #2196f3;
+          border: 1px solid #2196f3;
+          border-radius: 4px; }
+        .main .layout1 .right .row1 .author {
+          margin-left: 8px;
+          cursor: pointer; }
+        .main .layout1 .right .row1 .focus-btn {
+          transition: 0.5s;
+          margin-left: 8px;
+          font-size: 12px;
+          padding: 2px 8px;
+          color: #fff;
+          background-color: #4caf50;
+          border-radius: 10px;
+          cursor: pointer;
+          user-select: none; }
+          .main .layout1 .right .row1 .focus-btn:hover {
+            background-color: #81c784; }
+      .main .layout1 .right .row2 {
+        color: #9e9e9e;
+        margin-top: 14px;
+        font-size: 12px; }
+        .main .layout1 .right .row2 .words-count, .main .layout1 .right .row2 .read-count, .main .layout1 .right .row2 .comments-count, .main .layout1 .right .row2 .like-count {
+          margin-left: 8px; }
