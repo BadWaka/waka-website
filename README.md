@@ -9,6 +9,7 @@
 
 - cheerio 爬虫HTML解析
 - koa Node框架
+- koa-bodyparser 解析post的body
 - koa-mount 将中间件挂载到特定url下
 - koa-router koa路由
 - koa-static koa静态资源
