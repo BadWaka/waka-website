@@ -1,3 +1,6 @@
+/**
+ * 给ctx添加render方法，渲染nunjucks模板
+ */
 const nunjucks = require('nunjucks');   // nunjucks 模板引擎
 const console = require('tracer').colorConsole(); // 增强console
 
@@ -37,6 +40,8 @@ function templating(path, opts) {
         ctx.render = function (view, model) {
 
             // 把render后的内容赋值给response.body
+            // 首先，model || {}确保了即使传入undefined，model也会变为默认值{}。Object.assign()会把除第一个参数外的其他参数的所有属性复制到第一个参数中。第二个参数是ctx.state || {}，这个目的是为了能把一些公共的变量放入ctx.state并传给View
+            // 例如，某个middleware负责检查用户权限，它可以把当前用户放入ctx.state中，这样就没有必要在每个Controller的async函数中都把user变量放入model中
             ctx.response.body = env.render(view, Object.assign({}, ctx.state || {}, model || {}));
 
             // 设置Content-Type
