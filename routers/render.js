@@ -5,6 +5,8 @@ const koaRouter = require('koa-router')(); // koa-router   设置路由
 const console = require('tracer').colorConsole(); // 增强console
 const swig = require('swig');   // swig模板引擎
 const nunjucks = require('nunjucks');   // nunjucks模板引擎
+const marked = require('marked');   // 解析markdown为html
+const fileUtil = require('../utils/fileUtil');  // 文件工具
 
 function createEnv(path, opts) {
     let autoescape = opts.autoescape && true,
@@ -53,10 +55,15 @@ koaRouter.get('/', async function (ctx) {
 });
 
 /**
- * 博客页
+ * 详情页
  */
-koaRouter.get('/blog', function (ctx) {
-    console.debug('blog', ctx);
+koaRouter.get('/detail', function (ctx) {
+    const markdownStr = '';
+    fileUtil.readFile(process.cwd() + '/test/test.md')
+        .then((data) => {
+            console.debug('data', data.toString());
+            console.info('marked', marked(data.toString()));
+        })
 });
 
 module.exports = koaRouter;
