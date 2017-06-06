@@ -7,7 +7,6 @@ const koaMount = require('koa-mount');  // koa-mount 将中间件挂载到特定
 const koaBodyParser = require('koa-bodyparser');    // koa-bodyparser 解析post中的data
 const staticFiles = require('./middlewares/staticFiles');   // 自己写的静态资源中间件
 const templating = require('./middlewares/templating'); // 自己写的nunjucks模板渲染中间件
-const Sequelize = require('sequelize'); // sequelize ORM库
 const mysqlConfig = require('./secret/mysql.config');   // mysql配置文件
 
 const renderRouter = require('./routers/render'); // 渲染路由
@@ -22,27 +21,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 console.debug('当前环境 process.env.NODE_ENV', process.env.NODE_ENV);
 
 /************************ connect mysql ************************/
-
-// 创建sequelize对象实例
-const sequelize = new Sequelize(mysqlConfig.database, mysqlConfig.username, mysqlConfig.password, {
-    host: mysqlConfig.host,
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 30000
-    }
-});
-
-// 定义模型 Article，告诉 Sequelize 如何映射数据库表
-const Article = sequelize.define('article', {
-    id: {
-        type: Sequelize.STRING(50),
-        primaryKey: true
-    },
-    title: Sequelize.STRING(100),
-
-});
 
 /************************ middleware ************************/
 

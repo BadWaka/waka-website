@@ -20,7 +20,6 @@
 - nunjucks nunjucks模板引擎
 - request 简化网络请求
 - request-promise 网络请求默认变为promise，方便async/await使用
-- sequelize ORM(Object-Relational Mapping)库，将关系数据库的表结构映射到对象上；api全部为Promise很适合koa框架
 - tracer console.log加强
 - ws websocket实现库
 
