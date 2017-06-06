@@ -20,9 +20,9 @@ function createEnv(path, opts) {
             });
 
     if (opts.filters) {
-        for (let i in opts.filters) {
+        for (let filterName in opts.filters) {
             // 添加过滤器，虽然我也不知道过滤器有啥用
-            env.addFilter(i, opts.filters[i]);
+            env.addFilter(filterName, opts.filters[filterName]);
         }
     }
 
