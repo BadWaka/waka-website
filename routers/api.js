@@ -5,10 +5,32 @@ const koaRouter = require('koa-router')(); // koa-router   设置路由
 const console = require('tracer').colorConsole(); // 增强console
 const requestPromise = require('request-promise'); // request请求库的Promise版本
 const cheerio = require('cheerio'); // cheerio 操作 html
+const mysql = require('mysql'); // mysql node driver
+const mysqlConfig = require('../secret/mysql.config');   // mysql配置文件
+
+/**
+ * connect mysql
+ */
+const connection = mysql.createConnection({
+    host: mysqlConfig.host,
+    user: mysqlConfig.user,
+    password: mysqlConfig.password,
+    database: mysqlConfig.database,
+});
+connection.connect();   // 连接数据库
+
+connection.query('SELECT * FROM articles', function (err, results, fields) {
+    if (err) {
+        console.error(err);
+    }
+    console.debug('results', results);
+});
+
+connection.end();
 
 /**
  * 必应壁纸爬虫
- * 
+ *
  * 注：由于该网站的高清图片地址是放在 style 里的，用 cheerio 没法取到，所以这里和 jsdom 配合使用
  */
 koaRouter.get('/api/bingWallPaper', async function (ctx) {
@@ -22,7 +44,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
     /**
      * 拉数据
      */
-    const fetchData = async() => {
+    const fetchData = async () => {
 
         // 请求微软必应壁纸首页，拿到 html
         const bingHost = 'https://bing.ioliu.cn';

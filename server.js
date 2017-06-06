@@ -7,7 +7,6 @@ const koaMount = require('koa-mount');  // koa-mount 将中间件挂载到特定
 const koaBodyParser = require('koa-bodyparser');    // koa-bodyparser 解析post中的data
 const staticFiles = require('./middlewares/staticFiles');   // 自己写的静态资源中间件
 const templating = require('./middlewares/templating'); // 自己写的nunjucks模板渲染中间件
-const mysqlConfig = require('./secret/mysql.config');   // mysql配置文件
 
 const renderRouter = require('./routers/render'); // 渲染路由
 const apiRouter = require('./routers/api'); // 接口路由
@@ -19,8 +18,6 @@ const app = new Koa();
 // 是否是生产环境
 const isProduction = process.env.NODE_ENV === 'production';
 console.debug('当前环境 process.env.NODE_ENV', process.env.NODE_ENV);
-
-/************************ connect mysql ************************/
 
 /************************ middleware ************************/
 
