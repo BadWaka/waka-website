@@ -15,6 +15,7 @@ const fileUtil = require('../utils/fileUtil');  // 文件工具
  * 主页
  */
 koaRouter.get('/', async function (ctx) {
+    ctx.render('index.html');
 });
 
 /**
@@ -26,7 +27,8 @@ koaRouter.get('/detail', function (ctx) {
         .then((data) => {
             console.debug('data', data.toString());
             console.info('marked', marked(data.toString()));
-        })
+        });
+    ctx.render('detail.html');
 });
 
 module.exports = koaRouter;
