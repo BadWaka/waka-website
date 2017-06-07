@@ -1,7 +1,23 @@
 # waka-website
+
 我的网站
 
 基于node v7.6.0 以上
+
+# 目录结构
+
+- dist 打包输出目录
+- fitness 健身数据目录
+- helpBrother 帮老弟搞数据分析的目录
+- middlewares 中间件目录
+- node-study 学习node目录
+- routers 路由目录
+- secret 放置不能公开的文件目录，比如mysql用户密码等等
+- static 静态资源目录
+- test 测试文件目录
+- utils 工具文件目录
+- views HTML目录
+- websocket 学习websocket目录
 
 # 依赖库
 
