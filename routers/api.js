@@ -8,9 +8,7 @@ const cheerio = require('cheerio'); // cheerio 操作 html
 const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
 const uuidV4 = require('uuid/v4');   // 生成uuid的库
 
-/**
- * initial
- */
+// initial
 
 /**
  * 获得响应体
@@ -27,6 +25,8 @@ function getCtxBody(errno = 0, errmsg = '', data = '') {
         data
     }
 }
+
+// 爬虫 crawler
 
 /**
  * 必应壁纸爬虫
@@ -103,9 +103,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
 });
 
-/*******************************************************************/
-/**************************** 文章相关 ******************************/
-/*******************************************************************/
+// 文章相关 articles
 
 /**
  * 创建新文章
