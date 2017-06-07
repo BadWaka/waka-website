@@ -135,7 +135,7 @@ koaRouter.post('/api/createArticle', async function (ctx) {
         updated_at: reqBody.updated_at,
         comments: reqBody.comments,
     };
-    console.debug('article', article);
+    // console.debug('article', article);
 
     let errno = 0;  // 错误码
     let errmsg = '';    // 错误提示
@@ -200,6 +200,91 @@ koaRouter.post('/api/deleteArticle', async function (ctx) {
     } catch (e) {
         console.error(e);
         ctx.body = getCtxBody(2, `删除数据行错误 ${e.message}`, '');
+    }
+
+});
+
+/**
+ * 修改文章 by id
+ */
+koaRouter.post('/api/updateArticle', async function (ctx) {
+
+    /**************************** 拿到 post 数据 ******************************/
+
+    const reqBody = ctx.request.body;
+    const article = {
+        id: reqBody.id,
+        title: reqBody.title,
+        intro: reqBody.intro,
+        content: reqBody.content,
+        type: reqBody.type,
+        tag: reqBody.tag,
+        read_count: reqBody.read_count,
+        likes: reqBody.likes,
+        donates: reqBody.donates,
+        author_id: reqBody.author_id,
+        author_name: reqBody.author_name,
+        author_avatar: reqBody.author_avatar,
+        created_at: reqBody.created_at,
+        updated_at: reqBody.updated_at,
+        comments: reqBody.comments,
+    };
+    // console.debug('article', article);
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    /**************************** 校验必填项 ******************************/
+
+    // 校验id
+    if (!article.id) {
+        errno = -1;
+        errmsg = '没有id';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.title) {
+        errno = 1;
+        errmsg = '请填写标题';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.content) {
+        errno = 2;
+        errmsg = '请填写内容';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    /**************************** 写库 ******************************/
+
+    try {
+        // 更新数据
+        data = await mysqlUtil.query(
+            `UPDATE articles SET 
+            id='${article.id}',
+            title='${article.title}',
+            intro='${article.intro}',
+            content='${article.content}',
+            type='${article.type}',
+            tag='${article.tag}',
+            author_id='${article.author_id}',
+            author_name='${article.author_name}',
+            author_avatar='${article.author_avatar}' 
+            WHERE id='${article.id}';`
+        );
+        // 返回数据
+        ctx.body = getCtxBody(errno, errmsg, data);
+    } catch (e) {
+        console.error(e);
+        errno = 3;
+        errmsg = `更新数据库报错 ${e.message}`;
+        ctx.body = getCtxBody(errno, errmsg, data);
     }
 
 });
