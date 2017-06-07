@@ -23,6 +23,7 @@
 
 ### 依赖
 
+- bluebird 第三方Promise库，加强原生Promise功能，且性能更快
 - cheerio 爬虫HTML解析
 - koa Node框架
 - koa-bodyparser 解析post的body

@@ -7,35 +7,27 @@ const requestPromise = require('request-promise'); // request请求库的Promise
 const cheerio = require('cheerio'); // cheerio 操作 html
 const mysql = require('mysql'); // mysql node driver
 const mysqlConfig = require('../secret/mysql.config');   // mysql配置文件
+const Promise = require('bluebird');    // bluebird Promise
+
+/**
+ * initial
+ */
+
 
 /**
  * connect mysql
  */
 
-// 初始化数据库配置, mysql端口号默认为3306
-const connection = mysql.createConnection({
+// 初始化数据库配置, 建立连接池 mysql端口号默认为3306
+const pool = mysql.createConnection({
+    connectionLimit: 10,    // 一次创建的最大连接数。 (默认值：10)
     host: mysqlConfig.host,
     user: mysqlConfig.user,
     password: mysqlConfig.password,
     database: mysqlConfig.database,
 });
 
-// 连接数据库
-connection.connect(function (err) {
-    if (err) {
-        console.error('error connecting: ', err);
-    }
-    console.debug('connected id is', connection.threadId);
-});
-
-connection.query('SELECT * FROM articles', function (err, results, fields) {
-    if (err) {
-        console.error(err);
-    }
-    console.debug('results', results);
-});
-
-connection.end();
+Promise.promisify(pool.query);
 
 /**
  * 必应壁纸爬虫
@@ -114,6 +106,23 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
         data: wallPaperHighDefinitionImgUrlList
     };
 
+});
+
+/**
+ * 获得所有文章
+ */
+koaRouter.get('/api/getArticles', async function (ctx) {
+    pool.query('SELECT * FROM articles')
+        .then(function (data) {
+            console.debug('data', data);
+        });
+
+
+    // ctx.body = {
+    //     errno: 0,
+    //     errmsg: '',
+    //     data: results
+    // };
 });
 
 module.exports = koaRouter;
