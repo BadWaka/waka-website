@@ -103,13 +103,9 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
 });
 
-/**
- * 获得所有文章
- */
-koaRouter.get('/api/getArticles', async function (ctx) {
-    const results = await mysqlUtil.query('SELECT * FROM articles');
-    ctx.body = getCtxBody(0, '', results);
-});
+/*******************************************************************/
+/**************************** 文章相关 ******************************/
+/*******************************************************************/
 
 /**
  * 创建新文章
@@ -287,6 +283,14 @@ koaRouter.post('/api/updateArticle', async function (ctx) {
         ctx.body = getCtxBody(errno, errmsg, data);
     }
 
+});
+
+/**
+ * 获得所有文章
+ */
+koaRouter.get('/api/getArticles', async function (ctx) {
+    const results = await mysqlUtil.query('SELECT * FROM articles');
+    ctx.body = getCtxBody(0, '', results);
 });
 
 module.exports = koaRouter;
