@@ -4,6 +4,15 @@
 
 基于node v7.6.0 以上
 
+# 使用的技术以及用它来解决了什么问题
+
+- nunjucks 有些页面需要SEO，选择它来渲染html
+- scss css预编译，扩展css
+- gulp 用来自动编译scss
+- mysql 数据库 1.为什么不用mongooDB? 因为关系型数据库查询关联更方便 2.为什么不使用ORM框架? 因为我想强化一下自己的SQL
+- react 编写后台时使用
+- typescript 编写react时使用
+
 # 目录结构
 
 - dist 打包输出目录
