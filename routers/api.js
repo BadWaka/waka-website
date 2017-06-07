@@ -103,9 +103,195 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
 });
 
-// 用户相关 users
+// 用户表 users
 
-// 文章相关 articles
+/**
+ * 创建新用户
+ */
+koaRouter.post('/api/createUser', async function (ctx) {
+
+    /**************************** 拿到 post 数据 ******************************/
+
+    const reqBody = ctx.request.body;
+    const article = {
+        title: reqBody.title,
+        intro: reqBody.intro,
+        content: reqBody.content,
+        type: reqBody.type,
+        tag: reqBody.tag,
+        read_count: reqBody.read_count,
+        likes: reqBody.likes,
+        donates: reqBody.donates,
+        author_id: reqBody.author_id,
+        author_name: reqBody.author_name,
+        author_avatar: reqBody.author_avatar,
+        created_at: reqBody.created_at,
+        updated_at: reqBody.updated_at,
+        comments: reqBody.comments,
+    };
+    // console.debug('article', article);
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    /**************************** 校验必填项 ******************************/
+
+    // 校验标题
+    if (!article.title) {
+        errno = 1;
+        errmsg = '请填写标题';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.content) {
+        errno = 2;
+        errmsg = '请填写内容';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    /**************************** 写库 ******************************/
+
+    // 生成 uuid
+    article.id = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+
+    try {
+        // 库中插入新数据
+        data = await mysqlUtil.query(
+            `INSERT INTO articles (id,title,intro,content,type,tag,author_id,author_name,author_avatar) 
+             VALUES ('${article.id}','${article.title}','${article.intro}','${article.content}','${article.type}','${article.tag}','${article.author_id}','${article.author_name}','${article.author_avatar}');`
+        );
+        // 返回数据
+        ctx.body = getCtxBody(errno, errmsg, data);
+    } catch (e) {
+        console.error(e);
+        errno = 3;
+        errmsg = `插入数据库报错 ${e.message}`;
+        ctx.body = getCtxBody(errno, errmsg, data);
+    }
+
+});
+
+/**
+ * 删除用户 by id
+ */
+koaRouter.post('/api/deleteUser', async function (ctx) {
+
+    const articleId = ctx.request.body.id;
+    console.debug('articleId', articleId);
+
+    if (!articleId) {
+        ctx.body = getCtxBody(1, '文章id为空', '');
+        return;
+    }
+
+    try {
+        const deleteResult = await mysqlUtil.query(`DELETE FROM articles WHERE id='${articleId}'`);
+        ctx.body = getCtxBody(0, '', deleteResult);
+    } catch (e) {
+        console.error(e);
+        ctx.body = getCtxBody(2, `删除数据行错误 ${e.message}`, '');
+    }
+
+});
+
+/**
+ * 修改用户 by id
+ */
+koaRouter.post('/api/updateUser', async function (ctx) {
+
+    /**************************** 拿到 post 数据 ******************************/
+
+    const reqBody = ctx.request.body;
+    const article = {
+        id: reqBody.id,
+        title: reqBody.title,
+        intro: reqBody.intro,
+        content: reqBody.content,
+        type: reqBody.type,
+        tag: reqBody.tag,
+        read_count: reqBody.read_count,
+        likes: reqBody.likes,
+        donates: reqBody.donates,
+        author_id: reqBody.author_id,
+        author_name: reqBody.author_name,
+        author_avatar: reqBody.author_avatar,
+        created_at: reqBody.created_at,
+        updated_at: reqBody.updated_at,
+        comments: reqBody.comments,
+    };
+    // console.debug('article', article);
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    /**************************** 校验必填项 ******************************/
+
+    // 校验id
+    if (!article.id) {
+        errno = -1;
+        errmsg = '没有id';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.title) {
+        errno = 1;
+        errmsg = '请填写标题';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.content) {
+        errno = 2;
+        errmsg = '请填写内容';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    /**************************** 写库 ******************************/
+
+    try {
+        // 更新数据
+        data = await mysqlUtil.query(
+            `UPDATE articles SET 
+            id='${article.id}',
+            title='${article.title}',
+            intro='${article.intro}',
+            content='${article.content}',
+            type='${article.type}',
+            tag='${article.tag}',
+            author_id='${article.author_id}',
+            author_name='${article.author_name}',
+            author_avatar='${article.author_avatar}' 
+            WHERE id='${article.id}';`
+        );
+        // 返回数据
+        ctx.body = getCtxBody(errno, errmsg, data);
+    } catch (e) {
+        console.error(e);
+        errno = 3;
+        errmsg = `更新数据库报错 ${e.message}`;
+        ctx.body = getCtxBody(errno, errmsg, data);
+    }
+
+});
+
+/**
+ * 获得所有用户
+ */
+koaRouter.get('/api/getUsers', async function (ctx) {
+    const results = await mysqlUtil.query('SELECT * FROM articles');
+    ctx.body = getCtxBody(0, '', results);
+});
+
+// 文章表 articles
 
 /**
  * 创建新文章
@@ -286,11 +472,21 @@ koaRouter.post('/api/updateArticle', async function (ctx) {
 });
 
 /**
- * 获得所有文章
+ * 获得文章
  */
-koaRouter.get('/api/getArticles', async function (ctx) {
-    const results = await mysqlUtil.query('SELECT * FROM articles');
-    ctx.body = getCtxBody(0, '', results);
+koaRouter.get('/api/getArticle', async function (ctx) {
+
+    const articleId = ctx.request.query.id;
+
+    let result = null;  // 结果
+    if (articleId) {
+        // 如果有id, 取单个数据
+        result = await mysqlUtil.query(`SELECT * FROM articles WHERE id='${articleId}'`);
+    } else {
+        // 如果没id, 取所有数据
+        result = await mysqlUtil.query(`SELECT * FROM articles`);
+    }
+    ctx.body = getCtxBody(0, '', result);
 });
 
 module.exports = koaRouter;
