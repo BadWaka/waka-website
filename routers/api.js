@@ -20,7 +20,7 @@ const uuidV4 = require('uuid/v4');   // 生成uuid的库
  * @param data
  * @return {{errno: *, errmsg: *, data: *}}
  */
-function getCtxBody(errno, errmsg, data) {
+function getCtxBody(errno = 0, errmsg = '', data = '') {
     return {
         errno,
         errmsg,
@@ -177,6 +177,29 @@ koaRouter.post('/api/createArticle', async function (ctx) {
         errno = 3;
         errmsg = `插入数据库报错 ${e.message}`;
         ctx.body = getCtxBody(errno, errmsg, data);
+    }
+
+});
+
+/**
+ * 删除文章 by id
+ */
+koaRouter.post('/api/deleteArticle', async function (ctx) {
+
+    const articleId = ctx.request.body.id;
+    console.debug('articleId', articleId);
+
+    if (!articleId) {
+        ctx.body = getCtxBody(1, '文章id为空', '');
+        return;
+    }
+
+    try {
+        const deleteResult = await mysqlUtil.query(`DELETE FROM articles WHERE id='${articleId}'`);
+        ctx.body = getCtxBody(0, '', deleteResult);
+    } catch (e) {
+        console.error(e);
+        ctx.body = getCtxBody(2, `删除数据行错误 ${e.message}`, '');
     }
 
 });
