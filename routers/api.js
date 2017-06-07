@@ -161,18 +161,24 @@ koaRouter.post('/api/createArticle', async function (ctx) {
 
     /**************************** 写库 ******************************/
 
-        // 生成 uuid
-    const uuid = uuidV4();
-    console.debug('uuid', uuid);
-    article.id = uuid.replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+    // 生成 uuid
+    article.id = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
 
-    const createResult = await mysqlUtil.query(
-        `INSERT INTO articles (id,title,intro,content,type,tag,author_id,author_name,author_avatar) 
-        VALUES ('${article.id}','${article.title}','${article.intro}','${article.content}','${article.type}','${article.tag}','${article.author_id}','${article.author_name}','${article.author_avatar}');`
-    );
-    console.debug('createResult', createResult);
+    try {
+        // 库中插入新数据
+        data = await mysqlUtil.query(
+            `INSERT INTO articles (id,title,intro,content,type,tag,author_id,author_name,author_avatar) 
+             VALUES ('${article.id}','${article.title}','${article.intro}','${article.content}','${article.type}','${article.tag}','${article.author_id}','${article.author_name}','${article.author_avatar}');`
+        );
+        // 返回数据
+        ctx.body = getCtxBody(errno, errmsg, data);
+    } catch (e) {
+        console.error(e);
+        errno = 3;
+        errmsg = `插入数据库报错 ${e.message}`;
+        ctx.body = getCtxBody(errno, errmsg, data);
+    }
 
-    ctx.body = getCtxBody(errno, errmsg, data);
 });
 
 module.exports = koaRouter;
