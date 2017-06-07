@@ -1,3 +1,6 @@
+/**
+ * MySQL 操作 工具类
+ */
 const console = require('tracer').colorConsole(); // 增强console
 const mysql = require('mysql'); // mysql node driver
 const mysqlConfig = require('../secret/mysql.config');   // mysql配置文件
@@ -11,3 +14,23 @@ const pool = mysql.createConnection({
     password: mysqlConfig.password,
     database: mysqlConfig.database,
 });
+
+/**
+ * 封装 pool.query 为 Promise
+ * @param sql
+ */
+function query(sql) {
+    return new Promise((resolve, reject) => {
+        pool.query(sql, function (err, results, fields) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(results);
+        });
+    });
+}
+
+module.exports = {
+    query,
+};

@@ -5,29 +5,11 @@ const koaRouter = require('koa-router')(); // koa-router   设置路由
 const console = require('tracer').colorConsole(); // 增强console
 const requestPromise = require('request-promise'); // request请求库的Promise版本
 const cheerio = require('cheerio'); // cheerio 操作 html
-const mysql = require('mysql'); // mysql node driver
-const mysqlConfig = require('../secret/mysql.config');   // mysql配置文件
-const Promise = require('bluebird');    // bluebird Promise
+const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
 
 /**
  * initial
  */
-
-
-/**
- * connect mysql
- */
-
-// 初始化数据库配置, 建立连接池 mysql端口号默认为3306
-const pool = mysql.createConnection({
-    connectionLimit: 10,    // 一次创建的最大连接数。 (默认值：10)
-    host: mysqlConfig.host,
-    user: mysqlConfig.user,
-    password: mysqlConfig.password,
-    database: mysqlConfig.database,
-});
-
-Promise.promisify(pool.query);
 
 /**
  * 必应壁纸爬虫
@@ -112,17 +94,12 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
  * 获得所有文章
  */
 koaRouter.get('/api/getArticles', async function (ctx) {
-    pool.query('SELECT * FROM articles')
-        .then(function (data) {
-            console.debug('data', data);
-        });
-
-
-    // ctx.body = {
-    //     errno: 0,
-    //     errmsg: '',
-    //     data: results
-    // };
+    const results = await mysqlUtil.query('SELECT * FROM articles');
+    ctx.body = {
+        errno: 0,
+        errmsg: '',
+        data: results
+    };
 });
 
 module.exports = koaRouter;
