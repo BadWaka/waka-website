@@ -38,6 +38,7 @@
 - request 简化网络请求
 - request-promise 网络请求默认变为promise，方便async/await使用
 - tracer console.log加强
+- uuid 生成UUID https://github.com/kelektiv/node-uuid
 - ws websocket实现库
 
 ### 开发依赖

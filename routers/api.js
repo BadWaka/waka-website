@@ -6,10 +6,27 @@ const console = require('tracer').colorConsole(); // 增强console
 const requestPromise = require('request-promise'); // request请求库的Promise版本
 const cheerio = require('cheerio'); // cheerio 操作 html
 const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
+const uuidV4 = require('uuid/v4');   // 生成uuid的库
 
 /**
  * initial
  */
+
+/**
+ * 获得响应体
+ * @param ctx
+ * @param errno
+ * @param errmsg
+ * @param data
+ * @return {{errno: *, errmsg: *, data: *}}
+ */
+function getCtxBody(errno, errmsg, data) {
+    return {
+        errno,
+        errmsg,
+        data
+    }
+}
 
 /**
  * 必应壁纸爬虫
@@ -82,11 +99,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
     // 拉完数据
     await fetchData();
-    ctx.body = {
-        errno: 0,
-        errmsg: '',
-        data: wallPaperHighDefinitionImgUrlList
-    };
+    ctx.body = getCtxBody(0, '', wallPaperHighDefinitionImgUrlList);
 
 });
 
@@ -95,11 +108,71 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
  */
 koaRouter.get('/api/getArticles', async function (ctx) {
     const results = await mysqlUtil.query('SELECT * FROM articles');
-    ctx.body = {
-        errno: 0,
-        errmsg: '',
-        data: results
+    ctx.body = getCtxBody(0, '', results);
+});
+
+/**
+ * 创建新文章
+ */
+koaRouter.post('/api/createArticle', async function (ctx) {
+
+    /**************************** 拿到 post 数据 ******************************/
+
+    const reqBody = ctx.request.body;
+    const article = {
+        title: reqBody.title,
+        intro: reqBody.intro,
+        content: reqBody.content,
+        type: reqBody.type,
+        tag: reqBody.tag,
+        read_count: reqBody.read_count,
+        likes: reqBody.likes,
+        donates: reqBody.donates,
+        author_id: reqBody.author_id,
+        author_name: reqBody.author_name,
+        author_avatar: reqBody.author_avatar,
+        created_at: reqBody.created_at,
+        updated_at: reqBody.updated_at,
+        comments: reqBody.comments,
     };
+    console.debug('article', article);
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    /**************************** 校验必填项 ******************************/
+
+    // 校验标题
+    if (!article.title) {
+        errno = 1;
+        errmsg = '请填写标题';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验标题
+    if (!article.content) {
+        errno = 2;
+        errmsg = '请填写内容';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    /**************************** 写库 ******************************/
+
+        // 生成 uuid
+    const uuid = uuidV4();
+    console.debug('uuid', uuid);
+    article.id = uuid.replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+
+    const createResult = await mysqlUtil.query(
+        `INSERT INTO articles (id,title,intro,content,type,tag,author_id,author_name,author_avatar) 
+        VALUES ('${article.id}','${article.title}','${article.intro}','${article.content}','${article.type}','${article.tag}','${article.author_id}','${article.author_name}','${article.author_avatar}');`
+    );
+    console.debug('createResult', createResult);
+
+    ctx.body = getCtxBody(errno, errmsg, data);
 });
 
 module.exports = koaRouter;
