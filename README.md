@@ -64,5 +64,6 @@
 
 ### 开发依赖
 
+- chalk 彩色终端
 - gulp 自动化构建工具
 - gulp-sass 编译sass
