@@ -1,5 +1,15 @@
+
+delete require.cache[require.resolve('./paths')];
+
+const NODE_ENV = process.env.NODE_ENV;
+if (!NODE_ENV) {
+    throw new Error('The NODE_ENV environment variable is required but was not specified.');
+}
+
 /**
  * 得到客户端的环境变量
+ * Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
+ * injected into the application via DefinePlugin in Webpack configuration.
  * @param publicUrl
  */
 function getClientEnvironment(publicUrl) {

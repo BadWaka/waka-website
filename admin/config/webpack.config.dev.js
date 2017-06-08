@@ -14,3 +14,10 @@ const publicPath = '/';
 const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+
+module.exports = {
+    // sourcemap
+    devtool: 'cheap-module-source-map',
+    // 入口
+    entry: []
+};
