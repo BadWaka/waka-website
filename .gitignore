@@ -2,3 +2,7 @@
 .idea
 node_modules
 secret
+
+# admin
+admin/.idea
+admin/node_modules
