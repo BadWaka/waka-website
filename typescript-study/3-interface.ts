@@ -123,6 +123,22 @@
 //
 // let myStr: string = myArray[0];
 
+// 索引类型的字符串和数字的返回值的类型必须一致
 class Animal {
+    name: string;
+}
 
+class Dog extends Animal {
+    breed: string;
+}
+
+interface NotOkay {
+    [x: number]: Animal;
+    // [x: string]: Dog;
+}
+
+interface NumberDictionary {
+    [index: string]: number;
+    length: number;
+    name: string;   // 错误，`name`的类型不是索引类型的子类型
 }
