@@ -28,3 +28,5 @@ function handleEvent(ele: Element, event: EventName) {
     // do something
 }
 
+handleEvent(document.getElementById('hello'), 'scroll');
+handleEvent(document.getElementById('world'), 'dbclick');
