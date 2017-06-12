@@ -21,6 +21,11 @@ module.exports = {
     module: {
         // 模块规则（配置 loader、解析器等选项）
         rules: [
+            // .css
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
             // .ts and .tsx
             {
                 test: /\.tsx?$/,
@@ -31,7 +36,7 @@ module.exports = {
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'source-map-loader'
-            }
+            },
         ]
     },
     // 插件
