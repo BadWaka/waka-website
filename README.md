@@ -45,6 +45,8 @@
 
 ### 依赖
 
+- @types/react React声明文件
+- @types/react-dom React-DOM声明文件
 - bluebird 第三方Promise库，加强原生Promise功能，且性能更快
 - cheerio 爬虫HTML解析
 - koa Node框架
@@ -57,6 +59,8 @@
 - mysql 连接mysql的驱动
 - mz 将node更新至ES6+语法的库
 - nunjucks nunjucks模板引擎
+- react React
+- react-dom React-DOM
 - request 简化网络请求
 - request-promise 网络请求默认变为promise，方便async/await使用
 - tracer console.log加强
@@ -65,7 +69,10 @@
 
 ### 开发依赖
 
+- awesome-typescript-loader 该库可以让Webpack使用TypeScript的标准配置文件 tsconfig.json编译TypeScript代码
 - chalk 彩色终端
 - gulp 自动化构建工具
 - gulp-sass 编译sass
+- source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
+- typescript TypeScript编译器
 - webpack webpack模块加载器
