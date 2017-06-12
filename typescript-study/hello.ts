@@ -41,6 +41,16 @@
 // x = ['waka', 1, '1111111111'];
 // console.log(x[2].slice(1));
 
-enum Days {Sun=8, Mon=1.5, Tue, Wed, Thu, Fri, Sat}
+// enum Days {Sun=8, Mon=1.5, Tue, Wed, Thu, Fri, Sat}
+//
+
+// 常数枚举 外部枚举
+declare const enum Directions {
+    Up,
+    Down,
+    Left,
+    Right
+}
+let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 
 
