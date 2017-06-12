@@ -23,6 +23,17 @@ module.exports = {
     module: {
         // 模块规则（配置 loader、解析器等选项）
         rules: [
+            // .scss
+            {
+                test: /\.scss$/,
+                use: [{ // use 的顺序是从下至上
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "sass-loader" // compiles Sass to CSS
+                }]
+            },
             // .css
             {
                 test: /\.css$/,
