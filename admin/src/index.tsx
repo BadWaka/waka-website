@@ -1,12 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+// reset.css
+import './common/reset.scss';
+
+// components
 import {
-    Header
-} from './components/Header/Header';
-import {
+    Header,
     Footer
-} from './components/Footer/Footer';
+} from './components';
 
 ReactDOM.render(
     <div>
