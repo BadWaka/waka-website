@@ -23,7 +23,7 @@ function loggingIdenttity<T extends LengthWise>(arg: T): T {
     return arg;
 }
 
-loggingIdenttity(7);
+// loggingIdenttity(7);
 
 function copyFields<T extends U, U>(target: T, source: U): T {
     for (let id in source) {
