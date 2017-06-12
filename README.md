@@ -27,7 +27,7 @@
 
 - admin 后台程序目录
 - dist 打包输出目录
-- es6-plus-study ES6+学习目录
+- es6-plus-study 6+学习目录
 - fitness 健身数据目录
 - helpBrother 帮老弟搞数据分析的目录
 - middlewares 中间件目录
@@ -68,3 +68,4 @@
 - chalk 彩色终端
 - gulp 自动化构建工具
 - gulp-sass 编译sass
+- webpack webpack模块加载器
