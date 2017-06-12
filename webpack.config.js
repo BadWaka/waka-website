@@ -47,8 +47,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),   // 热模块替换插件
         new HtmlWebpackPlugin({ // 生成HTML模板插件
             title: '开发',    // 标题
-            template: 'index.html',   // 模板
-            filename: 'index.html', // 输出文件，在内存中，不会存在硬盘里
+            template: 'admin/index.html',   // 模板
+            filename: 'admin/index.html', // 输出文件，在内存中，不会存在硬盘里
         }),
     ],
     // 外部扩展 https://doc.webpack-china.org/configuration/externals/
