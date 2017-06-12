@@ -74,9 +74,10 @@
 - css-loader css解析器
 - gulp 自动化构建工具
 - gulp-sass 编译sass
+- html-webpack-plugin HtmlWebpackPlugin简化了HTML文件的创建，以便为您的webpack包提供服务。 这对于在文件名中包含每次会随着变异会发生变化的哈希的webpack bundle尤其有用。 您可以让插件为您生成一个HTML文件，使用lodash模板提供您自己的模板，或使用您自己的loader。
 - source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
 - style-loader 样式解析器
-- ts-loader 解析TypeScript
+- ts-loader 解析.ts和.tsx文件，据说没有awesome-typescript-loader好用
 - typescript TypeScript编译器
 - webpack webpack模块加载器
 - webpack-dashboard webpack-dev-server仪表盘 让你看起来像NASA工作

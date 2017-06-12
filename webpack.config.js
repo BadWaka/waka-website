@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');    // webpack-dev-server仪表盘
+const HtmlWebpackPlugin = require('html-webpack-plugin');   // html-webpack-plugin生成HTML模板插件
 
 // 配置请参考 https://doc.webpack-china.org/configuration
 module.exports = {
@@ -41,7 +43,13 @@ module.exports = {
     },
     // 插件
     plugins: [
-        new DashboardPlugin()
+        new DashboardPlugin(),  // webpack-dev-server仪表盘插件
+        new webpack.HotModuleReplacementPlugin(),   // 热模块替换插件
+        new HtmlWebpackPlugin({ // 生成HTML模板插件
+            title: '开发',    // 标题
+            template: 'index.html',   // 模板
+            filename: 'index.html', // 输出文件，在内存中，不会存在硬盘里
+        }),
     ],
     // 外部扩展 https://doc.webpack-china.org/configuration/externals/
     // https://www.tslang.cn/docs/handbook/react-&-webpack.html
@@ -53,5 +61,11 @@ module.exports = {
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM'
+    },
+    // 开发服务器
+    devServer: {
+        compress: true,
+        port: 9000,
+        hot: true
     }
 };
