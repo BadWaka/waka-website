@@ -69,8 +69,9 @@
 
 ### 开发依赖
 
-- awesome-typescript-loader 该库可以让Webpack使用TypeScript的标准配置文件 tsconfig.json编译TypeScript代码
+- awesome-typescript-loader 该库可以让Webpack使用TypeScript的标准配置文件 tsconfig.json编译TypeScript代码；可以使用 ts-loader 替换
 - chalk 彩色终端
+- css-loader css解析器
 - gulp 自动化构建工具
 - gulp-sass 编译sass
 - source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
