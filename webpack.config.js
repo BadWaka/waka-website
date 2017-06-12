@@ -1,4 +1,5 @@
 const path = require('path');
+const DashboardPlugin = require('webpack-dashboard/plugin');    // webpack-dev-server仪表盘
 
 // 配置请参考 https://doc.webpack-china.org/configuration
 module.exports = {
@@ -33,6 +34,10 @@ module.exports = {
             }
         ]
     },
+    // 插件
+    plugins: [
+        new DashboardPlugin()
+    ],
     // 外部扩展 https://doc.webpack-china.org/configuration/externals/
     // https://www.tslang.cn/docs/handbook/react-&-webpack.html
     // When importing a module whose path matches one of the following, just
