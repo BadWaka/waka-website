@@ -75,6 +75,8 @@
 - gulp 自动化构建工具
 - gulp-sass 编译sass
 - source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
+- style-loader 样式解析器
+- ts-loader 解析TypeScript
 - typescript TypeScript编译器
 - webpack webpack模块加载器
 - webpack-dashboard webpack-dev-server仪表盘 让你看起来像NASA工作
