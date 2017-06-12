@@ -76,3 +76,4 @@
 - source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
 - typescript TypeScript编译器
 - webpack webpack模块加载器
+- webpack-dev-server webpack开发服务器

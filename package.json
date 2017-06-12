@@ -4,7 +4,8 @@
   "description": "我的网站",
   "main": "index.js",
   "scripts": {
-    "sass": "node_modules/.bin/gulp sass:watch"
+    "sass": "node_modules/.bin/gulp sass:watch",
+    "dev": "node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "gulp-sass": "^3.1.0",
     "source-map-loader": "^0.2.1",
     "typescript": "^2.3.4",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }
