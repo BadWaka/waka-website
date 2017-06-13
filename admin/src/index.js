@@ -60,13 +60,12 @@ const muiTheme = getMuiTheme({
 /************************ Components ****************************/
 
 import {
-    Header,
-    Footer
+    EditArticle
 } from './containers';
 
 /************************ render ****************************/
 
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
     // react-redux Provider
@@ -77,8 +76,7 @@ ReactDOM.render(
             <MuiThemeProvider muiTheme={muiTheme}>
                 {/* 主体 */}
                 <section>
-                    <Header title='waka'/>
-                    <Footer/>
+                    <EditArticle/>
                 </section>
             </MuiThemeProvider>
         </Router>
