@@ -1,92 +1,47 @@
-import React, {
-    Component
-} from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-
-class Index extends Component {
-
-    static childContextTypes = {
-        themeColor: PropTypes.string,
-    };
-
-    constructor() {
-        super();
-        this.state = {
-            themeColor: 'red'
-        }
+const appState = {
+    title: {
+        text: 'React.js 小书',
+        color: 'red'
+    },
+    content: {
+        text: 'React.js 小书内容',
+        color: 'blue'
     }
+};
 
-    componentWillMount() {
-        this.setState({
-            themeColor: 'green'
-        })
-    }
-
-    getChildContext() {
-        return {
-            themeColor: this.state.themeColor
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <Header />
-                <Main />
-            </div>
-        )
+function dispatch(action) {
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT':
+            appState.title.text = action.text;
+            break;
+        case 'UPDATE_TITLE_COLOR':
+            appState.title.color = action.color;
+            break;
+        default:
+            break;
     }
 }
 
-class Header extends Component {
-    render() {
-        return (
-            <div>
-                <h2>This is header</h2>
-                <Title />
-            </div>
-        )
-    }
+function renderTitle(title) {
+    const titleDOM = document.getElementById('title');
+    titleDOM.innerHTML = title.text;
+    titleDOM.style.color = title.color;
 }
 
-class Main extends Component {
-    render() {
-        return (
-            <div>
-                <h2>This is main</h2>
-                <Content />
-            </div>
-        )
-    }
+function renderContent(content) {
+    const contentDOM = document.getElementById('content');
+    contentDOM.innerHTML = content.text;
+    contentDOM.style.color = content.color;
 }
 
-class Title extends Component {
-
-    static contextTypes = {
-        themeColor: PropTypes.string
-    };
-
-    render() {
-        return (
-            <h1 style={{
-                color: this.context.themeColor
-            }}>React.js 小书标题</h1>
-        )
-    }
+function renderApp(appState) {
+    renderTitle(appState.title);
+    renderContent(appState.content);
 }
 
-class Content extends Component {
-    render() {
-        return (
-            <div>
-                <h2>React.js 小书内容</h2>
-            </div>
-        )
-    }
-}
+renderApp(appState);
 
-ReactDOM.render(
-    <Index />,
-    document.getElementById('root')
-);
+dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' }) // 修改标题文本
+dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'blue' }) // 修改标题颜色
+
+renderApp(appState);
