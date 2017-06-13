@@ -1,4 +1,6 @@
+// 定一个 reducer
 function reducer(state, action) {
+    /* 初始化 state 和 switch case */
     if (!state) {
         return {
             title: {
@@ -33,6 +35,7 @@ function reducer(state, action) {
     }
 }
 
+// 生成 store
 function createStore(reducer) {
     let state = null;
     const listeners = [];
@@ -52,15 +55,16 @@ function createStore(reducer) {
     }
 }
 
+// 生成 store
 const store = createStore(reducer);
 let oldState = store.getState();    // 缓存旧的state
+
+// 监听数据变化重新渲染页面
 store.subscribe(() => {
     const newState = store.getState();
     renderApp(newState, oldState);
     oldState = newState;
 });
-// store.subscribe(() => renderApp2(store.getState()))
-// store.subscribe(() => renderApp3(store.getState()))
 
 function renderTitle(newTitle, oldTitle) {
     if (newTitle === oldTitle) {
@@ -91,7 +95,9 @@ function renderApp(newAppState, oldAppState = {}) {
     renderContent(newAppState.content, oldAppState.content);
 }
 
+// 首次渲染页面
 renderApp(store.getState());
 
+// 后面可以随意 dispatch 了，页面自动更新
 store.dispatch({type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》'}); // 修改标题文本
 store.dispatch({type: 'UPDATE_TITLE_COLOR', color: 'blue'}); // 修改标题颜色
