@@ -29,7 +29,7 @@ module.exports = {
                 use: [{ // use 的顺序是从下至上
                     loader: "style-loader" // creates style nodes from JS strings
                 }, {
-                    loader: "css-loader" // translates CSS into CommonJS
+                    loader: "css-loader?modules" // 后面增加?modules开启css-modules
                 }, {
                     loader: "sass-loader" // compiles Sass to CSS
                 }]
@@ -37,7 +37,7 @@ module.exports = {
             // .css
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader?modules']
             },
             // babel js
             {

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 // reset.css
 import './common/reset.scss';
 
+// components
 import {
     Footer,
     Header
@@ -11,8 +12,8 @@ import {
 
 ReactDOM.render(
     <div>
-        <Footer/>
         <Header/>
+        <Footer/>
     </div>,
     document.getElementById('root')
 );
