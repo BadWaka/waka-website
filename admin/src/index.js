@@ -11,6 +11,16 @@ import {
     Link
 } from 'react-router-dom';
 
+/************************ Redux ****************************/
+
+import {
+    createStore
+} from 'redux';
+
+import {
+    Provider
+} from 'react-redux'
+
 /************************ stylesheet ****************************/
 
 // reset.css
