@@ -50,13 +50,22 @@ const muiTheme = getMuiTheme({
 // material-ui
 import AppBar from 'material-ui/AppBar';
 
+import {
+    Header,
+    Footer
+} from './containers';
+
 /************************ render ****************************/
 
 ReactDOM.render(
+    // react-router 路由
     <Router history="">
+        {/* MaterialUI 主题 */}
         <MuiThemeProvider muiTheme={muiTheme}>
+            {/* 主体 */}
             <section>
-                <AppBar/>
+                <Header/>
+                <Footer/>
             </section>
         </MuiThemeProvider>
     </Router>,
