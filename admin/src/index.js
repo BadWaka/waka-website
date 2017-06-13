@@ -21,13 +21,6 @@ import {
     Provider
 } from 'react-redux'
 
-const store = createStore((state, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-});
-
 /************************ stylesheet ****************************/
 
 // reset.css
@@ -70,6 +63,13 @@ import {
 } from './containers';
 
 /************************ render ****************************/
+
+const store = createStore((state, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+});
 
 ReactDOM.render(
     // react-redux Provider
