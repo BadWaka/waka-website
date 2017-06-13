@@ -21,6 +21,8 @@ import {
     Provider
 } from 'react-redux'
 
+import reducer from './reducers';
+
 /************************ stylesheet ****************************/
 
 // reset.css
@@ -64,12 +66,7 @@ import {
 
 /************************ render ****************************/
 
-const store = createStore((state, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-});
+const store = createStore(reducer);
 
 ReactDOM.render(
     // react-redux Provider
