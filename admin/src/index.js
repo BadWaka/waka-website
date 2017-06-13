@@ -1,15 +1,16 @@
-const appState = {
-    title: {
-        text: 'React.js 小书',
-        color: 'red'
-    },
-    content: {
-        text: 'React.js 小书内容',
-        color: 'blue'
+function reducer(state, action) {
+    if (!state) {
+        return {
+            title: {
+                text: 'React.js 小书',
+                color: 'red'
+            },
+            content: {
+                text: 'React.js 小书内容',
+                color: 'blue'
+            }
+        }
     }
-};
-
-function stateChanger(state, action) {
     switch (action.type) {
         case 'UPDATE_TITLE_TEXT':
             return {
@@ -32,16 +33,18 @@ function stateChanger(state, action) {
     }
 }
 
-function createStore(state, stateChanger) {
+function createStore(reducer) {
+    let state = null;
     const listeners = [];
     const subscribe = (listener) => listeners.push(listener);
     const getState = () => state;
     const dispatch = (action) => {
-        state = stateChanger(state, action);
+        state = reducer(state, action);
         listeners.forEach((listener) => {
             listener();
         });
     };
+    dispatch({});   // 初始化 state
     return {
         getState,
         dispatch,
@@ -49,7 +52,7 @@ function createStore(state, stateChanger) {
     }
 }
 
-const store = createStore(appState, stateChanger);
+const store = createStore(reducer);
 let oldState = store.getState();    // 缓存旧的state
 store.subscribe(() => {
     const newState = store.getState();
