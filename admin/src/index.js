@@ -11,11 +11,16 @@ import 'antd/dist/antd.less';
 import {
     Footer,
     Header
-} from './components/index';
+} from './components';
+
+import {
+    EditArticle
+} from './containers'
 
 ReactDOM.render(
     <div>
-        <Header/>
+        <Header title="waka"/>
+        <EditArticle/>
         <Footer/>
     </div>,
     document.getElementById('root')
