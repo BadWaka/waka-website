@@ -45,8 +45,6 @@
 
 ### 依赖
 
-- @types/react React声明文件
-- @types/react-dom React-DOM声明文件
 - antd ant-design 
 - bluebird 第三方Promise库，加强原生Promise功能，且性能更快
 - cheerio 爬虫HTML解析
@@ -70,7 +68,6 @@
 
 ### 开发依赖
 
-- awesome-typescript-loader 该库可以让Webpack使用TypeScript的标准配置文件 tsconfig.json编译TypeScript代码；可以使用 ts-loader 替换
 - chalk 彩色终端
 - css-loader css解析器
 - gulp 自动化构建工具
@@ -80,8 +77,6 @@
 - sass-loader 解析.scss文件
 - source-map-loader 使用TypeScript输出的sourcemap文件来告诉webpack何时生成 自己的sourcemaps
 - style-loader 样式解析器
-- ts-loader 解析.ts和.tsx文件，据说没有awesome-typescript-loader好用
-- typescript TypeScript编译器
 - webpack webpack模块加载器
 - webpack-dashboard webpack-dev-server仪表盘 让你看起来像NASA工作
 - webpack-dev-server webpack开发服务器
