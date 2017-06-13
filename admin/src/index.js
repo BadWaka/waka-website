@@ -43,6 +43,8 @@ const store = createStore(appState, stateChanger);
 store.subscribe(() => {
     renderApp(store.getState());
 });
+// store.subscribe(() => renderApp2(store.getState()))
+// store.subscribe(() => renderApp3(store.getState()))
 
 function renderTitle(title) {
     const titleDOM = document.getElementById('title');
