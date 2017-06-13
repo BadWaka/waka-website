@@ -4,6 +4,13 @@ import * as ReactDOM from 'react-dom';
 // reset.css
 import './common/reset.scss';
 
+// ant-design
+import 'antd/dist/antd.css';
+
+import {
+    DatePicker
+} from 'antd';
+
 // components
 import {
     Header,
