@@ -68,6 +68,9 @@
 
 ### 开发依赖
 
+- babel-core Babel报错说需要这玩意
+- babel-loader Babel的loader
+- babel-preset-react React JSX语法支持
 - chalk 彩色终端
 - css-loader css解析器
 - gulp 自动化构建工具

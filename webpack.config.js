@@ -39,10 +39,11 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
-            // .ts and .tsx
+            // babel js
             {
-                test: /\.tsx?$/,
-                loader: 'ts-loader'
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
