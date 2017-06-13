@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');   // html-webpack-plug
 // 配置请参考 https://doc.webpack-china.org/configuration
 module.exports = {
     // 入口和上下文
-    entry: './admin/src/index.tsx',
+    entry: './admin/src/index.js',
     // 输出
     output: {
         filename: 'bundle.js',
@@ -62,17 +62,6 @@ module.exports = {
             filename: 'admin/index.html', // 输出文件，在内存中，不会存在硬盘里
         }),
     ],
-    // 外部扩展 https://doc.webpack-china.org/configuration/externals/
-    // https://www.tslang.cn/docs/handbook/react-&-webpack.html
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    // 大家可能对externals字段有所疑惑。 我们想要避免把所有的React都放到一个文件里，因为会增加编译时间并且浏览器还能够缓存没有发生改变的库文件。
-    externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-    },
     // 开发服务器
     devServer: {
         compress: true,
