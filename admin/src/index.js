@@ -21,6 +21,13 @@ import {
     Provider
 } from 'react-redux'
 
+const store = createStore((state, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+});
+
 /************************ stylesheet ****************************/
 
 // reset.css
@@ -65,16 +72,19 @@ import {
 /************************ render ****************************/
 
 ReactDOM.render(
-    // react-router 路由
-    <Router history="">
-        {/* MaterialUI 主题 */}
-        <MuiThemeProvider muiTheme={muiTheme}>
-            {/* 主体 */}
-            <section>
-                <Header title='waka'/>
-                <Footer/>
-            </section>
-        </MuiThemeProvider>
-    </Router>,
+    // react-redux Provider
+    <Provider store={store}>
+        {/* react-router 路由 */}
+        <Router history="">
+            {/* MaterialUI 主题 */}
+            <MuiThemeProvider muiTheme={muiTheme}>
+                {/* 主体 */}
+                <section>
+                    <Header title='waka'/>
+                    <Footer/>
+                </section>
+            </MuiThemeProvider>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );
