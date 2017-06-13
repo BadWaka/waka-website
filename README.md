@@ -70,8 +70,10 @@
 
 - babel-core Babel报错说需要这玩意
 - babel-loader Babel的loader
-- babel-preset-env 根据环境来设置babel转换的程度
+- babel-plugin-import 按需加载antd组件
+- babel-preset-es2015 babel es2015语法支持
 - babel-preset-react React JSX语法支持
+- babel-preset-stage-0 es提案stage-0支持
 - chalk 彩色终端
 - css-loader css解析器
 - gulp 自动化构建工具
