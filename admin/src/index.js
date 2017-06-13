@@ -11,11 +11,19 @@ import 'antd/dist/antd.less';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-// Material UI 主题
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// Material UI
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';    // 黑暗主题
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'; // 主题提供器组件
+import getMuiTheme from 'material-ui/styles/getMuiTheme';   // 获得主题的方法
 import AppBar from 'material-ui/AppBar';
+import _colors from './common/color';
+// 自定义主题
+const muiTheme = getMuiTheme({
+    // 调色板
+    palette: {
+        primary1Color: _colors.lightBlue700,
+    }
+});
 
 // components
 import {
@@ -29,8 +37,8 @@ import {
 } from './containers';
 
 const App = () => {
-    return <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <AppBar title="My AppBar" />
+    return <MuiThemeProvider muiTheme={muiTheme}>
+        <AppBar title="My AppBar"/>
     </MuiThemeProvider>;
 };
 
