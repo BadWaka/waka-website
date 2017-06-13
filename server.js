@@ -3,9 +3,9 @@
 const Koa = require('koa'); // koa
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
-const koaMount = require('koa-mount');  // koa-mount 将中间件挂载到特定url下
-const koaBodyParser = require('koa-bodyparser');    // koa-bodyparser 解析post中的data
-const staticFiles = require('./middlewares/staticFiles');   // 自己写的静态资源中间件
+const koaMount = require('koa-mount'); // koa-mount 将中间件挂载到特定url下
+const koaBodyParser = require('koa-bodyparser'); // koa-bodyparser 解析post中的data
+const staticFiles = require('./middlewares/staticFiles'); // 自己写的静态资源中间件
 const templating = require('./middlewares/templating'); // 自己写的nunjucks模板渲染中间件
 
 const renderRouter = require('./routers/render'); // 渲染路由
@@ -33,10 +33,8 @@ app.use(async function (ctx, next) {
 // 开发环境下才会设置静态文件目录
 if (!isProduction) {
 
-    // // 设置静态目录，使用 koa-mount 将静态资源目录挂载到 /static 路径下
-    // app.use(koaMount('/static', koaStatic('static')));
-
-    // 设置静态资源目录，使用自己写的中间件
+    // // 设置静态目录，使用 koa-mount 将静态资源目录挂载到 /static 路径下 app.use(koaMount('/static',
+    // koaStatic('static'))); 设置静态资源目录，使用自己写的中间件
     app.use(staticFiles('/static', __dirname + '/static'));
 }
 
@@ -46,7 +44,7 @@ app.use(koaBodyParser());
 // 给ctx添加render方法，渲染模板文件
 app.use(templating('views', {
     noCache: !isProduction, // 生产环境需要缓存
-    watch: !isProduction,   // 生产环境不需要实时监测文件变化
+    watch: !isProduction, // 生产环境不需要实时监测文件变化
 }));
 
 /************************ 路由 ************************/
@@ -66,6 +64,4 @@ console.debug('listenning 3000...');
 
 /************************ error handler ************************/
 
-app.on('error', err =>
-    console.error('server error', err)
-);
+app.on('error', err => console.error('server error', err));
