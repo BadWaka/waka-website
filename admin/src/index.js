@@ -4,10 +4,14 @@ import ReactDOM from 'react-dom';
 // reset.css
 import './common/reset.scss';
 
-import Header from './components/Header/Header';
+import {
+    Footer,
+    Header
+} from './components/index';
 
 ReactDOM.render(
     <div>
+        <Footer/>
         <Header/>
     </div>,
     document.getElementById('root')
