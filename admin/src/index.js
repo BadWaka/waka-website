@@ -1,80 +1,92 @@
-/************************ React ****************************/
-
-import React from 'react';
+import React, {
+    Component
+} from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
-/************************ React Router ****************************/
+class Index extends Component {
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
+    static childContextTypes = {
+        themeColor: PropTypes.string,
+    };
 
-/************************ Redux ****************************/
-
-import {
-    createStore
-} from 'redux';
-
-import {
-    Provider
-} from 'react-redux'
-
-/************************ stylesheet ****************************/
-
-// reset.css
-import './common/reset.scss';
-
-// antd less
-import 'antd/dist/antd.less';
-
-/************************ Material UI ****************************/
-
-// 使用 react-tap-event-plugin 监听 touch / tap / clickevents 事件，移动端使用 onTouchTap 事件替换 onClick 事件 http://stackoverflow.com/a/34015469/988941
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
-// Theme
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';    // 黑暗主题
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'; // 主题提供器组件
-import getMuiTheme from 'material-ui/styles/getMuiTheme';   // 获得主题的方法
-import _colors from './common/color';   // 颜色js
-
-// 自定义主题
-const muiTheme = getMuiTheme({
-    // 调色板
-    palette: {
-        primary1Color: _colors.lightBlue500,
-        primary2Color: _colors.lightBlue500,
-        primary3Color: _colors.grey600,
-        accent1Color: _colors.pinkA200,
-        accent2Color: _colors.pinkA400,
-        accent3Color: _colors.pinkA100,
-        textColor: _colors.fullWhite,
+    constructor() {
+        super();
+        this.state = {
+            themeColor: 'red'
+        }
     }
-});
 
-/************************ Components ****************************/
+    componentWillMount() {
+        this.setState({
+            themeColor: 'green'
+        })
+    }
 
-import {
-    Header,
-    Footer
-} from './containers';
+    getChildContext() {
+        return {
+            themeColor: this.state.themeColor
+        }
+    }
 
-/************************ render ****************************/
+    render() {
+        return (
+            <div>
+                <Header />
+                <Main />
+            </div>
+        )
+    }
+}
+
+class Header extends Component {
+    render() {
+        return (
+            <div>
+                <h2>This is header</h2>
+                <Title />
+            </div>
+        )
+    }
+}
+
+class Main extends Component {
+    render() {
+        return (
+            <div>
+                <h2>This is main</h2>
+                <Content />
+            </div>
+        )
+    }
+}
+
+class Title extends Component {
+
+    static contextTypes = {
+        themeColor: PropTypes.string
+    };
+
+    render() {
+        return (
+            <h1 style={{
+                color: this.context.themeColor
+            }}>React.js 小书标题</h1>
+        )
+    }
+}
+
+class Content extends Component {
+    render() {
+        return (
+            <div>
+                <h2>React.js 小书内容</h2>
+            </div>
+        )
+    }
+}
 
 ReactDOM.render(
-    // react-router 路由
-    <Router history="">
-        {/* MaterialUI 主题 */}
-        <MuiThemeProvider muiTheme={muiTheme}>
-            {/* 主体 */}
-            <section>
-                <Header title='waka'/>
-                <Footer/>
-            </section>
-        </MuiThemeProvider>
-    </Router>,
+    <Index />,
     document.getElementById('root')
 );
