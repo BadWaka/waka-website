@@ -47,9 +47,6 @@ const muiTheme = getMuiTheme({
 
 /************************ Components ****************************/
 
-// material-ui
-import AppBar from 'material-ui/AppBar';
-
 import {
     Header,
     Footer
@@ -64,7 +61,7 @@ ReactDOM.render(
         <MuiThemeProvider muiTheme={muiTheme}>
             {/* 主体 */}
             <section>
-                <Header/>
+                <Header title='waka'/>
                 <Footer/>
             </section>
         </MuiThemeProvider>

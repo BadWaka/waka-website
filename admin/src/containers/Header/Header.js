@@ -1,6 +1,7 @@
 import React, {
     Component
 } from 'react';
+import PropTypes from 'prop-types';
 
 import {
     AppBar
@@ -9,9 +10,25 @@ import {
 import style from './style.scss';
 
 class Header extends Component {
+
+    // 定义属性类型
+    static propTypes = {
+        title: PropTypes.string,
+    };
+
+    // 设置默认属性
+    static defaultProps = {
+        title: '',
+    };
+
     render() {
+
+        const {
+            title,
+        } = this.props;
+
         return <section>
-            <AppBar/>
+            <AppBar title={title}/>
         </section>;
     }
 }

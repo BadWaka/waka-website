@@ -59,6 +59,7 @@
 - mysql 连接mysql的驱动
 - mz 将node更新至ES6+语法的库
 - nunjucks nunjucks模板引擎
+- prop-types React单另的PropTypes模块
 - react React
 - react-dom React-DOM
 - react-router-dom react-router React前端路由 web端，不是native端
