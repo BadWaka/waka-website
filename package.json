@@ -6,7 +6,7 @@
   "scripts": {
     "sass": "node_modules/.bin/gulp sass:watch",
     "build": "node_modules/.bin/webpack",
-    "dev": "node_modules/.bin/webpack-dashboard -- node_modules/.bin/webpack-dev-server --open"
+    "dev": "node_modules/.bin/webpack-dashboard -- node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",
