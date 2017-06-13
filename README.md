@@ -70,6 +70,7 @@
 
 - babel-core Babel报错说需要这玩意
 - babel-loader Babel的loader
+- babel-preset-env 根据环境来设置babel转换的程度
 - babel-preset-react React JSX语法支持
 - chalk 彩色终端
 - css-loader css解析器
