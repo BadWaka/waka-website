@@ -12,13 +12,23 @@ const appState = {
 function stateChanger(state, action) {
     switch (action.type) {
         case 'UPDATE_TITLE_TEXT':
-            state.title.text = action.text;
-            break;
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    text: action.text
+                }
+            };
         case 'UPDATE_TITLE_COLOR':
-            state.title.color = action.color;
-            break;
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    color: action.color
+                }
+            };
         default:
-            break;
+            return state;
     }
 }
 
@@ -27,7 +37,7 @@ function createStore(state, stateChanger) {
     const subscribe = (listener) => listeners.push(listener);
     const getState = () => state;
     const dispatch = (action) => {
-        stateChanger(state, action);
+        state = stateChanger(state, action);
         listeners.forEach((listener) => {
             listener();
         });
@@ -40,27 +50,42 @@ function createStore(state, stateChanger) {
 }
 
 const store = createStore(appState, stateChanger);
+let oldState = store.getState();    // 缓存旧的state
 store.subscribe(() => {
-    renderApp(store.getState());
+    const newState = store.getState();
+    renderApp(newState, oldState);
+    oldState = newState;
 });
 // store.subscribe(() => renderApp2(store.getState()))
 // store.subscribe(() => renderApp3(store.getState()))
 
-function renderTitle(title) {
+function renderTitle(newTitle, oldTitle) {
+    if (newTitle === oldTitle) {
+        return;
+    }
+    console.log('render title...')
     const titleDOM = document.getElementById('title');
-    titleDOM.innerHTML = title.text;
-    titleDOM.style.color = title.color;
+    titleDOM.innerHTML = newTitle.text;
+    titleDOM.style.color = newTitle.color;
 }
 
-function renderContent(content) {
+function renderContent(newContent, oldContent) {
+    if (newContent === oldContent) {
+        return;
+    }
+    console.log('render content...')
     const contentDOM = document.getElementById('content');
-    contentDOM.innerHTML = content.text;
-    contentDOM.style.color = content.color;
+    contentDOM.innerHTML = newContent.text;
+    contentDOM.style.color = newContent.color;
 }
 
-function renderApp(appState) {
-    renderTitle(appState.title);
-    renderContent(appState.content);
+function renderApp(newAppState, oldAppState = {}) {
+    if (newAppState === oldAppState) {
+        return;
+    }
+    console.log('render app...')
+    renderTitle(newAppState.title, oldAppState.title);
+    renderContent(newAppState.content, oldAppState.content);
 }
 
 renderApp(store.getState());
