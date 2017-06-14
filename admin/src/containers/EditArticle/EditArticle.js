@@ -14,38 +14,46 @@ class EditArticle extends Component {
 
     componentWillMount() {
         const {
-            setTitle
+            setMode
         } = this.props;
 
-        // 设置标题
-        setTitle('编辑作品');
+        // 设置模式
+        setMode(0);
     }
 
     render() {
 
         const {
-            title
+            mode
         } = this.props;
+
+        const title = mode === 0 ? '新建作品' : '编辑作品';
 
         return <section>
             {/* Header */}
             <AppBar title={title}/>
             {/* 主体 */}
             <section className={style.main}>
-                <TextField
-                    hintText="请填写标题"
-                    floatingLabelText="标题"
-                    fullWidth={true}/>
-                <TextField
-                    floatingLabelText="内容"
-                    multiLine={true}
-                    rows={20}
-                    rowsMax={20}
-                    fullWidth={true}/>
-                {/* 按钮组 */}
-                <section className={style.btnsGroup}>
-                    <RaisedButton className={style.btnConfirm} label="确定" primary={true}/>
-                    <RaisedButton label="取消"/>
+                {/* 左侧编辑框 */}
+                <section className={style.left}>
+                    <TextField
+                        hintText="请填写标题"
+                        floatingLabelText="标题"
+                        fullWidth={true}/>
+                    <TextField
+                        floatingLabelText="内容"
+                        multiLine={true}
+                        rows={20}
+                        rowsMax={20}
+                        fullWidth={true}/>
+                    {/* 按钮组 */}
+                    <section className={style.btnsGroup}>
+                        <RaisedButton className={style.btnConfirm} label="确定" primary={true}/>
+                        <RaisedButton label="取消"/>
+                    </section>
+                </section>
+                {/* 右侧预览框 */}
+                <section className={style.right}>
                 </section>
             </section>
         </section>;
@@ -59,19 +67,19 @@ import {
 } from 'react-redux';
 
 import {
-    setTitle
+    setMode
 } from '../../reducers/EditArticle';
 
 const mapStateToProps = (state) => {
     return {
-        title: state.editArticle.title
+        mode: state.editArticle.mode
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setTitle: (title) => {
-            dispatch(setTitle(title));
+        setMode: (title) => {
+            dispatch(setMode(title));
         }
     }
 };

@@ -1,9 +1,11 @@
 @import "../../common/color.scss";
 
 .main {
-  margin: 24px auto;
-  width: 960px;
-  color: #000;
+
+  .left {
+    padding: 0 24px;
+    width: 50%;
+  }
 
   .btnsGroup {
     margin-top: 24px;
