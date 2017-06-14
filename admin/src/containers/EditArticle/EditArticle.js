@@ -93,9 +93,6 @@ class EditArticle extends Component {
             articleContentMarkdown = marked(articleContent);
         }
 
-        // highlightjs 语法高亮
-        // highlightjs.initHighlightingOnLoad();
-
         return <section className={style.editArticle}>
             {/* Header */}
             <AppBar className={style.header} title={appBarTitle}/>
@@ -122,9 +119,10 @@ class EditArticle extends Component {
                 <section className={style.right}>
                     {/* 标题 */}
                     <h1 className={style.articleTitle}>{articleTitle}</h1>
-                    {/* 内容 因为这里是 marked 转换过的 html，而 React 不能直接输出 html，所以需要放在 dangerouslySetInnerHTML 这个属性里 */}
+                    {/* 内容 */}
                     <section
                         className={style.articleContent}
+                        // 因为这里是 marked 转换过的 html，而 React 不能直接输出 html，所以需要放在 dangerouslySetInnerHTML 这个属性里
                         dangerouslySetInnerHTML={{__html: articleContentMarkdown}}/>
                 </section>
             </section>

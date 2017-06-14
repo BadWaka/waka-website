@@ -63,11 +63,15 @@
         /* 代码块 */
         pre {
           border: 1px solid $black;
-          //background: blue;
         }
         pre > code {
           padding: 24px;
-          //background: red;
+        }
+        /* 引用 */
+        blockquote {
+          padding: 24px;
+          background: $grey50;
+          border-left: 6px solid $grey500;
         }
       }
     }
