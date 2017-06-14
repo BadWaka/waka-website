@@ -19,6 +19,13 @@ import highlightjs from 'highlightjs';
 
 class EditArticle extends Component {
 
+    constructor() {
+        super();
+
+        // 左侧编辑栏是否滚动到底部，用来判断如果左侧编辑栏已经在底部了，当内容改变时，右侧内容同时也滚动到底部
+        this.isLeftEditScrollToBottom = false;
+    }
+
     componentWillMount() {
         const {
             setMode,
@@ -68,13 +75,13 @@ class EditArticle extends Component {
         setArticleContent(value);
         localStorage.setItem('tempArticleContent', value);    // 写入localStorage中
 
-        // 每次编辑完内容使右侧预览dom滚动到底部
-        this._rightPreviewScrollToBottom();
-    }
+        // 左侧编辑栏滚动到底部时
+        const contentEditTextArea = document.getElementById('contentEditTextArea');
+        if (contentEditTextArea.scrollTop === contentEditTextArea.scrollHeight - contentEditTextArea.offsetHeight) {
+            // 每次编辑完内容使右侧预览dom滚动到底部
+            this._rightPreviewScrollToBottom();
+        }
 
-    // 监听左侧编辑区域滚动事件
-    handleLeftEditScroll(event) {
-        console.log('handleLeftEditScroll event', event.target.scrollTop);
     }
 
     // 高亮 <pre><code> 的代码
@@ -114,8 +121,7 @@ class EditArticle extends Component {
             <section className={style.main}>
                 {/* 左侧编辑框 */}
                 <section
-                    className={style.left}
-                    onScroll={this.handleLeftEditScroll.bind(this)}>
+                    className={style.left}>
                     <TextField
                         value={articleTitle}
                         hintText="请填写标题"
@@ -123,6 +129,7 @@ class EditArticle extends Component {
                         fullWidth={true}
                         onChange={this.handleArticleTitleChange.bind(this)}/>
                     <TextField
+                        id="contentEditTextArea"
                         className={style.contentEditTextArea}
                         value={articleContent}
                         floatingLabelText="内容"
@@ -132,7 +139,9 @@ class EditArticle extends Component {
                         onChange={this.handleArticleContentChange.bind(this)}/>
                 </section>
                 {/* 右侧预览框 */}
-                <section id="rightPreview" className={style.right}>
+                <section
+                    id="rightPreview"
+                    className={style.right}>
                     {/* 标题 */}
                     <h1 className={style.articleTitle}>{articleTitle}</h1>
                     {/* 内容 */}
