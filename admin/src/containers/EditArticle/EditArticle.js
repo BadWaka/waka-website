@@ -42,6 +42,15 @@ class EditArticle extends Component {
 
     }
 
+    componentWillUpdate() {
+
+    }
+
+    componentDidUpdate() {
+        const doms = document.querySelectorAll('pre code');
+        console.log('doms', doms.length);
+    }
+
     // 文章标题变化
     handleArticleTitleChange(event, value) {
         const {
@@ -60,6 +69,11 @@ class EditArticle extends Component {
 
         setArticleContent(value);
         localStorage.setItem('tempArticleContent', value);    // 写入localStorage中
+    }
+
+    // 高亮 <pre><code> 的代码
+    _highlightPreCode() {
+
     }
 
     render() {
@@ -81,6 +95,7 @@ class EditArticle extends Component {
 
         // highlightjs 语法高亮
         highlightjs.initHighlightingOnLoad();
+        // highlightjs.initHighlighting();
 
         return <section className={style.editArticle}>
             {/* Header */}
