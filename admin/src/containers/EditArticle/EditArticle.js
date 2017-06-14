@@ -67,6 +67,14 @@ class EditArticle extends Component {
 
         setArticleContent(value);
         localStorage.setItem('tempArticleContent', value);    // 写入localStorage中
+
+        // 每次编辑完内容使右侧预览dom滚动到底部
+        this._rightPreviewScrollToBottom();
+    }
+
+    // 监听左侧编辑区域滚动事件
+    handleLeftEditScroll(event) {
+        console.log('handleLeftEditScroll event', event.target.scrollTop);
     }
 
     // 高亮 <pre><code> 的代码
@@ -74,6 +82,12 @@ class EditArticle extends Component {
         for (let i = 0; i < doms.length; i++) {
             highlightjs.highlightBlock(doms[i]);
         }
+    }
+
+    // 右侧预览dom滚动到底部
+    _rightPreviewScrollToBottom() {
+        const rightPreview = document.getElementById('rightPreview');
+        rightPreview.scrollTop = rightPreview.scrollHeight;
     }
 
     render() {
@@ -99,7 +113,9 @@ class EditArticle extends Component {
             {/* 主体 */}
             <section className={style.main}>
                 {/* 左侧编辑框 */}
-                <section className={style.left}>
+                <section
+                    className={style.left}
+                    onScroll={this.handleLeftEditScroll.bind(this)}>
                     <TextField
                         value={articleTitle}
                         hintText="请填写标题"
@@ -116,7 +132,7 @@ class EditArticle extends Component {
                         onChange={this.handleArticleContentChange.bind(this)}/>
                 </section>
                 {/* 右侧预览框 */}
-                <section className={style.right}>
+                <section id="rightPreview" className={style.right}>
                     {/* 标题 */}
                     <h1 className={style.articleTitle}>{articleTitle}</h1>
                     {/* 内容 */}
