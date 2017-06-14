@@ -27,11 +27,12 @@ class EditArticle extends Component {
             mode
         } = this.props;
 
-        const title = mode === 0 ? '新建作品' : '编辑作品';
+        // 根据模式设置标题
+        const appBarTitle = mode === 0 ? '新建作品' : '编辑作品';
 
-        return <section>
+        return <section className={style.editArticle}>
             {/* Header */}
-            <AppBar title={title}/>
+            <AppBar title={appBarTitle}/>
             {/* 主体 */}
             <section className={style.main}>
                 {/* 左侧编辑框 */}
@@ -46,14 +47,12 @@ class EditArticle extends Component {
                         rows={20}
                         rowsMax={20}
                         fullWidth={true}/>
-                    {/* 按钮组 */}
-                    <section className={style.btnsGroup}>
-                        <RaisedButton className={style.btnConfirm} label="确定" primary={true}/>
-                        <RaisedButton label="取消"/>
-                    </section>
                 </section>
                 {/* 右侧预览框 */}
                 <section className={style.right}>
+                    <h1>
+
+                    </h1>
                 </section>
             </section>
         </section>;

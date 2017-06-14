@@ -1,17 +1,24 @@
 @import "../../common/color.scss";
 
-.main {
+.editArticle {
+  height: 100vh;
 
-  .left {
-    padding: 0 24px;
-    width: 50%;
-  }
+  .main {
 
-  .btnsGroup {
-    margin-top: 24px;
+    .left {
+      float: left;
+      padding: 0 24px;
+      width: 50%;
+      height: 100vh;
+    }
 
-    .btnConfirm {
-      margin-right: 24px;
+    .right {
+      float: right;
+      background: $lightBlue50;
+      padding: 24px;
+      width: 50%;
+      height: 100vh;
     }
   }
 }
+
