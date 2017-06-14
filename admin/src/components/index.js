@@ -1,2 +1,2 @@
-export Footer from '../components/Footer/Footer';
-export Header from '../components/Header/Header';
+export Footer from '../containers/Footer/Footer';
+export Header from '../containers/Header/Header';

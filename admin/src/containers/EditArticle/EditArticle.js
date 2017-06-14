@@ -11,7 +11,11 @@ import style from './style.scss';
 import {
     Header,
     Footer
-} from '../../components'
+} from '../index';
+
+import {
+    TextField
+} from 'material-ui';
 
 class EditArticle extends Component {
 
@@ -19,31 +23,30 @@ class EditArticle extends Component {
         const {
             setTitle
         } = this.props;
+
+        // 设置标题
         setTitle('编辑作品');
     }
 
     render() {
 
-        const {
-            title,
-            setTitle
-        } = this.props;
-
         return <section>
-            <Header title={title}/>
-            <button onClick={() => {
-                setTitle('waka');
-            }}>改变标题
-            </button>
+            {/* Header */}
+            <Header/>
+            {/* 主体 */}
+            <section className={style.main}>
+                <TextField
+                    hintText="Hint Text"
+                    fullWidth={true}/>
+            </section>
+            {/* Footer */}
             <Footer/>
         </section>;
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        title: state.header.title
-    }
+    return {}
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
+import style from './style.scss';
+
 import {
     AppBar
 } from 'material-ui';
-
-import style from './style.scss';
 
 class Header extends Component {
 
@@ -32,5 +32,22 @@ class Header extends Component {
         </section>;
     }
 }
+
+/************************** Redux **************************/
+
+import {
+    connect
+} from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        title: state.header.title
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {}
+};
+Header = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default Header;
