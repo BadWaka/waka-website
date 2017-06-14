@@ -47,8 +47,10 @@ class EditArticle extends Component {
     }
 
     componentDidUpdate() {
+        // 获得真实 dom
         const doms = document.querySelectorAll('pre code');
-        console.log('doms', doms.length);
+        // 每次更新都要重新 highlight 一下 <pre><code> 标签
+        this._highlightPreCode(doms);
     }
 
     // 文章标题变化
@@ -72,8 +74,10 @@ class EditArticle extends Component {
     }
 
     // 高亮 <pre><code> 的代码
-    _highlightPreCode() {
-
+    _highlightPreCode(doms) {
+        for (let i = 0; i < doms.length; i++) {
+            highlightjs.highlightBlock(doms[i]);
+        }
     }
 
     render() {

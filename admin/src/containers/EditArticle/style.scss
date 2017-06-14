@@ -66,9 +66,9 @@
         pre {
           border: 1px solid $black;
           //background: blue;
-          overflow-x: scroll;
         }
         pre > code {
+          padding: 24px;
           //background: red;
         }
       }
