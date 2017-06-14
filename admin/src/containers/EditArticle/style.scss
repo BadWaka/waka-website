@@ -13,10 +13,8 @@
       float: left;
       padding: 0 24px;
       width: 50%;
-      height: 100vh;
 
       .contentEditTextArea {
-        height: 100%;
       }
     }
 
@@ -25,7 +23,6 @@
       background: $lightBlue50;
       padding: 24px;
       width: 50%;
-      height: 100vh;
       overflow: scroll;
 
       .articleTitle {
@@ -41,7 +38,8 @@
         /* 标题 */
         h1, h2, h3, h4, h5, h6 {
           font-weight: bold;
-          margin-bottom: 15px;
+          margin-top: 10px;
+          margin-bottom: 10px;
           line-height: 1.7;
         }
         h1 {

@@ -42,10 +42,6 @@ class EditArticle extends Component {
 
     }
 
-    componentWillUpdate() {
-
-    }
-
     componentDidUpdate() {
         // 获得真实 dom
         const doms = document.querySelectorAll('pre code');
@@ -98,8 +94,7 @@ class EditArticle extends Component {
         }
 
         // highlightjs 语法高亮
-        highlightjs.initHighlightingOnLoad();
-        // highlightjs.initHighlighting();
+        // highlightjs.initHighlightingOnLoad();
 
         return <section className={style.editArticle}>
             {/* Header */}
@@ -119,8 +114,7 @@ class EditArticle extends Component {
                         value={articleContent}
                         floatingLabelText="内容"
                         multiLine={true}
-                        rows={30}
-                        rowsMax={30}
+                        rowsMax={35}    // 这里可以设置最大高度，但是只能根据行数来
                         fullWidth={true}
                         onChange={this.handleArticleContentChange.bind(this)}/>
                 </section>
