@@ -74,14 +74,6 @@ class EditArticle extends Component {
 
         setArticleContent(value);
         localStorage.setItem('tempArticleContent', value);    // 写入localStorage中
-
-        // 左侧编辑栏滚动到底部时
-        const contentEditTextArea = document.getElementById('contentEditTextArea');
-        if (contentEditTextArea.scrollTop === contentEditTextArea.scrollHeight - contentEditTextArea.offsetHeight) {
-            // 每次编辑完内容使右侧预览dom滚动到底部
-            this._rightPreviewScrollToBottom();
-        }
-
     }
 
     // 高亮 <pre><code> 的代码
@@ -89,12 +81,6 @@ class EditArticle extends Component {
         for (let i = 0; i < doms.length; i++) {
             highlightjs.highlightBlock(doms[i]);
         }
-    }
-
-    // 右侧预览dom滚动到底部
-    _rightPreviewScrollToBottom() {
-        const rightPreview = document.getElementById('rightPreview');
-        rightPreview.scrollTop = rightPreview.scrollHeight;
     }
 
     render() {
