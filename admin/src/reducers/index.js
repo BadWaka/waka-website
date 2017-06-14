@@ -2,8 +2,8 @@ import {
     combineReducers
 } from 'redux';
 
-import header from './header';
+import editArticle from './EditArticle';
 
 export default combineReducers({
-    header
+    editArticle
 });

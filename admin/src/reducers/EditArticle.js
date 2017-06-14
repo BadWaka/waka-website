@@ -1,6 +1,6 @@
 /************************** action types **************************/
 
-const SET_TITLE = 'SET_TITLE';  // 设置标题
+const SET_TITLE = 'EDIT_ARTICLE/SET_TITLE';  // 设置标题
 
 /************************** action creators **************************/
 

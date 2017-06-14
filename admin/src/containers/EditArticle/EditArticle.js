@@ -5,11 +5,7 @@ import React, {
 import style from './style.scss';
 
 import {
-    Header,
-    Footer
-} from '../index';
-
-import {
+    AppBar,
     TextField,
     RaisedButton
 } from 'material-ui';
@@ -27,9 +23,13 @@ class EditArticle extends Component {
 
     render() {
 
+        const {
+            title
+        } = this.props;
+
         return <section>
             {/* Header */}
-            <Header/>
+            <AppBar title={title}/>
             {/* 主体 */}
             <section className={style.main}>
                 <TextField
@@ -48,8 +48,6 @@ class EditArticle extends Component {
                     <RaisedButton label="取消"/>
                 </section>
             </section>
-            {/* Footer */}
-            <Footer/>
         </section>;
     }
 }
@@ -62,10 +60,12 @@ import {
 
 import {
     setTitle
-} from '../../reducers/header';
+} from '../../reducers/EditArticle';
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        title: state.editArticle.title
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
