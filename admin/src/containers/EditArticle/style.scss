@@ -3,4 +3,13 @@
 .main {
   margin: 24px auto;
   width: 960px;
+  color: #000;
+
+  .btnsGroup {
+    margin-top: 24px;
+
+    .btnConfirm {
+      margin-right: 24px;
+    }
+  }
 }

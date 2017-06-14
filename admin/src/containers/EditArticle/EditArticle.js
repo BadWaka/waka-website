@@ -2,10 +2,6 @@ import React, {
     Component
 } from 'react';
 
-import {
-    connect
-} from 'react-redux';
-
 import style from './style.scss';
 
 import {
@@ -14,7 +10,8 @@ import {
 } from '../index';
 
 import {
-    TextField
+    TextField,
+    RaisedButton
 } from 'material-ui';
 
 class EditArticle extends Component {
@@ -36,14 +33,36 @@ class EditArticle extends Component {
             {/* 主体 */}
             <section className={style.main}>
                 <TextField
-                    hintText="Hint Text"
+                    hintText="请填写标题"
+                    floatingLabelText="标题"
                     fullWidth={true}/>
+                <TextField
+                    floatingLabelText="内容"
+                    multiLine={true}
+                    rows={20}
+                    rowsMax={20}
+                    fullWidth={true}/>
+                {/* 按钮组 */}
+                <section className={style.btnsGroup}>
+                    <RaisedButton className={style.btnConfirm} label="确定" primary={true}/>
+                    <RaisedButton label="取消"/>
+                </section>
             </section>
             {/* Footer */}
             <Footer/>
         </section>;
     }
 }
+
+/************************** Redux **************************/
+
+import {
+    connect
+} from 'react-redux';
+
+import {
+    setTitle
+} from '../../reducers/header';
 
 const mapStateToProps = (state) => {
     return {}
@@ -52,13 +71,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setTitle: (title) => {
-            dispatch({
-                type: 'SET_TITLE',
-                title: '编辑作品'
-            });
+            dispatch(setTitle(title));
         }
     }
 };
-EditArticle = connect(mapStateToProps, mapDispatchToProps)(EditArticle);
 
-export default EditArticle;
+export default connect(mapStateToProps, mapDispatchToProps)(EditArticle);

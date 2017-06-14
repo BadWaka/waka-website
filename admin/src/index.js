@@ -53,7 +53,7 @@ const muiTheme = getMuiTheme({
         accent1Color: _colors.pinkA200,
         accent2Color: _colors.pinkA400,
         accent3Color: _colors.pinkA100,
-        textColor: _colors.fullWhite,
+        textColor: _colors.fullBlack,
     }
 });
 
