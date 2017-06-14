@@ -88,11 +88,12 @@ class EditArticle extends Component {
                         fullWidth={true}
                         onChange={this.handleArticleTitleChange.bind(this)}/>
                     <TextField
+                        className={style.contentEditTextArea}
                         value={articleContent}
                         floatingLabelText="内容"
                         multiLine={true}
-                        rows={20}
-                        rowsMax={20}
+                        rows={30}
+                        rowsMax={30}
                         fullWidth={true}
                         onChange={this.handleArticleContentChange.bind(this)}/>
                 </section>

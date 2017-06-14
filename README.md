@@ -48,6 +48,7 @@
 - antd ant-design 
 - bluebird 第三方Promise库，加强原生Promise功能，且性能更快
 - cheerio 爬虫HTML解析
+- highlightjs 代码语法高亮，用来让 markdown 更好看
 - koa Node框架
 - koa-bodyparser 解析post的body
 - koa-mount 将中间件挂载到特定url下
