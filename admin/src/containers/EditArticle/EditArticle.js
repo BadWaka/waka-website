@@ -12,6 +12,11 @@ import {
 // markdown 解析器和编译器
 import marked from 'marked';
 
+// highlight.js css 有很多样式，可以自己选
+import 'highlightjs/styles/atom-one-light.css';
+// highlight.js
+import highlightjs from 'highlightjs';
+
 class EditArticle extends Component {
 
     componentWillMount() {
@@ -73,6 +78,9 @@ class EditArticle extends Component {
         if (articleContent) {
             articleContentMarkdown = marked(articleContent);
         }
+
+        // highlightjs 语法高亮
+        highlightjs.initHighlightingOnLoad();
 
         return <section className={style.editArticle}>
             {/* Header */}

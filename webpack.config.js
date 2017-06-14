@@ -23,7 +23,7 @@ module.exports = {
     module: {
         // 模块规则（配置 loader、解析器等选项）
         rules: [
-            // .scss
+            // .scss 解析 .scss 的时候使用 css-module
             {
                 test: /\.scss$/,
                 use: [{ // use 的顺序是从下至上
@@ -45,10 +45,10 @@ module.exports = {
                     loader: "less-loader" // compiles Less to CSS
                 }]
             },
-            // .css
+            // .css 至解析 .css 的时候不使用 css-module 方便一些类名和第三方库比如 highlight.js
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader?modules']
+                use: ['style-loader', 'css-loader']
             },
             // babel js
             {
