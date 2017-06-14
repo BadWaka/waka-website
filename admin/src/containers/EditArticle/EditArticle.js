@@ -7,18 +7,34 @@ import style from './style.scss';
 import {
     AppBar,
     TextField,
-    RaisedButton
 } from 'material-ui';
+
+// markdown 解析器和编译器
+import marked from 'marked';
 
 class EditArticle extends Component {
 
     componentWillMount() {
         const {
-            setMode
+            setMode,
+            setArticleTitle,
+            setArticleContent
         } = this.props;
 
         // 设置模式
         setMode(0);
+
+        // localStorage 缓存临时值
+        const tempArticleTitle = localStorage.getItem('tempArticleTitle');
+        if (tempArticleTitle) {
+            setArticleTitle(tempArticleTitle);
+        }
+
+        const tempArticleContent = localStorage.getItem('tempArticleContent');
+        if (tempArticleContent) {
+            setArticleContent(tempArticleContent);
+        }
+
     }
 
     // 文章标题变化
@@ -28,6 +44,7 @@ class EditArticle extends Component {
         } = this.props;
 
         setArticleTitle(value);
+        localStorage.setItem('tempArticleTitle', value);    // 写入localStorage中
     }
 
     // 文章内容变化
@@ -37,6 +54,7 @@ class EditArticle extends Component {
         } = this.props;
 
         setArticleContent(value);
+        localStorage.setItem('tempArticleContent', value);    // 写入localStorage中
     }
 
     render() {
@@ -50,6 +68,12 @@ class EditArticle extends Component {
         // 根据模式设置标题
         const appBarTitle = mode === 0 ? '新建作品' : '编辑作品';
 
+        // 将 articleContent 用 marked 转化为 markdown 格式
+        let articleContentMarkdown = null;
+        if (articleContent) {
+            articleContentMarkdown = marked(articleContent);
+        }
+
         return <section className={style.editArticle}>
             {/* Header */}
             <AppBar className={style.header} title={appBarTitle}/>
@@ -58,11 +82,13 @@ class EditArticle extends Component {
                 {/* 左侧编辑框 */}
                 <section className={style.left}>
                     <TextField
+                        value={articleTitle}
                         hintText="请填写标题"
                         floatingLabelText="标题"
                         fullWidth={true}
                         onChange={this.handleArticleTitleChange.bind(this)}/>
                     <TextField
+                        value={articleContent}
                         floatingLabelText="内容"
                         multiLine={true}
                         rows={20}
@@ -74,8 +100,10 @@ class EditArticle extends Component {
                 <section className={style.right}>
                     {/* 标题 */}
                     <h1 className={style.articleTitle}>{articleTitle}</h1>
-                    {/* 内容 */}
-                    <p className={style.articleContent}>{articleContent}</p>
+                    {/* 内容 因为这里是 marked 转换过的 html，而 React 不能直接输出 html，所以需要放在 dangerouslySetInnerHTML 这个属性里 */}
+                    <section
+                        className={style.articleContent}
+                        dangerouslySetInnerHTML={{__html: articleContentMarkdown}}/>
                 </section>
             </section>
         </section>;
