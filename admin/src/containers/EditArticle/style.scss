@@ -24,6 +24,7 @@
       padding: 24px;
       width: 50%;
       overflow: scroll;
+      height: 100vh;
 
       .articleTitle {
         font-size: 26px;
@@ -35,6 +36,9 @@
 
       // 在这里设置 markdown 的样式
       .articleContent {
+
+        height: 100%;
+
         /* 标题 */
         h1, h2, h3, h4, h5, h6 {
           font-weight: bold;

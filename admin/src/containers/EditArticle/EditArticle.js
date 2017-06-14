@@ -95,7 +95,7 @@ class EditArticle extends Component {
 
         return <section className={style.editArticle}>
             {/* Header */}
-            <AppBar className={style.header} title={appBarTitle}/>
+            {/*<AppBar className={style.header} title={appBarTitle}/>*/}
             {/* 主体 */}
             <section className={style.main}>
                 {/* 左侧编辑框 */}
