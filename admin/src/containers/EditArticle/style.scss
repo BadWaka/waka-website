@@ -27,8 +27,12 @@
       .articleTitle {
       }
 
+      // 在这里设置 markdown 的样式
       .articleContent {
-        
+        h3 {
+          font-size: 20px;
+          font-weight: bold;
+        }
       }
     }
   }
