@@ -57,7 +57,10 @@ class EditArticle extends Component {
     }
 
     // 文章标题变化
-    handleArticleTitleChange(event, value) {
+    handleArticleTitleChange(event) {
+
+        const value = event.target.value;
+
         const {
             setArticleTitle
         } = this.props;
@@ -67,7 +70,10 @@ class EditArticle extends Component {
     }
 
     // 文章内容变化
-    handleArticleContentChange(event, value) {
+    handleArticleContentChange(event) {
+
+        const value = event.target.value;
+
         const {
             setArticleContent
         } = this.props;
@@ -108,11 +114,17 @@ class EditArticle extends Component {
                 {/* 左侧编辑框 */}
                 <section
                     className={style.left}>
-                    <TextField
+                    {/*<TextField*/}
+                    {/*value={articleTitle}*/}
+                    {/*hintText="请填写标题"*/}
+                    {/*floatingLabelText="标题"*/}
+                    {/*fullWidth={true}*/}
+                    {/*onChange={this.handleArticleTitleChange.bind(this)}/>*/}
+                    <input
+                        className={style.title}
+                        type="text"
+                        placeholder="请填写标题"
                         value={articleTitle}
-                        hintText="请填写标题"
-                        floatingLabelText="标题"
-                        fullWidth={true}
                         onChange={this.handleArticleTitleChange.bind(this)}/>
                     {/* MaterialUI 的 Textarea 样式有点不符合要求（不能定高，所以决定自己写一个）*/}
                     {/*<TextField*/}
