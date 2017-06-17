@@ -114,34 +114,24 @@ class EditArticle extends Component {
                 {/* 左侧编辑框 */}
                 <section
                     className={style.left}>
-                    {/*<TextField*/}
-                    {/*value={articleTitle}*/}
-                    {/*hintText="请填写标题"*/}
-                    {/*floatingLabelText="标题"*/}
-                    {/*fullWidth={true}*/}
-                    {/*onChange={this.handleArticleTitleChange.bind(this)}/>*/}
-                    <input
-                        className={style.title}
-                        type="text"
-                        placeholder="请填写标题"
-                        value={articleTitle}
-                        onChange={this.handleArticleTitleChange.bind(this)}/>
-                    {/* MaterialUI 的 Textarea 样式有点不符合要求（不能定高，所以决定自己写一个）*/}
-                    {/*<TextField*/}
-                    {/*id="contentEditTextArea"*/}
-                    {/*className={style.contentEditTextArea}*/}
-                    {/*value={articleContent}*/}
-                    {/*floatingLabelText="内容"*/}
-                    {/*multiLine={true}*/}
-                    {/*rowsMax={35}    // 这里可以设置最大高度，但是只能根据行数来*/}
-                    {/*fullWidth={true}*/}
-                    {/*onChange={this.handleArticleContentChange.bind(this)}/>*/}
-                    <textarea
-                        id="contentEditTextArea"
-                        className={style.contentEditTextArea}
-                        value={articleContent}
-                        onChange={this.handleArticleContentChange.bind(this)}>
-                    </textarea>
+                    {/* 编辑标题 */}
+                    <section className={style.titleEditWrapper}>
+                        <input
+                            className={style.titleEdit}
+                            type="text"
+                            placeholder="请填写标题"
+                            value={articleTitle}
+                            onChange={this.handleArticleTitleChange.bind(this)}/>
+                    </section>
+                    {/* 编辑内容 */}
+                    <section className={style.contentEditWrapper}>
+                        <textarea
+                            id="contentEditTextArea"
+                            className={style.contentEdit}
+                            value={articleContent}
+                            onChange={this.handleArticleContentChange.bind(this)}>
+                        </textarea>
+                    </section>
                 </section>
                 {/* 右侧预览框 */}
                 <section
