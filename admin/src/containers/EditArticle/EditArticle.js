@@ -124,14 +124,12 @@ class EditArticle extends Component {
                             onChange={this.handleArticleTitleChange.bind(this)}/>
                     </section>
                     {/* 编辑内容 */}
-                    <section className={style.contentEditWrapper}>
-                        <textarea
-                            id="contentEditTextArea"
-                            className={style.contentEdit}
-                            value={articleContent}
-                            onChange={this.handleArticleContentChange.bind(this)}>
-                        </textarea>
-                    </section>
+                    <textarea
+                        id="contentEditTextArea"
+                        className={style.contentEdit}
+                        value={articleContent}
+                        onChange={this.handleArticleContentChange.bind(this)}>
+                    </textarea>
                 </section>
                 {/* 右侧预览框 */}
                 <section

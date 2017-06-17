@@ -30,13 +30,10 @@ textarea {
         background: red;
       }
 
-      .contentEditWrapper {
-        height: 90%;
-
-        .contentEdit {
-          width: 100%;
-          height: 100%;
-        }
+      .contentEdit {
+        padding: 24px;
+        width: 100%;
+        min-height: 90%;
       }
     }
 
@@ -61,9 +58,10 @@ textarea {
 
       // 在这里设置 markdown 的样式
       .articleContent {
-        min-height: 90%;
+        height: 90%;
         padding: 24px;
         background: $lightBlue50;
+        overflow: scroll;
 
         /* 标题 */
         h1, h2, h3, h4, h5, h6 {
