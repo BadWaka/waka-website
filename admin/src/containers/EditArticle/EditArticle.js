@@ -122,6 +122,9 @@ class EditArticle extends Component {
                             placeholder="请填写标题"
                             value={articleTitle}
                             onChange={this.handleArticleTitleChange.bind(this)}/>
+                        <section className={style.toolbar}>
+
+                        </section>
                     </section>
                     {/* 编辑内容 */}
                     <textarea

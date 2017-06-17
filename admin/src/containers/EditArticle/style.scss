@@ -26,8 +26,19 @@ textarea {
       height: 100%;
 
       .titleEditWrapper {
+        position: relative;
         height: 10%;
-        background: red;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px $grey300 solid;
+        //background: red;
+
+        .titleEdit {
+          padding: 0 24px;
+          width: 100%;
+          font-size: 26px;
+          font-weight: bold;
+        }
       }
 
       .contentEdit {
