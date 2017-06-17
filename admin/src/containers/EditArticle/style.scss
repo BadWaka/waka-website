@@ -113,10 +113,11 @@ textarea {
           border-left: 6px solid $grey500;
         }
         /* 列表 */
-        ul {
+        ul, ol {
           // 列表嵌套列表留出左空格
           padding-left: 24px;
         }
+        // 无序列表
         // 以下代码是为了让嵌套无序列表时有所区别，做多支持6层无序列表嵌套
         // 其实这里是可以优化的，通过scss的计算功能
         // 才发现简书只支持三层嵌套不同样式哈哈哈
@@ -137,6 +138,25 @@ textarea {
         }
         ul > li > ul > li > ul > li > ul > li > ul > li > ul > li {
           list-style: square;
+        }
+        // 有序列表
+        ol > li {
+          list-style: decimal;
+        }
+        ol > li > ol > li {
+          list-style: upper-roman;
+        }
+        ol > li > ol > li > ol > li {
+          list-style: upper-alpha;
+        }
+        ol > li > ol > li > ol > li > ol > li {
+          list-style: decimal;
+        }
+        ol > li > ol > li > ol > li > ol > li > ol > li {
+          list-style: upper-roman;
+        }
+        ol > li > ol > li > ol > li > ol > li > ol > li > ol > li {
+          list-style: upper-alpha;
         }
       }
     }
