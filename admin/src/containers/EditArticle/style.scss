@@ -113,7 +113,29 @@ textarea {
           border-left: 6px solid $grey500;
         }
         /* 列表 */
-        li {
+        ul {
+          // 列表嵌套列表留出左空格
+          padding-left: 24px;
+        }
+        // 以下代码是为了让嵌套无序列表时有所区别，做多支持6层无序列表嵌套
+        // 其实这里是可以优化的，通过scss的计算功能
+        ul > li {
+          list-style: disc;
+        }
+        ul > li > ul > li {
+          list-style: circle;
+        }
+        ul > li > ul > li > ul > li {
+          list-style: square;
+        }
+        ul > li > ul > li > ul > li > ul > li {
+          list-style: disc;
+        }
+        ul > li > ul > li > ul > li > ul > li > ul > li {
+          list-style: circle;
+        }
+        ul > li > ul > li > ul > li > ul > li > ul > li > ul > li {
+          list-style: square;
         }
       }
     }
