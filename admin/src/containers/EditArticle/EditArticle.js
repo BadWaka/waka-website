@@ -114,15 +114,22 @@ class EditArticle extends Component {
                         floatingLabelText="标题"
                         fullWidth={true}
                         onChange={this.handleArticleTitleChange.bind(this)}/>
-                    <TextField
+                    {/* MaterialUI 的 Textarea 样式有点不符合要求（不能定高，所以决定自己写一个）*/}
+                    {/*<TextField*/}
+                    {/*id="contentEditTextArea"*/}
+                    {/*className={style.contentEditTextArea}*/}
+                    {/*value={articleContent}*/}
+                    {/*floatingLabelText="内容"*/}
+                    {/*multiLine={true}*/}
+                    {/*rowsMax={35}    // 这里可以设置最大高度，但是只能根据行数来*/}
+                    {/*fullWidth={true}*/}
+                    {/*onChange={this.handleArticleContentChange.bind(this)}/>*/}
+                    <textarea
                         id="contentEditTextArea"
                         className={style.contentEditTextArea}
                         value={articleContent}
-                        floatingLabelText="内容"
-                        multiLine={true}
-                        rowsMax={35}    // 这里可以设置最大高度，但是只能根据行数来
-                        fullWidth={true}
-                        onChange={this.handleArticleContentChange.bind(this)}/>
+                        onChange={this.handleArticleContentChange.bind(this)}>
+                    </textarea>
                 </section>
                 {/* 右侧预览框 */}
                 <section
