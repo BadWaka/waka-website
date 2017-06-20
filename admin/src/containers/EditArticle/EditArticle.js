@@ -123,7 +123,7 @@ class EditArticle extends Component {
                             value={articleTitle}
                             onChange={this.handleArticleTitleChange.bind(this)}/>
                         <section className={style.toolbar}>
-
+                            <span className={style.publishArticle}>发布文章</span>
                         </section>
                     </section>
                     {/* 编辑内容 */}
