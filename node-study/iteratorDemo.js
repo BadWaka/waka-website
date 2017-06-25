@@ -1,19 +1,25 @@
-function makeIterator(array) {
-    let nextIndex = 0;
+// function makeIterator(array) {
+//     let nextIndex = 0;
+//
+//     return {
+//         next: function () {
+//             return nextIndex < array.length ? {
+//                 value: array[nextIndex++],
+//                 done: false
+//             } : {
+//                 done: true
+//             }
+//         }
+//     }
+// }
+//
+// let it = makeIterator(['a', 'b', 'c', 'd']);
+// console.log(it.next().value, it.next().done);
+// console.log(it.next().value, it.next().done);
+// console.log(it.next().value, it.next().done);
 
-    return {
-        next: function () {
-            return nextIndex < array.length ? {
-                value: array[nextIndex++],
-                done: false
-            } : {
-                done: true
-            }
-        }
-    }
+
+var it = Iterator(lang);
+for (var pair in it) {
+    print(pair);
 }
-
-let it = makeIterator(['a', 'b', 'c', 'd']);
-console.log(it.next().value, it.next().done);
-console.log(it.next().value, it.next().done);
-console.log(it.next().value, it.next().done);
