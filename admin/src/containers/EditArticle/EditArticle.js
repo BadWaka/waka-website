@@ -59,7 +59,10 @@ class EditArticle extends Component {
     // 保存点击事件
     handleSave() {
         console.log('handleSave');
-        window.fetch();
+        window.fetch('http://localhost:3000/api/getArticle')
+            .then((res) => {
+                console.log('res', res);
+            });
     }
 
     // 文章标题变化

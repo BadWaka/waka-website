@@ -4,6 +4,7 @@ const Koa = require('koa'); // koa
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
 const koaMount = require('koa-mount'); // koa-mount 将中间件挂载到特定url下
+const koaCORS = require('kcors');   // koa CORS 中间件
 const koaBodyParser = require('koa-bodyparser'); // koa-bodyparser 解析post中的data
 const staticFiles = require('./middlewares/staticFiles'); // 自己写的静态资源中间件
 const templating = require('./middlewares/templating'); // 自己写的nunjucks模板渲染中间件
@@ -21,6 +22,11 @@ console.debug('当前环境 process.env.NODE_ENV', process.env.NODE_ENV);
 
 /************************ middleware ************************/
 
+// 设置 CORS 跨域资源请求
+app.use(koaCORS({
+    origin: 'http://localhost:9000',    // 测试环境
+}));
+
 // x-response-time 记录请求时间
 app.use(async function (ctx, next) {
     const startTime = new Date();
@@ -33,8 +39,10 @@ app.use(async function (ctx, next) {
 // 开发环境下才会设置静态文件目录
 if (!isProduction) {
 
-    // // 设置静态目录，使用 koa-mount 将静态资源目录挂载到 /static 路径下 app.use(koaMount('/static',
-    // koaStatic('static'))); 设置静态资源目录，使用自己写的中间件
+    // // 设置静态目录，使用 koa-mount 和 koa-static 将静态资源目录挂载到 /static 路径下
+    // app.use(koaMount('/static', koaStatic('static')));
+
+    // 设置静态资源目录，使用自己写的中间件
     app.use(staticFiles('/static', __dirname + '/static'));
 }
 

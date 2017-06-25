@@ -24,6 +24,7 @@
     "bluebird": "^3.5.0",
     "cheerio": "^0.22.0",
     "highlightjs": "^9.10.0",
+    "kcors": "^2.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-mount": "^3.0.0",
