@@ -61,7 +61,11 @@ class EditArticle extends Component {
         console.log('handleSave');
         window.fetch('http://localhost:3000/api/getArticle')
             .then((res) => {
-                console.log('res', res);
+                // 返回的res是个stream对象，要获得json数据，需要调用它的.json()方法
+                // res.json()返回的是个Promise对象，所以需要用.then((data)=>{})获取数据
+                res.json().then((data) => {
+                    console.log('data', data);
+                })
             });
     }
 
