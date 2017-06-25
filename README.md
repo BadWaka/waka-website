@@ -69,6 +69,7 @@
 - react-router-dom react-router React前端路由 web端，不是native端
 - react-tap-event-plugin React处理移动设备onClick延时300ms使用的库，提供onTouchTap替代onClick
 - redux Redux库
+- redux-saga redux 异步action库
 - request 简化网络请求
 - request-promise 网络请求默认变为promise，方便async/await使用
 - tracer console.log加强
