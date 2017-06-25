@@ -13,6 +13,7 @@
 - gulp 用来自动编译scss
 - react 编写后台时使用，后台不用SEO
 - typescript 编写react时使用，抱着学习的目的
+- fetch 使用 fetch 获取网络数据
 
 ### 后端
 

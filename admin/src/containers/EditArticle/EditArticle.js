@@ -59,6 +59,7 @@ class EditArticle extends Component {
     // 保存点击事件
     handleSave() {
         console.log('handleSave');
+        window.fetch();
     }
 
     // 文章标题变化

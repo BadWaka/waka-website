@@ -12,7 +12,6 @@ const uuidV4 = require('uuid/v4');   // 生成uuid的库
 
 /**
  * 获得响应体
- * @param ctx
  * @param errno
  * @param errmsg
  * @param data
