@@ -56,6 +56,11 @@ class EditArticle extends Component {
         this._highlightPreCode(doms);
     }
 
+    // 保存点击事件
+    handleSave() {
+        console.log('handleSave');
+    }
+
     // 文章标题变化
     handleArticleTitleChange(event) {
 
@@ -126,7 +131,9 @@ class EditArticle extends Component {
                             {/* 右侧 */}
                             <div className={style.right}>
                                 {/* 保存 */}
-                                <span className={style.save}><i className="iconfont icon-baocun"/></span>
+                                <span className={style.save}
+                                      onClick={this.handleSave.bind(this)}><i
+                                    className="iconfont icon-baocun"/></span>
                                 {/* 发布文章 */}
                                 <span className={style.publishArticle}><i className="iconfont icon-fabu"/><span
                                     className={style.text}>发布文章</span></span>
