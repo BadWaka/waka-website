@@ -123,7 +123,14 @@ class EditArticle extends Component {
                             value={articleTitle}
                             onChange={this.handleArticleTitleChange.bind(this)}/>
                         <section className={style.toolbar}>
-                            <span className={style.publishArticle}>发布文章</span>
+                            {/* 右侧 */}
+                            <div className={style.right}>
+                                {/* 保存 */}
+                                <span className={style.save}><i className="iconfont icon-baocun"/></span>
+                                {/* 发布文章 */}
+                                <span className={style.publishArticle}><i className="iconfont icon-fabu"/><span
+                                    className={style.text}>发布文章</span></span>
+                            </div>
                         </section>
                     </section>
                     {/* 编辑内容 */}

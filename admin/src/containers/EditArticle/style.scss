@@ -50,11 +50,37 @@ textarea {
           display: flex;
           align-items: center;
 
-          .publishArticle {
+          .right {
             position: absolute;
             right: 0;
-            margin-right: 12px;
-            transform: scale(0.85);
+            height: 24px;
+            line-height: 24px;
+            display: flex;
+            justify-content: flex-end;
+            background: $grey300;
+
+            .save, .publishArticle {
+              transition: 0.2s;
+              padding: 0 6px;
+              cursor: pointer;
+              user-select: none;
+
+              &:hover {
+                background: $grey600;
+                color: #fff;
+              }
+            }
+
+            // 发布文章
+            .publishArticle {
+              font-size: 12px;
+              display: flex;
+              align-items: center;
+
+              .text {
+                margin-left: 2px;
+              }
+            }
           }
         }
       }
