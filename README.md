@@ -11,7 +11,7 @@
 ##### 首页、详情页、登录页
 
 - nunjucks 需要SEO的页面，选择它来渲染html
-- less css预编译，扩展css，用它是因为开发阶段比较方便，直接引入less.js即可
+- sass css预处理
 - gulp 用来自动编译scss
 
 ##### admin 后台管理页
