@@ -8,10 +8,19 @@
 
 ### 前端
 
-- nunjucks 有些页面需要SEO，选择它来渲染html
-- scss css预编译，扩展css
+##### 首页、详情页、登录页
+
+- nunjucks 需要SEO的页面，选择它来渲染html
+- less css预编译，扩展css，用它是因为开发阶段比较方便，直接引入less.js即可
 - gulp 用来自动编译scss
+
+##### admin 后台管理页
+
 - react 编写后台时使用，后台不用SEO
+- sass 用sass配合css-module写样式
+- redux 状态管理
+- react-router 路由
+- redux-saga 异步action
 - typescript 编写react时使用，抱着学习的目的
 - fetch 使用 fetch 获取网络数据
 
