@@ -4,12 +4,16 @@ html, body {
   height: 100%;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
+// 全局 input 样式
 input {
   border: none;
   outline: none;
 }
 
-// 全局 input 样式
 input[type=text], input[type=password] {
   display: block;
   width: 100%;
@@ -33,6 +37,7 @@ input[type=text], input[type=password] {
 button {
   transition: 0.2s;
   background: $blue500;
+  font-size: 14px;
   color: #fff;
   border: none;
   outline: none;

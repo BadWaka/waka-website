@@ -1,6 +1,9 @@
 html, body {
   height: 100%; }
 
+.fullWidth {
+  width: 100%; }
+
 input {
   border: none;
   outline: none; }
@@ -22,6 +25,7 @@ input[type=text], input[type=password] {
 button {
   transition: 0.2s;
   background: #2196f3;
+  font-size: 14px;
   color: #fff;
   border: none;
   outline: none;
