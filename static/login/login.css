@@ -3,11 +3,16 @@ body {
   justify-content: center;
   align-items: center; }
 
+html {
+  height: 100%;
+  background-image: radial-gradient(ellipse farthest-corner at center top, #2196f3 0%, #1565c0 100%); }
+
 .signUp {
+  position: fixed;
   width: 300px; }
   .signUp .inputWrapper {
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 1px; }
+    border-radius: 4px; }
+    .signUp .inputWrapper input:last-child {
+      border-bottom: none; }
   .signUp #btnSignUp {
     margin-top: 20px; }

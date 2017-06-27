@@ -6,13 +6,22 @@ body {
   align-items: center;
 }
 
+html {
+  height: 100%;
+  //background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, $blue500 0%, #fff 100%);
+  background-image: radial-gradient(ellipse farthest-corner at center top, $blue500 0%, $blue800 100%);
+}
+
 .signUp {
+  position: fixed;
   width: 300px;
 
   .inputWrapper {
-    border: 1px solid $grey300;
     border-radius: 4px;
-    padding: 1px;
+
+    input:last-child {
+      border-bottom: none;
+    }
   }
 
   #btnSignUp {

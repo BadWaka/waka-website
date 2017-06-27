@@ -24,10 +24,6 @@ input[type=text], input[type=password] {
   font-size: 14px;
   padding: 0 16px;
 
-  &:last-child {
-    border-bottom: none;
-  }
-
   &::placeholder {
     color: $grey400;
   }
@@ -44,7 +40,6 @@ button {
   cursor: pointer;
   user-select: none;
   padding: 10px;
-  border-radius: 4px;
 
   &:hover {
     background: RGBA(17, 157, 242, 0.7);

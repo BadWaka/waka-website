@@ -17,8 +17,6 @@ input[type=text], input[type=password] {
   border-bottom: 1px solid #e0e0e0;
   font-size: 14px;
   padding: 0 16px; }
-  input[type=text]:last-child, input[type=password]:last-child {
-    border-bottom: none; }
   input[type=text]::placeholder, input[type=password]::placeholder {
     color: #bdbdbd; }
 
@@ -31,7 +29,6 @@ button {
   outline: none;
   cursor: pointer;
   user-select: none;
-  padding: 10px;
-  border-radius: 4px; }
+  padding: 10px; }
   button:hover {
     background: RGBA(17, 157, 242, 0.7); }
