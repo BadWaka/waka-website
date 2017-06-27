@@ -1,0 +1,14 @@
+input {
+  border: none;
+  outline: none;
+}
+
+.signUp {
+  background: red;
+  width: 300px;
+
+  .input {
+    display: block;
+    width: 100%;
+  }
+}
