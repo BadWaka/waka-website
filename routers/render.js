@@ -35,14 +35,18 @@ koaRouter.get('/detail', function (ctx) {
  * 注册页
  */
 koaRouter.get('/signup', function (ctx) {
-    ctx.render('login.html');
+    ctx.render('login.html', {
+        title: '注册'
+    });
 });
 
 /**
  * 登录页
  */
 koaRouter.get('/signin', function (ctx) {
-    ctx.render('login.html');
+    ctx.render('login.html', {
+        title: '登录'
+    });
 });
 
 module.exports = koaRouter;
