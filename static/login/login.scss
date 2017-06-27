@@ -1,14 +1,17 @@
-input {
-  border: none;
-  outline: none;
+@import "../common/color.scss";
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signUp {
-  background: red;
   width: 300px;
 
-  .input {
-    display: block;
-    width: 100%;
+  .inputWrapper {
+    border: 1px solid $grey300;
+    border-radius: 4px;
+    padding: 1px;
   }
 }
