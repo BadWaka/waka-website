@@ -5,25 +5,47 @@
     <title>{{title}}</title>
     <!--normalize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <!--pcbase.css-->
-    <link rel="stylesheet" href="../static/common/pcbase.css">
     <!--login.css-->
     <link rel="stylesheet" href="../static/login/login.css">
 </head>
 <body>
 
+<!--背景 canvas-->
 <canvas id="canv"></canvas>
 
-<!--注册-->
-<section class="signUp">
-    <section class="inputWrapper">
-        <input id="mobileNumber" class="input" title="mobileNumber" name="mobileNumber" type="text" placeholder="手机号">
-        <input id="password" class="input" title="password" name="password" type="password" placeholder="密码">
-        <input id="passwordAgain" class="input" title="passwordAgain" name="passwordAgain" type="password"
-               placeholder="再次输入密码">
+<!--主体-->
+<section class="main">
+
+    <!--切换栏-->
+    <section id="tabSignInSignUp" class="tab">
+        <div id="tabItemSignIn" class="item selected">登录</div>
+        <div id="tabItemSignUp" class="item">注册</div>
     </section>
-    <button id="btnSignUp" class="fullWidth">注册</button>
+
+    <!--登录-->
+    <section id="signInSection" class="signSection">
+        <section class="inputWrapper">
+            <input id="mobileNumberSignIn" class="input" title="mobileNumber" name="mobileNumber" type="text"
+                   placeholder="手机号">
+            <input id="passwordSignIn" class="input" title="password" name="password" type="password" placeholder="密码">
+        </section>
+        <button id="btnSignIn" class="fullWidth">登录</button>
+    </section>
+
+    <!--注册-->
+    <section id="signUpSection" class="signSection" style="display: none">
+        <section class="inputWrapper">
+            <input id="mobileNumberSignUp" class="input" title="mobileNumber" name="mobileNumber" type="text"
+                   placeholder="手机号">
+            <input id="passwordSignUp" class="input" title="password" name="password" type="password" placeholder="密码">
+            <input id="passwordAgainSignUp" class="input" title="passwordAgain" name="passwordAgain" type="password"
+                   placeholder="再次输入密码">
+        </section>
+        <button id="btnSignUp" class="fullWidth">注册</button>
+    </section>
+
 </section>
+
 
 <!--jQuery-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

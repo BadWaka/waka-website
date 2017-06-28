@@ -33,13 +33,14 @@ input[type=text], input[type=password] {
 button {
   transition: 0.3s;
   background: $grey900;
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   border: none;
   outline: none;
   cursor: pointer;
   user-select: none;
   padding: 10px;
+  border-radius: 4px;
 
   &:hover {
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.10);

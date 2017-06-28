@@ -1,4 +1,9 @@
 @import "../common/color.scss";
+@import "../common/pcbase.scss";
+
+html {
+  background-image: radial-gradient(ellipse farthest-corner at center top, #fff 0%, $grey100 100%);
+}
 
 body {
   display: flex;
@@ -6,25 +11,54 @@ body {
   align-items: center;
 }
 
-html {
-  height: 100%;
-  //background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, $blue500 0%, #fff 100%);
-  background-image: radial-gradient(ellipse farthest-corner at center top, $grey700 0%, $black 100%);
-}
-
-.signUp {
+// 主体
+.main {
   position: fixed;
+  padding: 48px;
   width: 300px;
+  //background: #FFFFFF;
+  //box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.10);
+  border-radius: 4px;
 
-  .inputWrapper {
-    border-radius: 4px;
+  input:last-child {
+    border-bottom: none;
+  }
 
-    input:last-child {
-      border-bottom: none;
+  .tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+
+    .item {
+      margin-right: 20px;
+      padding-bottom: 5px;
+      cursor: pointer;
+      user-select: none;
+      color: $grey500;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .selected {
+      color: #000;
+      border-bottom: 2px solid #000;
     }
   }
 
-  #btnSignUp {
-    margin-top: 20px;
+  .signSection {
+
+    .inputWrapper {
+      border: 1px solid $grey300;
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    #btnSignIn, #btnSignUp {
+      margin-top: 20px;
+    }
   }
 }
+
