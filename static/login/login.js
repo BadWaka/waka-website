@@ -480,29 +480,52 @@ $(function () {
     });
 
     // DOM
+    var $tabSignInSignUp = $('#tabSignInSignUp');   // 登录注册tab栏
     var $tabItemSignIn = $('#tabItemSignIn');   // 登录tab
     var $tabItemSignUp = $('#tabItemSignUp');   // 注册tab
     var $signInSection = $('#signInSection');   // 登录区块
     var $signUpSection = $('#signUpSection');   // 注册区块
 
+    if (title === '登录') {
+        changeToSignIn();
+    } else {
+        changeToSignUp();
+    }
+
     /**
      * 登录点击事件
      */
     $tabItemSignIn.on('click', function (e) {
-        $('.tab .item').removeClass('selected');
-        $tabItemSignIn.addClass('selected');
-        $signInSection.css('display', 'block');
-        $signUpSection.css('display', 'none');
+        changeToSignIn();
     });
 
     /**
      * 注册点击事件
      */
     $tabItemSignUp.on('click', function (e) {
+        changeToSignUp();
+    });
+
+    /**
+     * 切换至登录
+     */
+    function changeToSignIn() {
+        $('.tab .item').removeClass('selected');
+        $tabItemSignIn.addClass('selected');
+        $tabSignInSignUp.css('display', 'flex');
+        $signInSection.css('display', 'block');
+        $signUpSection.css('display', 'none');
+    }
+
+    /**
+     * 切换至注册
+     */
+    function changeToSignUp() {
         $('.tab .item').removeClass('selected');
         $tabItemSignUp.addClass('selected');
+        $tabSignInSignUp.css('display', 'flex');
         $signUpSection.css('display', 'block');
         $signInSection.css('display', 'none');
-    });
+    }
 
 });

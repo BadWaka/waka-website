@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{title}}</title>
+    <title><%= title %></title>
     <!--normalize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <!--login.css-->
     <link rel="stylesheet" href="../static/login/login.css">
 </head>
 <body>
+
+<script>
+    window.title = '<%= title %>';
+    console.log('title', title);
+</script>
 
 <!--背景 canvas-->
 <canvas id="canv"></canvas>
@@ -17,13 +22,13 @@
 <section class="main">
 
     <!--切换栏-->
-    <section id="tabSignInSignUp" class="tab">
+    <section id="tabSignInSignUp" class="tab" style="display: none">
         <div id="tabItemSignIn" class="item selected">登录</div>
         <div id="tabItemSignUp" class="item">注册</div>
     </section>
 
     <!--登录-->
-    <section id="signInSection" class="signSection">
+    <section id="signInSection" class="signSection" style="display: none">
         <section class="inputWrapper">
             <input id="mobileNumberSignIn" class="input" title="mobileNumber" name="mobileNumber" type="text"
                    placeholder="手机号">
@@ -45,7 +50,6 @@
     </section>
 
 </section>
-
 
 <!--jQuery-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
