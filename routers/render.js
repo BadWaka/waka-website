@@ -22,8 +22,7 @@ koaRouter.get('/', async function (ctx) {
         const values = await Promise.all([p1]);
         console.debug('values', values);
         await ctx.render('index', {
-            articles: JSON.parse(values[0]),
-            articlesStr: encodeURIComponent(values[0])
+            articles: values[0]
         });
     } catch (err) {
         console.error(err);

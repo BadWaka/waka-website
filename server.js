@@ -32,6 +32,7 @@ app.use(koaCORS({
 koaEjs(app, {
     root: path.join(__dirname, 'views'),
     layout: false,
+    viewExt: 'ejs',
     cache: false,
     debug: true
 });
