@@ -21,8 +21,8 @@ input[type=text], input[type=password] {
     color: #bdbdbd; }
 
 button {
-  transition: 0.2s;
-  background: #2196f3;
+  transition: 0.3s;
+  background: #212121;
   font-size: 14px;
   color: #fff;
   border: none;
@@ -31,4 +31,4 @@ button {
   user-select: none;
   padding: 10px; }
   button:hover {
-    background: RGBA(17, 157, 242, 0.7); }
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1); }
