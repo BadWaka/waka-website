@@ -11,10 +11,17 @@
 
 <body>
 
+<script>
+    window.articles = JSON.parse(decodeURIComponent('{{articlesStr}}'));
+    console.log('articles', articles);
+</script>
+
 <!--我来组成头部-->
 {% include 'header.html' %}
 
 <section class="main">
+
+    <div>{{articles}}</div>
 
     <!--文章-->
     <article class="article">
