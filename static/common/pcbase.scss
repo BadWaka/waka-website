@@ -4,8 +4,27 @@ html, body {
   height: 100%;
 }
 
+// 全宽
 .fullWidth {
   width: 100%;
+}
+
+// 我来组成头部
+.header-wrapper {
+  height: 58px;
+  color: #fff;
+  background: $grey900;
+
+  .header {
+    margin: 0 auto;
+    width: 1440px;
+
+    .title {
+      font-size: 24px;
+      line-height: 58px;
+      margin-left: 24px;
+    }
+  }
 }
 
 // 全局 input 样式

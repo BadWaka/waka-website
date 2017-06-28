@@ -33,21 +33,21 @@ koaRouter.get('/', async function (ctx) {
 /**
  * 详情页
  */
-koaRouter.get('/detail', function (ctx) {
+koaRouter.get('/detail', async function (ctx) {
     const markdownStr = '';
     fileUtil.readFile(process.cwd() + '/test/test.md')
         .then((data) => {
             console.debug('data', data.toString());
             console.info('marked', marked(data.toString()));
         });
-    ctx.render('detail');
+    await ctx.render('detail');
 });
 
 /**
  * 注册页
  */
 koaRouter.get('/signup', async function (ctx) {
-    ctx.render('login', {
+    await ctx.render('login', {
         title: '注册'
     });
 });
@@ -55,8 +55,8 @@ koaRouter.get('/signup', async function (ctx) {
 /**
  * 登录页
  */
-koaRouter.get('/signin', function (ctx) {
-    ctx.render('login', {
+koaRouter.get('/signin', async function (ctx) {
+    await ctx.render('login', {
         title: '登录'
     });
 });
