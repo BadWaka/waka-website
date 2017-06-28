@@ -1,13 +1,14 @@
 /************************ require ************************/
 
 const Koa = require('koa'); // koa
+const path = require('path');   // path
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
 const koaMount = require('koa-mount'); // koa-mount 将中间件挂载到特定url下
 const koaCORS = require('kcors');   // koa CORS 中间件
 const koaBodyParser = require('koa-bodyparser'); // koa-bodyparser 解析post中的data
+const koaEjs = require('koa-ejs');
 const staticFiles = require('./middlewares/staticFiles'); // 自己写的静态资源中间件
-const templating = require('./middlewares/templating'); // 自己写的nunjucks模板渲染中间件
 
 const renderRouter = require('./routers/render'); // 渲染路由
 const apiRouter = require('./routers/api'); // 接口路由
@@ -26,6 +27,14 @@ console.debug('当前环境 process.env.NODE_ENV', process.env.NODE_ENV);
 app.use(koaCORS({
     origin: 'http://localhost:9000',    // 测试环境
 }));
+
+// 设置ejs中间件
+koaEjs(app, {
+    root: path.join(__dirname, 'views'),
+    layout: false,
+    cache: false,
+    debug: true
+});
 
 // x-response-time 记录请求时间
 app.use(async function (ctx, next) {
@@ -48,12 +57,6 @@ if (!isProduction) {
 
 // 解析post的data
 app.use(koaBodyParser());
-
-// 给ctx添加render方法，渲染模板文件
-app.use(templating('views', {
-    noCache: !isProduction, // 生产环境需要缓存
-    watch: !isProduction, // 生产环境不需要实时监测文件变化
-}));
 
 /************************ 路由 ************************/
 

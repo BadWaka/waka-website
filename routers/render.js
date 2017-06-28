@@ -3,7 +3,6 @@
  */
 const koaRouter = require('koa-router')(); // koa-router   设置路由
 const console = require('tracer').colorConsole(); // 增强console
-const nunjucks = require('nunjucks');   // nunjucks模板引擎
 const marked = require('marked');   // 解析markdown为html
 const fileUtil = require('../utils/fileUtil');  // 文件工具
 const requestPromise = require('request-promise');  // 网络请求
@@ -22,7 +21,7 @@ koaRouter.get('/', async function (ctx) {
     try {
         const values = await Promise.all([p1]);
         console.debug('values', values);
-        ctx.render('index.html', {
+        await ctx.render('index', {
             articles: JSON.parse(values[0]),
             articlesStr: encodeURIComponent(values[0])
         });
@@ -41,14 +40,14 @@ koaRouter.get('/detail', function (ctx) {
             console.debug('data', data.toString());
             console.info('marked', marked(data.toString()));
         });
-    ctx.render('detail.html');
+    ctx.render('detail');
 });
 
 /**
  * 注册页
  */
-koaRouter.get('/signup', function (ctx) {
-    ctx.render('login.html', {
+koaRouter.get('/signup', async function (ctx) {
+    ctx.render('login', {
         title: '注册'
     });
 });
@@ -57,7 +56,7 @@ koaRouter.get('/signup', function (ctx) {
  * 登录页
  */
 koaRouter.get('/signin', function (ctx) {
-    ctx.render('login.html', {
+    ctx.render('login', {
         title: '登录'
     });
 });

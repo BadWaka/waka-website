@@ -58,10 +58,12 @@
 - antd ant-design 
 - bluebird 第三方Promise库，加强原生Promise功能，且性能更快
 - cheerio 爬虫HTML解析
+- ejs 模板引擎
 - highlightjs 代码语法高亮，用来让 markdown 更好看
 - kcors koa CORS 跨域
 - koa Node框架
 - koa-bodyparser 解析post的body
+- koa-ejs koa ejs中间件
 - koa-mount 将中间件挂载到特定url下
 - koa-router koa路由
 - koa-static koa静态资源
@@ -70,7 +72,6 @@
 - mime 处理 MIME 类型的库
 - mysql 连接mysql的驱动
 - mz 将node更新至ES6+语法的库
-- nunjucks nunjucks模板引擎
 - prop-types React单另的PropTypes模块
 - react React
 - react-dom React-DOM
