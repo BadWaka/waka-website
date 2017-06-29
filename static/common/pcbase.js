@@ -1,4 +1,10 @@
-// 用原生 JS 封装一个 Toast 组件
+/**
+ * 全局 JS
+ */
+
+/**
+ * 用原生 JS 封装一个 Toast 组件
+ */
 var Toast = {
     // 隐藏的 setTimeOut 引用
     hideTimeOut: null,
@@ -20,6 +26,13 @@ var Toast = {
      * @param duration 持续时间
      */
     show: function (text, type, duration) {
+        // 确保上一次的 TimeOut 已被清空
+        if (this.hideTimeOut) {
+            clearTimeout(this.hideTimeOut);
+            this.hideTimeOut = null;
+            // console.error('上一次的 TimeOut 还未走完!');
+            // return;
+        }
         if (!text) {
             console.error('text 不能为空!');
             return;
@@ -50,8 +63,10 @@ var Toast = {
         }
         domToastWaka.style.display = 'block';
         // 不传的话默认2s
+        var that = this;
         this.hideTimeOut = setTimeout(function () {
             domToastWaka.style.display = 'none';
+            that.hideTimeOut = null;    // 置 TimeOut 引用为空
         }, duration || 2000);
     },
     /**
@@ -71,8 +86,27 @@ var Toast = {
     }
 };
 
+// 初始化 Toast
 Toast.init();
-Toast.show('123', 'success', 10000);
-setTimeout(function () {
-    Toast.hide();
-}, 3000);
+
+/**
+ * 正则工具
+ */
+var regExpUtil = {
+    /**
+     * 校验手机号
+     * @param mobileNumber
+     * @return {boolean}
+     */
+    verifyMobileNumber: function (mobileNumber) {
+        return /^1[34578]\d{9}$/.test(mobileNumber);
+    },
+    /**
+     * 校验邮箱
+     * @param email
+     * @return {boolean}
+     */
+    verifyEmail: function (email) {
+        return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
+    }
+};

@@ -493,17 +493,29 @@ $(function () {
     }
 
     /**
-     * 登录点击事件
+     * 登录 tab 点击事件
      */
     $tabItemSignIn.on('click', function (e) {
         changeToSignIn();
     });
 
     /**
-     * 注册点击事件
+     * 注册 tab 点击事件
      */
     $tabItemSignUp.on('click', function (e) {
         changeToSignUp();
+    });
+
+    /**
+     * 登录按钮
+     */
+    $('#btnSignIn').on('click', function () {
+        console.log('登录');
+        var mobileNumber = $('#mobileNumberSignIn').val().trim();
+        console.log('mobileNumber', mobileNumber);
+        if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
+            Toast.show('手机号格式错误，请检查', 'error');
+        }
     });
 
     /**
