@@ -6,7 +6,9 @@
     <!--iconfont-->
     <link rel="stylesheet" href="//at.alicdn.com/t/font_k8ew9cu29erssjor.css">
     <!--normalize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <!--animate.css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--login.css-->
     <link rel="stylesheet" href="../static/login/login.css">
 </head>
@@ -32,10 +34,16 @@
 
     <!--登录-->
     <section id="signInSection" class="signSection" style="display: none">
-        <form class="inputWrapper">
-            <input id="mobileNumberSignIn" class="input" title="mobileNumber" name="mobileNumber" type="text"
-                   placeholder="手机号">
-            <input id="passwordSignIn" class="input" title="password" name="password" type="password" placeholder="密码">
+        <form>
+            <section class="inputWrapper">
+                <input id="mobileNumberSignIn" class="input" title="mobileNumber" name="mobileNumber" type="text"
+                       placeholder="手机号">
+                <input id="passwordSignIn" class="input" title="password" name="password" type="password"
+                       placeholder="密码">
+            </section>
+            <label for="rememberMeCheckBox" class="rememberMeLabel">
+                <input id="rememberMeCheckBox" title="rememberMe" type="checkbox" class="rememberMeCheckBox">&nbsp;记住我
+            </label>
         </form>
         <button id="btnSignIn" class="fullWidth">登录</button>
     </section>

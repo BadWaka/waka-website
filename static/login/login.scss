@@ -56,6 +56,15 @@ body {
       padding: 2px;
     }
 
+    .rememberMeLabel {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: $grey500;
+      cursor: pointer;
+      user-select: none;
+    }
+
     #btnSignIn, #btnSignUp {
       margin-top: 20px;
     }

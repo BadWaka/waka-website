@@ -3,7 +3,8 @@
  */
 
 /**
- * 用原生 JS 封装一个 Toast 组件
+ * 封装一个 Toast 组件
+ * 因为需要用到 .addClass() 和 .removeClass() 方法，引入 jQuery
  */
 var Toast = {
     // 隐藏的 setTimeOut 引用
@@ -15,7 +16,7 @@ var Toast = {
         var toastNode = document.createElement('section');
         toastNode.innerHTML = '<i class="iconfont icon-success"></i><i class="iconfont icon-error"></i><span class="text">111</span>';
         toastNode.id = 'toastWaka'; // 设置id，一个页面有且仅有一个Toast
-        toastNode.setAttribute('class', 'toast');   // 设置类名
+        toastNode.setAttribute('class', 'toast animated');   // 设置类名 依赖于 animate.css
         toastNode.style.display = 'none';   // 设置隐藏
         document.body.appendChild(toastNode);
     },
@@ -59,10 +60,14 @@ var Toast = {
                 break;
         }
         domToastWaka.style.display = 'block';
+        var $toastWaka = $('#toastWaka');
+        $toastWaka.removeClass('fadeOutUp');
+        $toastWaka.addClass('fadeInDown');
         // 不传的话默认2s
         var that = this;
         this.hideTimeOut = setTimeout(function () {
-            domToastWaka.style.display = 'none';
+            $toastWaka.removeClass('fadeInDown');
+            $toastWaka.addClass('fadeOutUp');
             that.hideTimeOut = null;    // 置 TimeOut 引用为空
         }, duration || 2000);
     },
@@ -82,9 +87,6 @@ var Toast = {
         }
     }
 };
-
-// 初始化 Toast
-Toast.init();
 
 /**
  * 正则工具
@@ -107,3 +109,10 @@ var regExpUtil = {
         return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email);
     }
 };
+
+$(function () {
+
+    // 初始化 Toast
+    Toast.init();
+
+});
