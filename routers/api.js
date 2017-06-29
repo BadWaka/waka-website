@@ -110,7 +110,55 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 koaRouter.post('/api/signup', async function (ctx) {
 
     const reqBody = ctx.request.body;
-    const identity_type = reqBody.identity_type; // 获得登录类型
+    const identifier = reqBody.identifier;  // 获得注册标识
+    const credential = reqBody.credential;  // 获得凭证
+    const identity_type = reqBody.identity_type; // 获得注册类型
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    /**************************** 校验必填项 ******************************/
+
+    // 校验注册标识
+    if (!identifier) {
+        errno = 1;
+        errmsg = '注册标识为空';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验凭证
+    if (!credential) {
+        errno = 2;
+        errmsg = '凭证为空';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 校验注册类型
+    if (!identity_type) {
+        errno = 3;
+        errmsg = '注册类型为空';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    try {
+        // 在 user_auths 表中查询是否有该类型、该标识的注册记录
+        const isSignUp = await mysqlUtil.query(
+            `SELECT * FROM user_auths WHERE identity_type='${identity_type}' and identifier='${identifier}';`
+        );
+        if (isSignUp.length !== 0) {
+            console.error('数据库中已有该类型、该标识的注册记录', isSignUp);
+        }
+        console.debug('isSignUp', isSignUp);
+    } catch (e) {
+        console.error(e);
+        errno = 4;
+        errmsg = `数据库操作报错 ${e.message}`;
+        ctx.body = getCtxBody(errno, errmsg, data);
+    }
 
 });
 

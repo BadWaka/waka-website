@@ -327,6 +327,7 @@ $(function () {
             app.run();
         })();
         window.addEventListener('resize', function () {
+            var canvas = document.getElementById('canv');
             canvas.width = w = window.innerWidth;
             canvas.height = h = window.innerHeight;
         }, false);
