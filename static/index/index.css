@@ -5,7 +5,7 @@ html, body {
   width: 100%; }
 
 .header-wrapper {
-  height: 58px;
+  height: 56px;
   color: #fff;
   background: #212121; }
   .header-wrapper .header {
@@ -29,15 +29,23 @@ html, body {
         background: red; }
         .header-wrapper .header .personalWrapper .personal .menu {
           position: absolute;
-          top: 58px;
+          top: 55px;
           right: 0;
           width: 160px;
-          background: green; }
+          background: #212121;
+          box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+          border-radius: 2px; }
           .header-wrapper .header .personalWrapper .personal .menu .menuItem {
-            padding: 0 12px;
+            transition: 0.2s;
+            padding: 0 16px;
             display: flex;
             align-items: center;
             height: 48px; }
+            .header-wrapper .header .personalWrapper .personal .menu .menuItem:hover {
+              background: #424242; }
+            .header-wrapper .header .personalWrapper .personal .menu .menuItem .iconfont {
+              font-size: 20px;
+              margin-right: 8px; }
 
 .toast {
   position: fixed;

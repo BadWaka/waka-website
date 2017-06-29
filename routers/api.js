@@ -305,7 +305,7 @@ koaRouter.post('/api/signin', async function (ctx) {
 /**
  * 登出
  */
-koaRouter.post('/api/signin', async function (ctx) {
+koaRouter.get('/api/logout', async function (ctx) {
 
     const cookie = ctx.cookies.get(constant.cookieName);    // 获得 cookie
 
@@ -317,7 +317,7 @@ koaRouter.post('/api/signin', async function (ctx) {
         errno = 1;
         errmsg = '用户未登录';
         console.error('用户未登录');
-        getCtxBody(errno, errmsg, data);
+        ctx.body = getCtxBody(errno, errmsg, data);
         return;
     }
 
@@ -325,7 +325,7 @@ koaRouter.post('/api/signin', async function (ctx) {
     ctx.cookies.set(constant.cookieName, null);
     errno = 0;
     data = '登出成功';
-    getCtxBody(errno, errmsg, data);
+    ctx.body = getCtxBody(errno, errmsg, data);
 });
 
 // 用户信息表 users

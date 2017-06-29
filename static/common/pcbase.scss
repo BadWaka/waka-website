@@ -11,7 +11,7 @@ html, body {
 
 // 我来组成头部
 .header-wrapper {
-  height: 58px;
+  height: 56px;
   color: #fff;
   background: $grey900;
 
@@ -41,16 +41,28 @@ html, body {
 
         .menu {
           position: absolute;
-          top: 58px;
+          top: 55px;
           right: 0;
           width: 160px;
-          background: green;
+          background: $grey900;
+          box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.10);
+          border-radius: 2px;
 
           .menuItem {
-            padding: 0 12px;
+            transition: 0.2s;
+            padding: 0 16px;
             display: flex;
             align-items: center;
             height: 48px;
+
+            &:hover {
+              background: $grey800;
+            }
+
+            .iconfont {
+              font-size: 20px;
+              margin-right: 8px;
+            }
           }
         }
       }
