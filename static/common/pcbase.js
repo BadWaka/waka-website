@@ -30,8 +30,6 @@ var Toast = {
         if (this.hideTimeOut) {
             clearTimeout(this.hideTimeOut);
             this.hideTimeOut = null;
-            // console.error('上一次的 TimeOut 还未走完!');
-            // return;
         }
         if (!text) {
             console.error('text 不能为空!');
