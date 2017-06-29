@@ -103,7 +103,7 @@ koaRouter.get('/api/bingWallPaper', async function (ctx) {
 
 });
 
-// 登录\注册
+// 登录/注册/登出
 
 /**
  * 注册
@@ -268,7 +268,7 @@ koaRouter.post('/api/signin', async function (ctx) {
             return;
         }
         // 判断凭证是否与库里的一致
-        const credentialDB = records[0].credential;
+        const credentialDB = records[0].credential; // 获得库里的凭证
         if (credential !== credentialDB) {
             errno = 5;
             errmsg = `凭证不一致`;
@@ -300,6 +300,32 @@ koaRouter.post('/api/signin', async function (ctx) {
         ctx.body = getCtxBody(errno, errmsg, data);
     }
 
+});
+
+/**
+ * 登出
+ */
+koaRouter.post('/api/signin', async function (ctx) {
+
+    const cookie = ctx.cookies.get(constant.cookieName);    // 获得 cookie
+
+    let errno = 0;  // 错误码
+    let errmsg = '';    // 错误提示
+    let data = '';  // 数据
+
+    if (!cookie) {
+        errno = 1;
+        errmsg = '用户未登录';
+        console.error('用户未登录');
+        getCtxBody(errno, errmsg, data);
+        return;
+    }
+
+    // 清除 cookie
+    ctx.cookies.set(constant.cookieName, null);
+    errno = 0;
+    data = '登出成功';
+    getCtxBody(errno, errmsg, data);
 });
 
 // 用户信息表 users
