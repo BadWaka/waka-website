@@ -459,7 +459,7 @@ $(function () {
                         Toast.show('该账号已被注册', 'error');
                         break;
                     default:
-                        Toast.show('注册失败' + result.errmsg, 'error');
+                        Toast.show('注册失败，' + result.errmsg, 'error');
                         break;
                 }
             },
@@ -492,8 +492,14 @@ $(function () {
                     case 0:
                         Toast.show('登录成功', 'success');
                         break;
+                    case 4:
+                        Toast.show('登录失败，该用户未注册', 'error');
+                        break;
+                    case 5:
+                        Toast.show('登录失败，凭证不一致，请检查', 'error');
+                        break;
                     default:
-                        Toast.show('登录失败' + result.errmsg, 'error');
+                        Toast.show('登录失败，' + result.errmsg, 'error');
                         break;
                 }
             },

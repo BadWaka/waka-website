@@ -215,26 +215,10 @@ koaRouter.post('/api/signup', async function (ctx) {
  */
 koaRouter.post('/api/signin', async function (ctx) {
 
-    /**************************** 拿到 post 数据 ******************************/
-
     const reqBody = ctx.request.body;
-    const article = {
-        title: reqBody.title,
-        intro: reqBody.intro,
-        content: reqBody.content,
-        type: reqBody.type,
-        tag: reqBody.tag,
-        read_count: reqBody.read_count,
-        likes: reqBody.likes,
-        donates: reqBody.donates,
-        author_id: reqBody.author_id,
-        author_name: reqBody.author_name,
-        author_avatar: reqBody.author_avatar,
-        created_at: reqBody.created_at,
-        updated_at: reqBody.updated_at,
-        comments: reqBody.comments,
-    };
-    // console.debug('article', article);
+    const identifier = reqBody.identifier;  // 获得标识
+    const credential = reqBody.credential;  // 获得凭证
+    const identity_type = reqBody.identity_type; // 获得类型
 
     let errno = 0;  // 错误码
     let errmsg = '';    // 错误提示
@@ -242,39 +226,65 @@ koaRouter.post('/api/signin', async function (ctx) {
 
     /**************************** 校验必填项 ******************************/
 
-    // 校验标题
-    if (!article.title) {
+    // 校验标识
+    if (!identifier) {
         errno = 1;
-        errmsg = '请填写标题';
+        errmsg = '标识为空';
         ctx.body = getCtxBody(errno, errmsg, data);
         return;
     }
 
-    // 校验标题
-    if (!article.content) {
+    // 校验凭证
+    if (!credential) {
         errno = 2;
-        errmsg = '请填写内容';
+        errmsg = '凭证为空';
         ctx.body = getCtxBody(errno, errmsg, data);
         return;
     }
 
-    /**************************** 写库 ******************************/
-
-    // 生成 uuid
-    article.id = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+    // 校验类型
+    if (!identity_type) {
+        errno = 3;
+        errmsg = '类型为空';
+        ctx.body = getCtxBody(errno, errmsg, data);
+        return;
+    }
 
     try {
-        // 库中插入新数据
-        data = await mysqlUtil.query(
-            `INSERT INTO articles (id,title,intro,content,type,tag,author_id,author_name,author_avatar) 
-             VALUES ('${article.id}','${article.title}','${article.intro}','${article.content}','${article.type}','${article.tag}','${article.author_id}','${article.author_name}','${article.author_avatar}');`
+
+        /**
+         * 在 user_auths 表中查询是否有该类型、该标识的注册记录
+         */
+        const records = await mysqlUtil.query(
+            `SELECT * FROM user_auths WHERE identity_type='${identity_type}' and identifier='${identifier}';`
         );
-        // 返回数据
+        console.debug('records', records);
+        // 错误处理
+        if (records.length === 0) {
+            errno = 4;
+            errmsg = `数据库中没有该类型、该标识的注册记录，用户未注册`;
+            ctx.body = getCtxBody(errno, errmsg, data);
+            return;
+        }
+        // 判断凭证是否与库里的一致
+        const credentialDB = records[0].credential;
+        console.debug('credentialDB', credentialDB);
+        if (credential !== credentialDB) {
+            errno = 5;
+            errmsg = `凭证不一致`;
+            ctx.body = getCtxBody(errno, errmsg, data);
+            return;
+        }
+
+        // 提示成功
+        errno = 0;
+        data = '登录成功';
         ctx.body = getCtxBody(errno, errmsg, data);
+
     } catch (e) {
         console.error(e);
-        errno = 3;
-        errmsg = `插入数据库报错 ${e.message}`;
+        errno = 10;
+        errmsg = `数据库操作报错 ${e.message}`;
         ctx.body = getCtxBody(errno, errmsg, data);
     }
 
