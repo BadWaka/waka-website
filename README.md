@@ -70,6 +70,7 @@
 - marked 解析markdown
 - material-ui MaterialUI 酷炫的设计语言
 - mime 处理 MIME 类型的库
+- moment 处理时间日期格式
 - mysql 连接mysql的驱动
 - mz 将node更新至ES6+语法的库
 - prop-types React单另的PropTypes模块

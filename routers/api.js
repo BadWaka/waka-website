@@ -8,6 +8,8 @@ const cheerio = require('cheerio'); // cheerio 操作 html
 const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
 const uuidV4 = require('uuid/v4');   // 生成uuid的库
 const constant = require('../utils/constant');  // 常量
+const sessionUtil = require('../utils/sessionUtil');    // sessionUtil
+const moment = require('moment');   // moment.js 处理时间日期格式
 
 // initial
 
@@ -254,9 +256,7 @@ koaRouter.post('/api/signin', async function (ctx) {
 
     try {
 
-        /**
-         * 在 user_auths 表中查询是否有该类型、该标识的注册记录
-         */
+        // 在 user_auths 表中查询是否有该类型、该标识的注册记录
         const records = await mysqlUtil.query(
             `SELECT * FROM user_auths WHERE identity_type='${identity_type}' and identifier='${identifier}';`
         );
@@ -268,6 +268,7 @@ koaRouter.post('/api/signin', async function (ctx) {
             return;
         }
         // 判断凭证是否与库里的一致
+        const user_id = records[0].user_id; // 获得库里的 user_id
         const credentialDB = records[0].credential; // 获得库里的凭证
         if (credential !== credentialDB) {
             errno = 5;
@@ -276,16 +277,28 @@ koaRouter.post('/api/signin', async function (ctx) {
             return;
         }
 
-        // 设置过期日期
-        let expiresDate = new Date();
+        // 如果没传过期时间
         if (expires === 0) {
+            // 默认为半小时
             expires = 30 * 60 * 1000;
         }
+        // 设置过期日期
+        let expiresDate = new Date();
         expiresDate.setTime(expiresDate.getTime() + expires);
+        console.log('expiresDate', expiresDate.toUTCString());
+        const a = moment.utc().toDate();
+        console.log('a', a);
+        // 生成 session
+        const session = sessionUtil.generateSession(user_id, expiresDate);
+        // 写 session 入库
+        const inputSessionResult = await mysqlUtil.query(
+            `INSERT INTO sessions (id,user_id,expires) VALUES ('${session.id}','${session.user_id}','${a}');`
+        );
         // 种 cookie
-        ctx.cookies.set(constant.cookieName, 'signin', {
+        // 把 session.id 写入 cookie
+        ctx.cookies.set(constant.cookieName, session.id, {
             maxAge: expires,
-            expires: expiresDate
+            expires: expiresDate,   // 这里需要传入一个 GMT 日期格式的对象
         });
 
         // 提示成功
@@ -844,7 +857,6 @@ koaRouter.post('/api/updateArticle', async function (ctx) {
         updated_at: reqBody.updated_at,
         comments: reqBody.comments,
     };
-    // console.debug('article', article);
 
     let errno = 0;  // 错误码
     let errmsg = '';    // 错误提示
