@@ -145,17 +145,47 @@ koaRouter.post('/api/signup', async function (ctx) {
     }
 
     try {
-        // 在 user_auths 表中查询是否有该类型、该标识的注册记录
+
+        /**
+         * 在 user_auths 表中查询是否有该类型、该标识的注册记录
+         */
         const isSignUp = await mysqlUtil.query(
             `SELECT * FROM user_auths WHERE identity_type='${identity_type}' and identifier='${identifier}';`
         );
+        // 查询的结果是个数组，当数组为空时则代表没有该记录
         if (isSignUp.length !== 0) {
+            // 错误处理
             console.error('数据库中已有该类型、该标识的注册记录', isSignUp);
+            errno = 4;
+            errmsg = `数据库中已有该类型、该标识的注册记录 ${isSignUp.toString()}`;
+            ctx.body = getCtxBody(errno, errmsg, data);
+            return;
         }
-        console.debug('isSignUp', isSignUp);
+
+        /**
+         * 写 users 表
+         */
+            // 生成 userId
+        const userId = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+        const inputUsersResult = await mysqlUtil.query(
+            `INSERT INTO users (id,mobile_number) 
+             VALUES ('${userId}','${identifier}');`
+        );
+        console.debug('inputUsersResult', inputUsersResult);
+
+        /**
+         * 写 user_auths 表
+         */
+            // 生成 userAuthId
+        const userAuthId = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
+        const inputUserAuthsResult = await mysqlUtil.query(
+            `INSERT INTO user_auths (id,user_id,identity_type,identifier,credential) 
+             VALUES ('${userAuthId}','${userId}','${identity_type}','${identifier}','${credential}');`
+        );
+        console.debug('inputUserAuthsResult', inputUserAuthsResult);
     } catch (e) {
         console.error(e);
-        errno = 4;
+        errno = 10;
         errmsg = `数据库操作报错 ${e.message}`;
         ctx.body = getCtxBody(errno, errmsg, data);
     }
