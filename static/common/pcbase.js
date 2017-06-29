@@ -110,6 +110,13 @@ var regExpUtil = {
     }
 };
 
+/**
+ * 常量类
+ */
+var Constant = {
+    rememberMeChecked: 'WAKA_WEBSITE/REMEMBER_ME_CHECKED',  // 登录界面记住我选中状态
+};
+
 $(function () {
 
     // 初始化 Toast

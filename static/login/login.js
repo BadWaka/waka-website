@@ -398,8 +398,15 @@ $(function () {
             Toast.show('密码不能为空', 'error');
             return;
         }
+        // 是否记住我，用来设置 cookie 过期时间
+        var expires = 0; // cookie 过期时间
+        var rememberMeChecked = $('#rememberMeCheckBox').prop('checked');
+        console.log('rememberMeChecked', rememberMeChecked);
+        if (rememberMeChecked) {
+            expires = 30 * 24 * 60 * 60 * 1000;
+        }
         // 登录
-        signIn(mobileNumber, password, 'mobilePassword');
+        signIn(mobileNumber, password, 'mobilePassword', expires);
     });
 
     /**
@@ -431,6 +438,21 @@ $(function () {
         }
         // 注册
         signUp(mobileNumber, password, 'mobilePassword');
+    });
+
+    /**
+     * 记住我按钮
+     */
+    var $rememberMeCheckBox = $('#rememberMeCheckBox');
+    // 进入页面时进行判断
+    if (localStorage.getItem(Constant.rememberMeChecked) === 'true') {
+        $rememberMeCheckBox.prop('checked', true);
+    }
+    // 点击事件
+    $rememberMeCheckBox.on('click', function () {
+        // 存入 localStorage
+        var rememberMeChecked = $rememberMeCheckBox.prop('checked');
+        localStorage.setItem(Constant.rememberMeChecked, rememberMeChecked);
     });
 
     /**
@@ -476,11 +498,12 @@ $(function () {
      * @param credential 凭证
      * @param identity_type 登录类型: 1.mobilePassword(手机号密码);
      */
-    function signIn(identifier, credential, identity_type) {
+    function signIn(identifier, credential, identity_type, expires) {
         var data = {
             identifier: identifier,
             credential: credential,
-            identity_type: identity_type
+            identity_type: identity_type,
+            expires: expires
         };
         $.ajax({
             type: "POST",
