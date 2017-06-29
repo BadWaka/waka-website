@@ -219,6 +219,7 @@ koaRouter.post('/api/signin', async function (ctx) {
     const identifier = reqBody.identifier;  // 获得标识
     const credential = reqBody.credential;  // 获得凭证
     const identity_type = reqBody.identity_type; // 获得类型
+    let expires = +reqBody.expires;    // 获得 cookie 过期时间；默认获取的是字符串，需要转化成 number
 
     let errno = 0;  // 错误码
     let errmsg = '';    // 错误提示
@@ -258,7 +259,6 @@ koaRouter.post('/api/signin', async function (ctx) {
         const records = await mysqlUtil.query(
             `SELECT * FROM user_auths WHERE identity_type='${identity_type}' and identifier='${identifier}';`
         );
-        console.debug('records', records);
         // 错误处理
         if (records.length === 0) {
             errno = 4;
@@ -268,13 +268,24 @@ koaRouter.post('/api/signin', async function (ctx) {
         }
         // 判断凭证是否与库里的一致
         const credentialDB = records[0].credential;
-        console.debug('credentialDB', credentialDB);
         if (credential !== credentialDB) {
             errno = 5;
             errmsg = `凭证不一致`;
             ctx.body = getCtxBody(errno, errmsg, data);
             return;
         }
+
+        // 设置过期日期
+        let expiresDate = new Date();
+        if (expires === 0) {
+            expires = 30 * 60 * 1000;
+        }
+        expiresDate.setTime(expiresDate.getTime() + expires);
+        // 种 cookie
+        ctx.cookies.set('waka_website_cookie', 'signin', {
+            maxAge: expires,
+            expires: expiresDate
+        });
 
         // 提示成功
         errno = 0;
