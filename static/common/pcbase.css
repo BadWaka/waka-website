@@ -9,12 +9,34 @@ html, body {
   color: #fff;
   background: #212121; }
   .header-wrapper .header {
-    margin: 0 auto;
-    width: 1440px; }
+    position: relative;
+    margin: 0 auto; }
     .header-wrapper .header .title {
       font-size: 24px;
       line-height: 58px;
       margin-left: 24px; }
+    .header-wrapper .header .personalWrapper {
+      position: absolute;
+      top: 0;
+      right: 0; }
+      .header-wrapper .header .personalWrapper .personal {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 58px;
+        background: red; }
+        .header-wrapper .header .personalWrapper .personal .menu {
+          position: absolute;
+          top: 58px;
+          right: 0;
+          width: 160px;
+          background: green; }
+          .header-wrapper .header .personalWrapper .personal .menu .menuItem {
+            display: flex;
+            align-items: center;
+            height: 48px; }
 
 .toast {
   position: fixed;

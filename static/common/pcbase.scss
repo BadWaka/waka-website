@@ -16,13 +16,43 @@ html, body {
   background: $grey900;
 
   .header {
+    position: relative;
     margin: 0 auto;
-    width: 1440px;
 
     .title {
       font-size: 24px;
       line-height: 58px;
       margin-left: 24px;
+    }
+
+    .personalWrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .personal {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 58px;
+        background: red;
+
+        .menu {
+          position: absolute;
+          top: 58px;
+          right: 0;
+          width: 160px;
+          background: green;
+
+          .menuItem {
+            display: flex;
+            align-items: center;
+            height: 48px;
+          }
+        }
+      }
     }
   }
 }
