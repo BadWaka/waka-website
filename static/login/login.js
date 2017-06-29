@@ -469,7 +469,7 @@ $(function () {
         };
         $.ajax({
             type: "POST",
-            url: "/api/signup/",
+            url: "/api/signup",
             data: data,
             success: function (result, status, xhr) {
                 console.log('注册 success', result);
@@ -507,7 +507,7 @@ $(function () {
         };
         $.ajax({
             type: "POST",
-            url: "/api/signin/",
+            url: "/api/signin",
             data: data,
             success: function (result, status, xhr) {
                 console.log('登录 success', result);

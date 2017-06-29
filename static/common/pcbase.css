@@ -25,7 +25,7 @@ html, body {
         align-items: center;
         justify-content: center;
         width: 60px;
-        height: 58px;
+        height: 56px;
         background: red; }
         .header-wrapper .header .personalWrapper .personal .menu {
           position: absolute;
@@ -40,7 +40,9 @@ html, body {
             padding: 0 16px;
             display: flex;
             align-items: center;
-            height: 48px; }
+            height: 48px;
+            user-select: none;
+            cursor: pointer; }
             .header-wrapper .header .personalWrapper .personal .menu .menuItem:hover {
               background: #424242; }
             .header-wrapper .header .personalWrapper .personal .menu .menuItem .iconfont {

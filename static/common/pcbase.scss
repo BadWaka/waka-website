@@ -36,7 +36,7 @@ html, body {
         align-items: center;
         justify-content: center;
         width: 60px;
-        height: 58px;
+        height: 56px;
         background: red;
 
         .menu {
@@ -54,6 +54,8 @@ html, body {
             display: flex;
             align-items: center;
             height: 48px;
+            user-select: none;
+            cursor: pointer;
 
             &:hover {
               background: $grey800;

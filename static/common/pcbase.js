@@ -122,4 +122,42 @@ $(function () {
     // 初始化 Toast
     Toast.init();
 
+    /**
+     * header
+     */
+
+        // 个人信息栏 hover 事件
+    var $headerPersonalWrapper = $('#headerPersonalWrapper');
+    var $headerPersonalWrapperMenu = $('#headerPersonalWrapperMenu');
+    $headerPersonalWrapper.hover(function () {
+        // 显示菜单
+        $headerPersonalWrapperMenu.css('display', 'block');
+    }, function () {
+        // 隐藏菜单
+        $headerPersonalWrapperMenu.css('display', 'none');
+    });
+
+    // 登出按钮点击事件
+    $('#headerPersonalWrapperMenuLogout').on('click', function (e) {
+        $.ajax({
+            type: "GET",
+            url: "/api/logout",
+            success: function (result, status, xhr) {
+                console.log('登录 success', result);
+                switch (result.errno) {
+                    case 0:
+                        Toast.show('登出成功', 'success');
+                        break;
+                    default:
+                        Toast.show('登出失败，' + result.errmsg, 'error');
+                        break;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                Toast.show('登出失败' + error.errmsg, 'error');
+            }
+        });
+    });
+
 });
