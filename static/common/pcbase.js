@@ -38,7 +38,6 @@ var Toast = {
             return;
         }
         var domToastWaka = document.getElementById('toastWaka');
-        console.log('domToastWaka', domToastWaka);
         if (!domToastWaka) {
             console.error('toastWaka DOM 不存在!');
             return;

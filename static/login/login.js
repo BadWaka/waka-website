@@ -534,7 +534,6 @@ $(function () {
     $('#btnSignIn').on('click', function () {
         console.log('登录');
         var mobileNumber = $('#mobileNumberSignIn').val().trim();
-        console.log('mobileNumber', mobileNumber);
         if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
             Toast.show('手机号格式错误，请检查', 'error');
         }
@@ -547,7 +546,6 @@ $(function () {
         console.log('注册');
         // 手机号
         var mobileNumber = $('#mobileNumberSignUp').val().trim();
-        console.log('mobileNumber', mobileNumber);
         if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
             Toast.show('手机号格式错误，请检查', 'error');
             return;
