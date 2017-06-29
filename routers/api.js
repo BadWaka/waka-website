@@ -168,17 +168,20 @@ koaRouter.post('/api/signup', async function (ctx) {
             // 生成 userId
         const userId = uuidV4().replace(/-/g, '');    // 去掉中间的 - 号，因为这样会导致 mysql 报错
         let inputUsersResult = null;
-        // 如果注册类型是 mobilePassword(手机号密码)
-        if (identity_type === 'mobilePassword') {
-            // 则写入手机号
-            inputUsersResult = await mysqlUtil.query(
-                `INSERT INTO users (id,mobile_number) VALUES ('${userId}','${identifier}');`
-            );
-        } else {
-            // 只写入id
-            inputUsersResult = await mysqlUtil.query(
-                `INSERT INTO users (id) VALUES ('${userId}');`
-            );
+        // 判断注册类型
+        switch (identity_type) {
+            case 'mobilePassword':
+                // 写入手机号
+                inputUsersResult = await mysqlUtil.query(
+                    `INSERT INTO users (id,mobile_number) VALUES ('${userId}','${identifier}');`
+                );
+                break;
+            default:
+                // 只写入id
+                inputUsersResult = await mysqlUtil.query(
+                    `INSERT INTO users (id) VALUES ('${userId}');`
+                );
+                break;
         }
         console.debug('inputUsersResult', inputUsersResult);
 
