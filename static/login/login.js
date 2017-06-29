@@ -507,18 +507,6 @@ $(function () {
     });
 
     /**
-     * 登录按钮
-     */
-    $('#btnSignIn').on('click', function () {
-        console.log('登录');
-        var mobileNumber = $('#mobileNumberSignIn').val().trim();
-        console.log('mobileNumber', mobileNumber);
-        if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
-            Toast.show('手机号格式错误，请检查', 'error');
-        }
-    });
-
-    /**
      * 切换至登录
      */
     function changeToSignIn() {
@@ -539,5 +527,47 @@ $(function () {
         $signUpSection.css('display', 'block');
         $signInSection.css('display', 'none');
     }
+
+    /**
+     * 登录按钮
+     */
+    $('#btnSignIn').on('click', function () {
+        console.log('登录');
+        var mobileNumber = $('#mobileNumberSignIn').val().trim();
+        console.log('mobileNumber', mobileNumber);
+        if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
+            Toast.show('手机号格式错误，请检查', 'error');
+        }
+    });
+
+    /**
+     * 注册按钮
+     */
+    $('#btnSignUp').on('click', function () {
+        console.log('注册');
+        // 手机号
+        var mobileNumber = $('#mobileNumberSignUp').val().trim();
+        console.log('mobileNumber', mobileNumber);
+        if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
+            Toast.show('手机号格式错误，请检查', 'error');
+            return;
+        }
+        // 密码
+        var password = $('#passwordSignUp').val();
+        if (!password) {
+            Toast.show('密码不能为空', 'error');
+            return;
+        }
+        // 再次输入密码
+        var passwordAgain = $('#passwordAgainSignUp').val();
+        if (!passwordAgain) {
+            Toast.show('第二次输入的密码不能为空', 'error');
+            return;
+        }
+        if (password !== passwordAgain) {
+            Toast.show('两次输入的密码不一致', 'error');
+            return;
+        }
+    });
 
 });

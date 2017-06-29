@@ -32,23 +32,26 @@
 
     <!--登录-->
     <section id="signInSection" class="signSection" style="display: none">
-        <section class="inputWrapper">
+        <form class="inputWrapper">
             <input id="mobileNumberSignIn" class="input" title="mobileNumber" name="mobileNumber" type="text"
                    placeholder="手机号">
             <input id="passwordSignIn" class="input" title="password" name="password" type="password" placeholder="密码">
-        </section>
+        </form>
         <button id="btnSignIn" class="fullWidth">登录</button>
     </section>
 
     <!--注册-->
     <section id="signUpSection" class="signSection" style="display: none">
-        <section class="inputWrapper">
+        <form class="inputWrapper">
+            <!--隐藏表单用来阻止自动填充-->
+            <input title="password" type="text" name="password" style="display: none">
+            <input title="passwordAgain" type="text" name="passwordAgain" style="display: none">
             <input id="mobileNumberSignUp" class="input" title="mobileNumber" name="mobileNumber" type="text"
                    placeholder="手机号">
             <input id="passwordSignUp" class="input" title="password" name="password" type="password" placeholder="密码">
             <input id="passwordAgainSignUp" class="input" title="passwordAgain" name="passwordAgain" type="password"
                    placeholder="再次输入密码">
-        </section>
+        </form>
         <button id="btnSignUp" class="fullWidth">注册</button>
     </section>
 
