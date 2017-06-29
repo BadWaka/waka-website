@@ -566,6 +566,33 @@ $(function () {
             Toast.show('两次输入的密码不一致', 'error');
             return;
         }
+        // 注册
+        signUp(mobileNumber, password, 'mobilePassword');
     });
+
+    /**
+     * 注册
+     * @param identifier 标识
+     * @param credential 凭证
+     * @param identity_type 登录类型: 1.mobilePassword(手机号密码);
+     */
+    function signUp(identifier, credential, identity_type) {
+        var data = {
+            identifier: identifier,
+            credential: credential,
+            identity_type: identity_type
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/signup/",
+            data: data,
+            success: function (result, status, xhr) {
+                console.log('注册 success', result);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        })
+    }
 
 });
