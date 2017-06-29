@@ -72,4 +72,7 @@ var Toast = {
 };
 
 Toast.init();
-Toast.show();
+Toast.show('123', 'success', 10000);
+setTimeout(function () {
+    Toast.hide();
+}, 3000);
