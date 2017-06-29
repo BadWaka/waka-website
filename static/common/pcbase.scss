@@ -27,6 +27,33 @@ html, body {
   }
 }
 
+// toast
+.toast {
+  position: fixed;
+  top: 40px;
+  padding: 10px 20px;
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666666;
+  letter-spacing: 0;
+  line-height: 18px;
+  z-index: 1;
+
+  .iconfont {
+    margin-right: 10px;
+  }
+
+  .icon-success {
+    color: $green500;
+  }
+
+  .icon-error {
+    color: $red500;
+  }
+}
+
 // 全局 input 样式
 input {
   border: none;

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title><%= title %></title>
+    <!--iconfont-->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_k8ew9cu29erssjor.css">
     <!--normalize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <!--login.css-->
@@ -10,10 +12,15 @@
 </head>
 <body>
 
+<!--ejs获取值-->
 <script>
     window.title = '<%= title %>';
     console.log('title', title);
 </script>
+
+<section class="toast">
+    <i class="iconfont icon-success"></i><i class="iconfont icon-error"></i><span class="text">111</span>
+</section>
 
 <!--背景 canvas-->
 <canvas id="canv"></canvas>

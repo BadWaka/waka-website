@@ -16,6 +16,25 @@ html, body {
       line-height: 58px;
       margin-left: 24px; }
 
+.toast {
+  position: fixed;
+  top: 40px;
+  padding: 10px 20px;
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666666;
+  letter-spacing: 0;
+  line-height: 18px;
+  z-index: 1; }
+  .toast .iconfont {
+    margin-right: 10px; }
+  .toast .icon-success {
+    color: #4caf50; }
+  .toast .icon-error {
+    color: #f44336; }
+
 input {
   border: none;
   outline: none; }
