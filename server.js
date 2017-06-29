@@ -34,7 +34,7 @@ koaEjs(app, {
     layout: false,
     viewExt: 'ejs',
     cache: false,
-    debug: true
+    debug: false
 });
 
 // x-response-time 记录请求时间

@@ -7,6 +7,7 @@ const requestPromise = require('request-promise'); // request请求库的Promise
 const cheerio = require('cheerio'); // cheerio 操作 html
 const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
 const uuidV4 = require('uuid/v4');   // 生成uuid的库
+const constant = require('../utils/constant');  // 常量
 
 // initial
 
@@ -282,7 +283,7 @@ koaRouter.post('/api/signin', async function (ctx) {
         }
         expiresDate.setTime(expiresDate.getTime() + expires);
         // 种 cookie
-        ctx.cookies.set('waka_website_cookie', 'signin', {
+        ctx.cookies.set(constant.cookieName, 'signin', {
             maxAge: expires,
             expires: expiresDate
         });
