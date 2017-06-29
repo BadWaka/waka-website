@@ -183,7 +183,7 @@ koaRouter.post('/api/signup', async function (ctx) {
                 );
                 break;
         }
-        console.debug('inputUsersResult', inputUsersResult);
+        // console.debug('inputUsersResult', inputUsersResult);
 
         /**
          * 写 user_auths 表
@@ -194,7 +194,7 @@ koaRouter.post('/api/signup', async function (ctx) {
             `INSERT INTO user_auths (id,user_id,identity_type,identifier,credential) 
              VALUES ('${userAuthId}','${userId}','${identity_type}','${identifier}','${credential}');`
         );
-        console.debug('inputUserAuthsResult', inputUserAuthsResult);
+        // console.debug('inputUserAuthsResult', inputUserAuthsResult);
 
         // 提示成功
         errno = 0;

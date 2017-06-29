@@ -387,10 +387,19 @@ $(function () {
      */
     $('#btnSignIn').on('click', function () {
         console.log('登录');
+        // 手机号
         var mobileNumber = $('#mobileNumberSignIn').val().trim();
         if (!regExpUtil.verifyMobileNumber(mobileNumber)) {
             Toast.show('手机号格式错误，请检查', 'error');
         }
+        // 密码
+        var password = $('#passwordSignIn').val();
+        if (!password) {
+            Toast.show('密码不能为空', 'error');
+            return;
+        }
+        // 登录
+        signIn(mobileNumber, password, 'mobilePassword');
     });
 
     /**
@@ -456,6 +465,41 @@ $(function () {
             },
             error: function (xhr, status, error) {
                 console.error(error);
+                Toast.show('注册失败' + error.errmsg, 'error');
+            }
+        });
+    }
+
+    /**
+     * 登录
+     * @param identifier 标识
+     * @param credential 凭证
+     * @param identity_type 登录类型: 1.mobilePassword(手机号密码);
+     */
+    function signIn(identifier, credential, identity_type) {
+        var data = {
+            identifier: identifier,
+            credential: credential,
+            identity_type: identity_type
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/signin/",
+            data: data,
+            success: function (result, status, xhr) {
+                console.log('登录 success', result);
+                switch (result.errno) {
+                    case 0:
+                        Toast.show('登录成功', 'success');
+                        break;
+                    default:
+                        Toast.show('登录失败' + result.errmsg, 'error');
+                        break;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                Toast.show('登录失败' + error.errmsg, 'error');
             }
         })
     }
