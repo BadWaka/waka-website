@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filterDemo</title>
+</head>
+<style>
+    .btn {
+        position: relative;
+        transition: 0.2s;
+        width: 100px;
+        height: 40px;
+        background: #000;
+    }
+
+    .btn:after {
+        transition: 0.5s;
+        position: absolute;
+        top: 0;
+        right: 20px;
+        content: '';
+        width: 60px;
+        height: 30px;
+        background: #000;
+    }
+
+    .btn:hover:after {
+        top: 20px;
+        right:20px;
+        filter: blur(10px);
+    }
+</style>
+<body>
+
+<div class="btn">
+
+</div>
+
+</body>
+</html>
