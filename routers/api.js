@@ -934,7 +934,7 @@ koaRouter.get('/api/getArticle', async function (ctx) {
     ctx.body = getCtxBody(0, '', result);
 });
 
-// 长传文件
+// 上传文件
 
 /**
  * 上传文件
