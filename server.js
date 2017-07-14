@@ -1,11 +1,11 @@
 /************************ require ************************/
 
 const Koa = require('koa'); // koa
-const path = require('path');   // path
+const path = require('path'); // path
 const console = require('tracer').colorConsole(); // 增强console
 const koaStatic = require('koa-static'); // koa-static   设置静态资源目录
 const koaMount = require('koa-mount'); // koa-mount 将中间件挂载到特定url下
-const koaCORS = require('kcors');   // koa CORS 中间件
+const koaCORS = require('kcors'); // koa CORS 中间件
 const koaBodyParser = require('koa-bodyparser'); // koa-bodyparser 解析post中的data
 const koaEjs = require('koa-ejs');
 const staticFiles = require('./middlewares/staticFiles'); // 自己写的静态资源中间件
@@ -25,7 +25,7 @@ console.debug('当前环境 process.env.NODE_ENV', process.env.NODE_ENV);
 
 // 设置 CORS 跨域资源请求
 app.use(koaCORS({
-    origin: 'http://localhost:9000',    // 测试环境
+    origin: 'http://localhost:9000', // 测试环境
 }));
 
 // 设置ejs中间件
