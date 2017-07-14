@@ -934,4 +934,13 @@ koaRouter.get('/api/getArticle', async function (ctx) {
     ctx.body = getCtxBody(0, '', result);
 });
 
+// 长传文件
+
+/**
+ * 上传文件
+ */
+koaRouter.post('/api/uploadFile', async function (ctx) {
+    console.log('上传文件 /api/uploadFile');
+});
+
 module.exports = koaRouter;
