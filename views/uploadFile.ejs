@@ -20,8 +20,9 @@
     <!--传统方式-->
     <section class="traditional">
         <h2>1. 传统方式</h2>
-        <form id="traditionalUploadForm" action="/api/uploadFile">
+        <form id="traditionalUploadForm" action="/api/uploadFile" method="post" enctype="multipart/form-data">
             <input type="file">
+            <br>
             <input type="submit" value="UploadFile">
         </form>
     </section>

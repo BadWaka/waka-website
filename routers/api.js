@@ -940,7 +940,7 @@ koaRouter.get('/api/getArticle', async function (ctx) {
  * 上传文件
  */
 koaRouter.post('/api/uploadFile', async function (ctx) {
-    console.log('上传文件 /api/uploadFile');
+    console.log('上传文件 /api/uploadFile ctx', ctx);
 });
 
 module.exports = koaRouter;
