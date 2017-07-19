@@ -64,4 +64,13 @@ koaRouter.get('/signin', async function (ctx) {
     });
 });
 
+/**
+ * 上传文件测试页
+ */
+koaRouter.get('/uploadFile', async function (ctx) {
+    await ctx.render('uploadFile', {
+        title: '上传文件测试页'
+    });
+});
+
 module.exports = koaRouter;

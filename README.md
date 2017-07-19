@@ -57,6 +57,7 @@
 
 - antd ant-design 
 - bluebird 第三方Promise库，加强原生Promise功能，且性能更快
+- busboy 用来解析出请求中文件流
 - cheerio 爬虫HTML解析
 - ejs 模板引擎
 - highlightjs 代码语法高亮，用来让 markdown 更好看

@@ -43,7 +43,7 @@ app.use(async function (ctx, next) {
     await next();
     const ms = new Date() - startTime;
     ctx.set('X-Response-Time', `${ms}ms`); // 把请求开始到响应完成的时间存到ctx里
-    console.info(`响应时间 x-response-time ${ms}ms`);
+    // console.info(`响应时间 x-response-time ${ms}ms`);
 });
 
 // 开发环境下才会设置静态文件目录

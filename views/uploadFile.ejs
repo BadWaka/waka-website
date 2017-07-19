@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传头像测试页</title>
+    <!--iconfont-->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_410sjze99f1rlik9.css">
+    <!--animate.css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="../static/common/reset.css">
+    <link rel="stylesheet" href="../static/uploadFile/uploadFile.css">
+</head>
+<body>
+
+<!--头部-->
+<% include header %>
+
+<!--主体-->
+<section class="main">
+    <!--传统方式-->
+    <section class="traditional">
+        <h2>1. 传统方式</h2>
+        <form id="traditionalUploadForm" action="/api/uploadFile" method="post" enctype="multipart/form-data">
+            <input type="file">
+            <br>
+            <input type="submit" value="UploadFile">
+        </form>
+    </section>
+</section>
+
+<!--jQuery-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static/common/pcbase.js"></script>
+<script src="../static/uploadFile/uploadFile.js"></script>
+</body>
+</html>
