@@ -972,21 +972,22 @@ koaRouter.get('/api/getUniversities', async function (ctx) {
             lodash.uniq(result);
         }
 
-        // 写入文件
+        // 获得文件路径
         let filePath = isOnlyUniversity ? `../data/universitiesOnlyUniversity.json` : `../data/universities.json`;
         filePath = path.resolve(__dirname, filePath);
-        const fileResult = await fileUtil.writeFile({
-            universities: result
-        }, filePath);
-        console.debug('fileResult', fileResult);
 
+        // 写入文件
+        await fileUtil.writeFile(JSON.stringify({
+            universities: result
+        }), filePath);
+
+        // 返回结果
         ctx.body = getCtxBody(0, '', result);
 
     } catch (e) {
         console.error(e);
         ctx.body = getCtxBody(-1, e.message);
     }
-
 });
 
 /**
@@ -995,23 +996,39 @@ koaRouter.get('/api/getUniversities', async function (ctx) {
 koaRouter.get('/api/getMajors', async function (ctx) {
     console.info('获得专业 /api/getMajors');
 
-    // 获得标识量，是否只有专业
-    const isOnlyMajor = ctx.request.query.isOnlyMajor;
+    try {
 
-    // 查询所有专业
-    let result = await mysqlUtil.query(`SELECT * FROM majors`);
+        // 获得标识量，是否只有专业
+        const isOnlyMajor = ctx.request.query.isOnlyMajor;
 
-    // 如果只有专业为true
-    if (isOnlyMajor) {
-        // 只返回学校数组
-        result = result.map((item, index) => {
-            return item.name;
-        });
-        // 数组去重
-        lodash.uniq(result);
+        // 查询所有专业
+        let result = await mysqlUtil.query(`SELECT * FROM majors`);
+
+        // 如果只有专业为true
+        if (isOnlyMajor) {
+            // 只返回学校数组
+            result = result.map((item, index) => {
+                return item.name;
+            });
+            // 数组去重
+            lodash.uniq(result);
+        }
+
+        // 获得文件路径
+        let filePath = isOnlyMajor ? `../data/majorsOnlyMajor.json` : `../data/majors.json`;
+        filePath = path.resolve(__dirname, filePath);
+
+        // 写入文件
+        await fileUtil.writeFile(JSON.stringify({
+            majors: result
+        }), filePath);
+
+        ctx.body = getCtxBody(0, '', result);
+
+    } catch (e) {
+        console.error(e);
+        ctx.body = getCtxBody(-1, e.message);
     }
-
-    ctx.body = getCtxBody(0, '', result);
 });
 
 module.exports = koaRouter;

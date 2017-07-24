@@ -45,6 +45,7 @@ function writeFile(data, outputFilePath) {
             }
 
             console.debug(outputFilePath + '文件写入成功');
+            resolve(data);
         });
     });
 }
