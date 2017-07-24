@@ -9,7 +9,10 @@ const mysqlUtil = require('../utils/mysqlUtil');    // 操作数据库工具集
 const uuidV4 = require('uuid/v4');   // 生成uuid的库
 const constant = require('../utils/constant');  // 常量
 const sessionUtil = require('../utils/sessionUtil');    // sessionUtil
+const fileUtil = require('../utils/fileUtil');  // 自己封的文件工具
 const moment = require('moment');   // moment.js 处理时间日期格式
+const lodash = require('lodash');   // 工具库
+const path = require('path');   // node path
 
 // initial
 
@@ -949,21 +952,65 @@ koaRouter.post('/api/uploadFile', async function (ctx) {
  * 获得学校
  */
 koaRouter.get('/api/getUniversities', async function (ctx) {
-    // console.debug('获得学校 /api/getUniversities ctx', ctx);
+    console.info('获得学校 /api/getUniversities');
 
-    // 查询所有学校
-    const result = await mysqlUtil.query(`SELECT * FROM universities`);
-    ctx.body = getCtxBody(0, '', result);
+    // 获得标识量，是否只有学校
+    const isOnlyUniversity = ctx.request.query.isOnlyUniversity;
+
+    try {
+
+        // 查询所有学校
+        let result = await mysqlUtil.query(`SELECT * FROM universities`);
+
+        // 如果只有学校为true
+        if (isOnlyUniversity) {
+            // 只返回学校数组
+            result = result.map((item, index) => {
+                return item.name;
+            });
+            // 数组去重
+            lodash.uniq(result);
+        }
+
+        // 写入文件
+        let filePath = isOnlyUniversity ? `../data/universitiesOnlyUniversity.json` : `../data/universities.json`;
+        filePath = path.resolve(__dirname, filePath);
+        const fileResult = await fileUtil.writeFile({
+            universities: result
+        }, filePath);
+        console.debug('fileResult', fileResult);
+
+        ctx.body = getCtxBody(0, '', result);
+
+    } catch (e) {
+        console.error(e);
+        ctx.body = getCtxBody(-1, e.message);
+    }
+
 });
 
 /**
  * 获得专业
  */
 koaRouter.get('/api/getMajors', async function (ctx) {
-    // console.debug('获得学校 /api/getMajors ctx', ctx);
+    console.info('获得专业 /api/getMajors');
+
+    // 获得标识量，是否只有专业
+    const isOnlyMajor = ctx.request.query.isOnlyMajor;
 
     // 查询所有专业
-    const result = await mysqlUtil.query(`SELECT * FROM majors`);
+    let result = await mysqlUtil.query(`SELECT * FROM majors`);
+
+    // 如果只有专业为true
+    if (isOnlyMajor) {
+        // 只返回学校数组
+        result = result.map((item, index) => {
+            return item.name;
+        });
+        // 数组去重
+        lodash.uniq(result);
+    }
+
     ctx.body = getCtxBody(0, '', result);
 });
 

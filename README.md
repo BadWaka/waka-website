@@ -68,6 +68,7 @@
 - koa-mount 将中间件挂载到特定url下
 - koa-router koa路由
 - koa-static koa静态资源
+- lodash 工具库
 - marked 解析markdown
 - material-ui MaterialUI 酷炫的设计语言
 - mime 处理 MIME 类型的库
