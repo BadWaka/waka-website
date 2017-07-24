@@ -940,7 +940,31 @@ koaRouter.get('/api/getArticle', async function (ctx) {
  * 上传文件
  */
 koaRouter.post('/api/uploadFile', async function (ctx) {
-    console.log('上传文件 /api/uploadFile ctx', ctx);
+    console.debug('上传文件 /api/uploadFile ctx', ctx);
+});
+
+// 学校/专业
+
+/**
+ * 获得学校
+ */
+koaRouter.get('/api/getUniversities', async function (ctx) {
+    // console.debug('获得学校 /api/getUniversities ctx', ctx);
+
+    // 查询所有学校
+    const result = await mysqlUtil.query(`SELECT * FROM universities`);
+    ctx.body = getCtxBody(0, '', result);
+});
+
+/**
+ * 获得专业
+ */
+koaRouter.get('/api/getMajors', async function (ctx) {
+    // console.debug('获得学校 /api/getMajors ctx', ctx);
+
+    // 查询所有专业
+    const result = await mysqlUtil.query(`SELECT * FROM majors`);
+    ctx.body = getCtxBody(0, '', result);
 });
 
 module.exports = koaRouter;
