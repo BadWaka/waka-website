@@ -17,20 +17,23 @@ const currentHost = 'http://localhost:5000';
  * 主页
  */
 koaRouter.get('/', async function (ctx) {
-    // 得到 cookie
-    const cookie = ctx.cookies.get(constant.cookieName);
-    console.debug('cookie', cookie);
-    // 请求所有文章数据
-    const p1 = requestPromise(currentHost + '/api/getArticle');
-    try {
-        const values = await Promise.all([p1]);
-        // console.debug('values', values);
-        await ctx.render('index', {
-            articles: JSON.parse(values[0])
-        });
-    } catch (err) {
-        console.error(err);
-    }
+    // // 得到 cookie
+    // const cookie = ctx.cookies.get(constant.cookieName);
+    // console.debug('cookie', cookie);
+    // // 请求所有文章数据
+    // const p1 = requestPromise(currentHost + '/api/getArticle');
+    // try {
+    //     const values = await Promise.all([p1]);
+    //     // console.debug('values', values);
+    //     await ctx.render('index', {
+    //         articles: JSON.parse(values[0])
+    //     });
+    // } catch (err) {
+    //     console.error(err);
+    // }
+    ctx.render('index',{
+        
+    });
 });
 
 /**
